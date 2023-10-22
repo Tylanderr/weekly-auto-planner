@@ -4,8 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/smtp"
-	"os"
+	"io/ioutil"
 )
+
+type JsonFile struct {
+    UserNodes []User
+}
 
 type User struct {
     Email string `json:"email"`
@@ -24,19 +28,19 @@ func main() {
 func readJsonFile() {
     var firstAttempt Meal
 
-    contents, err := os.ReadFile("./resources/userList.json")
+    contents, err := ioutil.ReadFile("./resources/userList.json")
     if err != nil {
         fmt.Println("error reading the contents of the file: ", err)
         return
     }
-    // fmt.Println(string(contents))
+    fmt.Println(string(contents))
 
-    err2 := json.Unmarshal(contents, &firstAttempt)
+    data := User{}
 
-    if err2 != nil {
-        fmt.Println("unable to convert contents to struct", err2)
-        return
-    }
+    _ = json.Unmarshal([]byte(contents), &firstAttempt)
+
+    for i := 0; i < len(data)
+
 
     fmt.Println(firstAttempt)
 }
