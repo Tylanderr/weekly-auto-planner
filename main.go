@@ -8,12 +8,12 @@ import (
 )
 
 type JsonFile struct {
-    UserNodes []User
+    UserNodes []User `json:"users"`
 }
 
 type User struct {
     Email string `json:"email"`
-    Meal Meal `json:"meal"`
+    Meal []Meal `json:"meals"`
 }
 
 type Meal struct {
@@ -22,27 +22,46 @@ type Meal struct {
 }
 
 func main() {
-    readJsonFile()
+     userData, errReadingJson := readJsonFile()
+     if errReadingJson != nil {
+         fmt.Println("Error gathering file from disk: ", errReadingJson)
+         return
+     }
+
+     selectMeal(userData)
+
 }
 
-func readJsonFile() {
-    var firstAttempt Meal
-
+func readJsonFile() (JsonFile, error) {
     contents, err := ioutil.ReadFile("./resources/userList.json")
     if err != nil {
-        fmt.Println("error reading the contents of the file: ", err)
-        return
+        return JsonFile{}, err
     }
-    fmt.Println(string(contents))
+    // fmt.Println(string(contents))
 
-    data := User{}
+    data := JsonFile{}
 
-    _ = json.Unmarshal([]byte(contents), &firstAttempt)
+    err = json.Unmarshal(contents, &data)
 
-    for i := 0; i < len(data)
+    if err != nil {
+        fmt.Println(err)
+    }
 
+    for i := 0; i < len(data.UserNodes); i++ {
+        fmt.Println(data.UserNodes[i])
+    }
 
-    fmt.Println(firstAttempt)
+    return data, nil
+
+}
+
+func selectMeal(userData JsonFile) {
+    for i := 0; i < len(userData.UserNodes); i++ {
+        // for the current user, see how many meals they have added
+        // select 3 random numbers in that range
+        // prepare email to be sent with those 3 meals and their ingrediants
+        fmt.Println(userData.UserNodes[i])
+    }
 }
 
 
