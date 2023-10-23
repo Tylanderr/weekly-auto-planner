@@ -1,10 +1,12 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"net/smtp"
-	"io/ioutil"
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "math/rand"
+    "net/smtp"
+    "time"
 )
 
 type JsonFile struct {
@@ -22,13 +24,14 @@ type Meal struct {
 }
 
 func main() {
-     userData, errReadingJson := readJsonFile()
-     if errReadingJson != nil {
-         fmt.Println("Error gathering file from disk: ", errReadingJson)
-         return
-     }
+    rand.Seed(time.Now().UnixNano())
+    userData, errReadingJson := readJsonFile()
+    if errReadingJson != nil {
+        fmt.Println("Error gathering file from disk: ", errReadingJson)
+        return
+    }
 
-     selectMeal(userData)
+    selectMeal(userData)
 
 }
 
@@ -47,10 +50,6 @@ func readJsonFile() (JsonFile, error) {
         fmt.Println(err)
     }
 
-    for i := 0; i < len(data.UserNodes); i++ {
-        fmt.Println(data.UserNodes[i])
-    }
-
     return data, nil
 
 }
@@ -62,6 +61,10 @@ func selectMeal(userData JsonFile) {
         // prepare email to be sent with those 3 meals and their ingrediants
         fmt.Println(userData.UserNodes[i])
     }
+}
+
+func generateRandomIntegers() {
+
 }
 
 
