@@ -10,17 +10,17 @@ import (
 )
 
 type JsonFile struct {
-    UserNodes []User `json:"users"`
+    UserJArray []User `json:"users"`
 }
 
 type User struct {
     Email string `json:"email"`
-    Meal []Meal `json:"meals"`
+    MealJArray []Meal `json:"meals"`
 }
 
 type Meal struct {
     Name string `json:"name"`
-    Ingrediants []string `json:"ingrediants"`
+    IngrediantsJArray []string `json:"ingrediants"`
 }
 
 func main() {
@@ -55,16 +55,20 @@ func readJsonFile() (JsonFile, error) {
 }
 
 func selectMeal(userData JsonFile) {
-    for i := 0; i < len(userData.UserNodes); i++ {
+    for i := 0; i < len(userData.UserJArray); i++ {
         // for the current user, see how many meals they have added
         // select 3 random numbers in that range
         // prepare email to be sent with those 3 meals and their ingrediants
-        fmt.Println(userData.UserNodes[i])
+        fmt.Println(userData.UserJArray[i])
+        var numOfUsersMeal = len(userData.UserJArray[i].MealJArray)
+        meal1, meal2, meal3 := generateRandomIntegers(numOfUsersMeal)
+        fmt.Println(meal1, meal2, meal3)
     }
 }
 
-func generateRandomIntegers(numberRange int) {
-
+func generateRandomIntegers(numberRange int) (int, int, int) {
+    // we need these to be unique numbers
+    return rand.Intn(numberRange + 1), rand.Intn(numberRange + 1), rand.Intn(numberRange + 1)
 }
 
 
