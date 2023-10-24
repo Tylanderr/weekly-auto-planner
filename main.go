@@ -63,7 +63,7 @@ func selectMeal(userData JsonFile) {
     }
 }
 
-func generateRandomIntegers() {
+func generateRandomIntegers(numberRange int) {
 
 }
 
