@@ -3,10 +3,10 @@ package main
 import (
     "encoding/json"
     "fmt"
-    "io/ioutil"
+    "os"
     "math/rand"
     "net/smtp"
-    "time"
+    "slices"
 )
 
 type JsonFile struct {
@@ -15,6 +15,7 @@ type JsonFile struct {
 
 type User struct {
     Email string `json:"email"`
+    NumOfMealsToSelect int `json:"numOfmealsToSelect"`
     MealJArray []Meal `json:"meals"`
 }
 
@@ -24,7 +25,6 @@ type Meal struct {
 }
 
 func main() {
-    rand.Seed(time.Now().UnixNano())
     userData, errReadingJson := readJsonFile()
     if errReadingJson != nil {
         fmt.Println("Error gathering file from disk: ", errReadingJson)
@@ -32,15 +32,13 @@ func main() {
     }
 
     selectMeal(userData)
-
 }
 
 func readJsonFile() (JsonFile, error) {
-    contents, err := ioutil.ReadFile("./resources/userList.json")
+    contents, err := os.ReadFile("./resources/userList.json")
     if err != nil {
         return JsonFile{}, err
     }
-    // fmt.Println(string(contents))
 
     data := JsonFile{}
 
@@ -56,19 +54,31 @@ func readJsonFile() (JsonFile, error) {
 
 func selectMeal(userData JsonFile) {
     for i := 0; i < len(userData.UserJArray); i++ {
-        // for the current user, see how many meals they have added
-        // select 3 random numbers in that range
-        // prepare email to be sent with those 3 meals and their ingrediants
-        fmt.Println(userData.UserJArray[i])
         var numOfUsersMeal = len(userData.UserJArray[i].MealJArray)
-        meal1, meal2, meal3 := generateRandomIntegers(numOfUsersMeal)
+        numOfmealsToSelect := userData.UserJArray[i].NumOfMealsToSelect
+        if numOfmealsToSelect < numOfUsersMeal {
+            fmt.Println("User had a numOfmealsToSelect higher than the number of meals added")
+            return
+        }
+        fmt.Println("About to generate numbers")
+        meal1, meal2, meal3 := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
         fmt.Println(meal1, meal2, meal3)
     }
 }
 
-func generateRandomIntegers(numberRange int) (int, int, int) {
-    // we need these to be unique numbers
-    return rand.Intn(numberRange + 1), rand.Intn(numberRange + 1), rand.Intn(numberRange + 1)
+func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) (int, int, int) {
+    uniqueInts := []int{}
+
+    i := 0
+    for i < 3 {
+        currentInt := rand.Intn(numberRange + 1)
+        if !slices.Contains(uniqueInts, currentInt) {
+            uniqueInts = append(uniqueInts, currentInt)
+            i++
+        }
+    }
+
+    return uniqueInts[0], uniqueInts[1], uniqueInts[2]
 }
 
 
@@ -81,8 +91,6 @@ func sendEmail() {
     // smtp server configuration
     smtpHost := "smtp.gmail.com"
     smtpPort := "587"
-
-
     message := []byte("This is a test email message")
 
     auth := smtp.PlainAuth("", from, password, smtpHost)
