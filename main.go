@@ -1,106 +1,113 @@
 package main
 
 import (
-    "encoding/json"
-    "fmt"
-    "os"
-    "math/rand"
-    "net/smtp"
-    "slices"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"math/rand"
+	"net/smtp"
+	"os"
+	"slices"
 )
 
 type JsonFile struct {
-    UserJArray []User `json:"users"`
+	UserJArray []User `json:"users"`
 }
 
 type User struct {
-    Email string `json:"email"`
-    NumOfMealsToSelect int `json:"numOfmealsToSelect"`
-    MealJArray []Meal `json:"meals"`
+	Email              string `json:"email"`
+	NumOfMealsToSelect int    `json:"numOfmealsToSelect"`
+	MealJArray         []Meal `json:"meals"`
 }
 
 type Meal struct {
-    Name string `json:"name"`
-    IngrediantsJArray []string `json:"ingrediants"`
+	Name              string   `json:"name"`
+	IngrediantsJArray []string `json:"ingrediants"`
 }
 
 func main() {
-    userData, errReadingJson := readJsonFile()
-    if errReadingJson != nil {
-        fmt.Println("Error gathering file from disk: ", errReadingJson)
-        return
+	userJsonFile, errReadingJson := readJsonFile()
+	if errReadingJson != nil {
+		fmt.Println("Error gathering file from disk: ", errReadingJson)
+		return
+	}
+
+    userArray := userJsonFile.UserJArray;
+
+    for i := 0; i < len(userArray); i++ {
+        err := selectMeal(userArray[i])
+        if err != nil {
+            fmt.Println("Was unable to succesfully select meal for users", err)
+        }
     }
 
-    selectMeal(userData)
 }
 
 func readJsonFile() (JsonFile, error) {
-    contents, err := os.ReadFile("./resources/userList.json")
-    if err != nil {
-        return JsonFile{}, err
-    }
+	contents, err := os.ReadFile("./resources/userList.json")
+	if err != nil {
+		return JsonFile{}, err
+	}
 
-    data := JsonFile{}
+	data := JsonFile{}
 
-    err = json.Unmarshal(contents, &data)
+	err = json.Unmarshal(contents, &data)
 
-    if err != nil {
-        fmt.Println(err)
-    }
+	if err != nil {
+		fmt.Println(err)
+	}
 
-    return data, nil
+	return data, nil
 
 }
 
-func selectMeal(userData JsonFile) {
-    for i := 0; i < len(userData.UserJArray); i++ {
-        var numOfUsersMeal = len(userData.UserJArray[i].MealJArray)
-        numOfmealsToSelect := userData.UserJArray[i].NumOfMealsToSelect
-        if numOfmealsToSelect < numOfUsersMeal {
-            fmt.Println("User had a numOfmealsToSelect higher than the number of meals added")
-            return
-        }
-        fmt.Println("About to generate numbers")
-        meal1, meal2, meal3 := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
-        fmt.Println(meal1, meal2, meal3)
-    }
+func selectMeal(usersData User) error {
+    numOfUsersMeal := len(usersData.MealJArray)
+	numOfmealsToSelect := usersData.NumOfMealsToSelect
+
+	randInt1, randInt2, randInt3, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
+	if err != nil {
+        return err
+	}
+	fmt.Println(randInt1, randInt2, randInt3)
+	return nil
 }
 
-func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) (int, int, int) {
-    uniqueInts := []int{}
+func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) (int, int, int, error) {
+	if amountToGenerate > numberRange {
+		return 0, 0, 0, errors.New("Amount asked to generate, is higher than the number of user meals added")
+	}
+	uniqueInts := []int{}
 
-    i := 0
-    for i < 3 {
-        currentInt := rand.Intn(numberRange + 1)
-        if !slices.Contains(uniqueInts, currentInt) {
-            uniqueInts = append(uniqueInts, currentInt)
-            i++
-        }
-    }
+	i := 0
+	for i < 3 {
+		currentInt := rand.Intn(numberRange + 1)
+		if !slices.Contains(uniqueInts, currentInt) {
+			uniqueInts = append(uniqueInts, currentInt)
+			i++
+		}
+	}
 
-    return uniqueInts[0], uniqueInts[1], uniqueInts[2]
+	return uniqueInts[0], uniqueInts[1], uniqueInts[2], nil
 }
-
 
 func sendEmail() {
-    from := ""
-    password := ""
+	from := ""
+	password := ""
 
-    to := []string{""}
+	to := []string{""}
 
-    // smtp server configuration
-    smtpHost := "smtp.gmail.com"
-    smtpPort := "587"
-    message := []byte("This is a test email message")
+	// smtp server configuration
+	smtpHost := "smtp.gmail.com"
+	smtpPort := "587"
+	message := []byte("This is a test email message")
 
-    auth := smtp.PlainAuth("", from, password, smtpHost)
+	auth := smtp.PlainAuth("", from, password, smtpHost)
 
-    err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println("Email sent successfully")
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Email sent successfully")
 }
-
-
