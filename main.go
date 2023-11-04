@@ -35,10 +35,11 @@ func main() {
     userArray := userJsonFile.UserJArray;
 
     for i := 0; i < len(userArray); i++ {
-        err := selectMeal(userArray[i])
+        meal1, err := selectMeals(userArray[i])
         if err != nil {
             fmt.Println("Was unable to succesfully select meal for users", err)
         }
+        fmt.Println(meal1)
     }
 
 }
@@ -61,34 +62,39 @@ func readJsonFile() (JsonFile, error) {
 
 }
 
-func selectMeal(usersData User) error {
+func selectMeals(usersData User) ([]Meal, error)  {
     numOfUsersMeal := len(usersData.MealJArray)
 	numOfmealsToSelect := usersData.NumOfMealsToSelect
 
-	randInt1, randInt2, randInt3, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
+	randomMealsToBeSelected, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
 	if err != nil {
-        return err
+        return []Meal{}, err
 	}
-	fmt.Println(randInt1, randInt2, randInt3)
-	return nil
+
+
+    for i := 0; i < rand
+
+    //get the meal objects
+   return []Meal{}, nil
 }
 
-func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) (int, int, int, error) {
+func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int, error) {
 	if amountToGenerate > numberRange {
-		return 0, 0, 0, errors.New("Amount asked to generate, is higher than the number of user meals added")
+		return []int{}, errors.New("Amount asked to generate, is higher than the number of user meals added")
 	}
 	uniqueInts := []int{}
 
 	i := 0
-	for i < 3 {
-		currentInt := rand.Intn(numberRange + 1)
+    // I might have an off by one error in this loop, we'll see
+	for i < amountToGenerate {
+		currentInt := rand.Intn(numberRange)
 		if !slices.Contains(uniqueInts, currentInt) {
 			uniqueInts = append(uniqueInts, currentInt)
 			i++
 		}
 	}
 
-	return uniqueInts[0], uniqueInts[1], uniqueInts[2], nil
+	return uniqueInts, nil
 }
 
 func sendEmail() {
