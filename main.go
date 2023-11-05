@@ -8,6 +8,7 @@ import (
 	"net/smtp"
 	"os"
 	"slices"
+    "github.com/magiconair/properties"
 )
 
 type JsonFile struct {
@@ -122,4 +123,8 @@ func sendEmail(meals []Meal) {
 		return
 	}
 	fmt.Println("Email sent successfully")
+}
+
+func readProperties() {
+    props := properties.MustLoadFile()
 }
