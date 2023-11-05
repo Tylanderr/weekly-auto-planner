@@ -35,11 +35,12 @@ func main() {
     userArray := userJsonFile.UserJArray;
 
     for i := 0; i < len(userArray); i++ {
-        meal1, err := selectMeals(userArray[i])
+        meals, err := selectMeals(userArray[i])
         if err != nil {
             fmt.Println("Was unable to succesfully select meal for users", err)
         }
-        fmt.Println(meal1)
+        fmt.Println(meals)
+        sendEmail(meals)
     }
 
 }
@@ -66,16 +67,19 @@ func selectMeals(usersData User) ([]Meal, error)  {
     numOfUsersMeal := len(usersData.MealJArray)
 	numOfmealsToSelect := usersData.NumOfMealsToSelect
 
+    mealsToSend := []Meal{}
+
 	randomMealsToBeSelected, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
 	if err != nil {
         return []Meal{}, err
 	}
 
-
-    for i := 0; i < rand
+    for i := 0; i < len(randomMealsToBeSelected); i++ {
+        mealsToSend = append(mealsToSend, usersData.MealJArray[randomMealsToBeSelected[i]])
+    }
 
     //get the meal objects
-   return []Meal{}, nil
+   return mealsToSend, nil
 }
 
 func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int, error) {
@@ -97,7 +101,7 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-func sendEmail() {
+func sendEmail(meals []Meal) {
 	from := ""
 	password := ""
 
@@ -106,6 +110,8 @@ func sendEmail() {
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
+
+    //Setup the message with all the meal details and then send
 	message := []byte("This is a test email message")
 
 	auth := smtp.PlainAuth("", from, password, smtpHost)
