@@ -10,7 +10,7 @@ import (
 	"os"
 	"slices"
 )
-//making a change
+
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
