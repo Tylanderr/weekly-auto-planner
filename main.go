@@ -4,12 +4,17 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/magiconair/properties"
 	"math/rand"
 	"net/smtp"
 	"os"
 	"slices"
-    "github.com/magiconair/properties"
 )
+
+var propertiesFile = "./resources/app.properties"
+var username string
+var password string
+var distributionList string
 
 type JsonFile struct {
 	UserJArray []User `json:"users"`
@@ -27,22 +32,23 @@ type Meal struct {
 }
 
 func main() {
+    readProperties()
 	userJsonFile, errReadingJson := readJsonFile()
 	if errReadingJson != nil {
 		fmt.Println("Error gathering file from disk: ", errReadingJson)
 		return
 	}
 
-    userArray := userJsonFile.UserJArray;
+	userArray := userJsonFile.UserJArray
 
-    for i := 0; i < len(userArray); i++ {
-        meals, err := selectMeals(userArray[i])
-        if err != nil {
-            fmt.Println("Was unable to succesfully select meal for users", err)
-        }
-        fmt.Println(meals)
-        sendEmail(meals)
-    }
+	for i := 0; i < len(userArray); i++ {
+		meals, err := selectMeals(userArray[i])
+		if err != nil {
+			fmt.Println("Was unable to succesfully select meal for users", err)
+		}
+		fmt.Println(meals)
+		sendEmail(meals)
+	}
 
 }
 
@@ -64,23 +70,23 @@ func readJsonFile() (JsonFile, error) {
 
 }
 
-func selectMeals(usersData User) ([]Meal, error)  {
-    numOfUsersMeal := len(usersData.MealJArray)
+func selectMeals(usersData User) ([]Meal, error) {
+	numOfUsersMeal := len(usersData.MealJArray)
 	numOfmealsToSelect := usersData.NumOfMealsToSelect
 
-    mealsToSend := []Meal{}
+	mealsToSend := []Meal{}
 
 	randomMealsToBeSelected, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
 	if err != nil {
-        return []Meal{}, err
+		return []Meal{}, err
 	}
 
-    for i := 0; i < len(randomMealsToBeSelected); i++ {
-        mealsToSend = append(mealsToSend, usersData.MealJArray[randomMealsToBeSelected[i]])
-    }
+	for i := 0; i < len(randomMealsToBeSelected); i++ {
+		mealsToSend = append(mealsToSend, usersData.MealJArray[randomMealsToBeSelected[i]])
+	}
 
-    //get the meal objects
-   return mealsToSend, nil
+	//get the meal objects
+	return mealsToSend, nil
 }
 
 func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int, error) {
@@ -90,7 +96,7 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	uniqueInts := []int{}
 
 	i := 0
-    // I might have an off by one error in this loop, we'll see
+	// I might have an off by one error in this loop, we'll see
 	for i < amountToGenerate {
 		currentInt := rand.Intn(numberRange)
 		if !slices.Contains(uniqueInts, currentInt) {
@@ -103,21 +109,18 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 }
 
 func sendEmail(meals []Meal) {
-	from := ""
-	password := ""
-
-	to := []string{""}
+	to := []string{distributionList}
 
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
 
-    //Setup the message with all the meal details and then send
+	//Setup the message with all the meal details and then send
 	message := []byte("This is a test email message")
 
-	auth := smtp.PlainAuth("", from, password, smtpHost)
+	auth := smtp.PlainAuth("", username, password, smtpHost)
 
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, to, message)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -126,5 +129,8 @@ func sendEmail(meals []Meal) {
 }
 
 func readProperties() {
-    props := properties.MustLoadFile()
+	p := properties.MustLoadFile(propertiesFile, properties.UTF8)
+    username, _ = p.Get("username")
+    password, _ = p.Get("password")
+    distributionList, _ = p.Get("distributionList")
 }
