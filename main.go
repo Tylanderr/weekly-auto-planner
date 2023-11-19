@@ -41,17 +41,20 @@ func main() {
 	}
 
 	userArray := userJsonFile.UserJArray
+    var emailReceivers []string
 
 	for i := 0; i < len(userArray); i++ {
 		meals, err := selectMeals(userArray[i])
+
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 		emailString := makeMealEmailString(meals)
+		emailReceivers = append(emailReceivers, userArray[i].Email)
         // __AUTO_GENERATED_PRINT_VAR_START__
         fmt.Println(fmt.Sprintf("main emailString: %v", emailString)) // __AUTO_GENERATED_PRINT_VAR_END__
 
-		// sendEmail()
+		sendEmail(emailString, emailReceivers)
 	}
 
 }
@@ -116,7 +119,7 @@ func makeMealEmailString(meal []Meal) string {
 	var emailString strings.Builder
 	for i := 0; i < len(meal); i++ {
 		currentMeal := meal[i]
-		emailString.WriteString(currentMeal.Name + "\n ")
+		emailString.WriteString(currentMeal.Name + "\n")
 		emailString.WriteString("Ingrediants: ")
 		emailString.WriteString(strings.Join(currentMeal.IngrediantsJArray, ", "))
 		emailString.WriteString("\n \n")
@@ -130,12 +133,9 @@ func sendEmail(emailString string, receivers []string) {
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
 
-	//Setup the message with all the meal details and then send
-	message := []byte("This is a test email message")
-
 	auth := smtp.PlainAuth("", username, password, smtpHost)
 
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, message)
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
 	if err != nil {
 		fmt.Println(err)
 		return
