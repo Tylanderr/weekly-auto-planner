@@ -9,6 +9,7 @@ import (
 	"net/smtp"
 	"os"
 	"slices"
+	"strings"
 )
 
 var propertiesFile = "./resources/app.properties"
@@ -32,7 +33,7 @@ type Meal struct {
 }
 
 func main() {
-    readProperties()
+	readProperties()
 	userJsonFile, errReadingJson := readJsonFile()
 	if errReadingJson != nil {
 		fmt.Println("Error gathering file from disk: ", errReadingJson)
@@ -46,8 +47,11 @@ func main() {
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
-		fmt.Println(meals)
-		sendEmail(meals)
+		emailString := makeMealEmailString(meals)
+        // __AUTO_GENERATED_PRINT_VAR_START__
+        fmt.Println(fmt.Sprintf("main emailString: %v", emailString)) // __AUTO_GENERATED_PRINT_VAR_END__
+
+		// sendEmail()
 	}
 
 }
@@ -108,9 +112,20 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-func sendEmail(meals []Meal) {
-	to := []string{distributionList}
+func makeMealEmailString(meal []Meal) string {
+	var emailString strings.Builder
+	for i := 0; i < len(meal); i++ {
+		currentMeal := meal[i]
+		emailString.WriteString(currentMeal.Name + "\n ")
+		emailString.WriteString("Ingrediants: ")
+		emailString.WriteString(strings.Join(currentMeal.IngrediantsJArray, ", "))
+		emailString.WriteString("\n \n")
+	}
 
+	return emailString.String()
+}
+
+func sendEmail(emailString string, receivers []string) {
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
@@ -120,7 +135,7 @@ func sendEmail(meals []Meal) {
 
 	auth := smtp.PlainAuth("", username, password, smtpHost)
 
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, to, message)
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, message)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -130,7 +145,7 @@ func sendEmail(meals []Meal) {
 
 func readProperties() {
 	p := properties.MustLoadFile(propertiesFile, properties.UTF8)
-    username, _ = p.Get("username")
-    password, _ = p.Get("password")
-    distributionList, _ = p.Get("distributionList")
+	username, _ = p.Get("username")
+	password, _ = p.Get("password")
+	distributionList, _ = p.Get("distributionList")
 }
