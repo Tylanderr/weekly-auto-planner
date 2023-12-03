@@ -21,4 +21,4 @@
 go.work
 
 # Don't commit resources folder
-resources/
+resources/*
