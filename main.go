@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"github.com/magiconair/properties"
 	"math/rand"
-	"net/smtp"
+	// "net/smtp"
 	"os"
 	"slices"
 	"strings"
+    "github.com/tylander732/autoEmailShoppingList/model"
 )
 
 var propertiesFile = "./resources/app.properties"
@@ -17,20 +18,6 @@ var username string
 var password string
 var distributionList string
 
-type JsonFile struct {
-	UserJArray []User `json:"users"`
-}
-
-type User struct {
-	Email              string `json:"email"`
-	NumOfMealsToSelect int    `json:"numOfmealsToSelect"`
-	MealJArray         []Meal `json:"meals"`
-}
-
-type Meal struct {
-	Name              string   `json:"name"`
-	IngrediantsJArray []string `json:"ingrediants"`
-}
 
 func main() {
 	readProperties()
@@ -51,21 +38,19 @@ func main() {
 		}
 		emailString := makeMealEmailString(meals)
 		emailReceivers = append(emailReceivers, userArray[i].Email)
-        // __AUTO_GENERATED_PRINT_VAR_START__
-        fmt.Println(fmt.Sprintf("main emailString: %v", emailString)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 		sendEmail(emailString, emailReceivers)
 	}
 
 }
 
-func readJsonFile() (JsonFile, error) {
+func readJsonFile() (model.JsonFile, error) {
 	contents, err := os.ReadFile("./resources/userList.json")
 	if err != nil {
-		return JsonFile{}, err
+		return model.JsonFile{}, err
 	}
 
-	data := JsonFile{}
+	data := model.JsonFile{}
 
 	err = json.Unmarshal(contents, &data)
 
@@ -77,15 +62,15 @@ func readJsonFile() (JsonFile, error) {
 
 }
 
-func selectMeals(usersData User) ([]Meal, error) {
+func selectMeals(usersData model.User) ([]model.Meal, error) {
 	numOfUsersMeal := len(usersData.MealJArray)
 	numOfmealsToSelect := usersData.NumOfMealsToSelect
 
-	mealsToSend := []Meal{}
+	mealsToSend := []model.Meal{}
 
 	randomMealsToBeSelected, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
 	if err != nil {
-		return []Meal{}, err
+		return []model.Meal{}, err
 	}
 
 	for i := 0; i < len(randomMealsToBeSelected); i++ {
@@ -115,7 +100,7 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-func makeMealEmailString(meal []Meal) string {
+func makeMealEmailString(meal []model.Meal) string {
 	var emailString strings.Builder
 	for i := 0; i < len(meal); i++ {
 		currentMeal := meal[i]
@@ -129,18 +114,18 @@ func makeMealEmailString(meal []Meal) string {
 }
 
 func sendEmail(emailString string, receivers []string) {
-	// smtp server configuration
-	smtpHost := "smtp.gmail.com"
-	smtpPort := "587"
-
-	auth := smtp.PlainAuth("", username, password, smtpHost)
-
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("Email sent successfully")
+	// // smtp server configuration
+	// smtpHost := "smtp.gmail.com"
+	// smtpPort := "587"
+	//
+	// auth := smtp.PlainAuth("", username, password, smtpHost)
+	//
+	// err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println("Email sent successfully")
 }
 
 func readProperties() {
