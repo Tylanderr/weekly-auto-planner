@@ -4,28 +4,33 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/magiconair/properties"
 	"math/rand"
+
+	"github.com/magiconair/properties"
+
 	// "net/smtp"
 	"os"
 	"slices"
 	"strings"
-    "github.com/tylander732/autoEmailShoppingList/internal/model"
+
+	"github.com/tylander732/autoEmailShoppingList/internal/model"
+	"github.com/tylander732/autoEmailShoppingList/internal/projectpath"
 )
 
-var propertiesFile = "./resources/app.properties"
+
+var propertiesFile = projectpath.Root + "/resources/app.properties"
 var username string
 var password string
 var distributionList string
 
 
 func main() {
-	readProperties()
-	userJsonFile, errReadingJson := readJsonFile()
-	if errReadingJson != nil {
-		fmt.Println("Error gathering file from disk: ", errReadingJson)
-		return
-	}
+    readProperties()
+    userJsonFile, errReadingJson := readJsonFile()
+    if errReadingJson != nil {
+        fmt.Println("Error gathering file from disk: ", errReadingJson)
+        return
+    }
 
 	userArray := userJsonFile.UserJArray
     var emailReceivers []string
