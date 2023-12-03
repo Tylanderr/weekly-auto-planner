@@ -10,7 +10,7 @@ import (
 	"os"
 	"slices"
 	"strings"
-    "github.com/tylander732/autoEmailShoppingList/model"
+    "github.com/tylander732/autoEmailShoppingList/internal/model"
 )
 
 var propertiesFile = "./resources/app.properties"
