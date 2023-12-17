@@ -13,5 +13,6 @@ type User struct {
 
 type Meal struct {
 	Name              string   `json:"name"`
-	IngrediantsJArray []string `json:"ingrediants"`
+	IngredientsJArray []string `json:"ingredients"`
+    SharedIngredients []string `json:"sharedIngredients"`
 }

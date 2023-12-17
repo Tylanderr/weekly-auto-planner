@@ -46,7 +46,6 @@ func main() {
 
 		sendEmail(emailString, emailReceivers)
 	}
-
 }
 
 func readJsonFile() (model.JsonFile, error) {
@@ -110,8 +109,8 @@ func makeMealEmailString(meal []model.Meal) string {
 	for i := 0; i < len(meal); i++ {
 		currentMeal := meal[i]
 		emailString.WriteString(currentMeal.Name + "\n")
-		emailString.WriteString("Ingrediants: ")
-		emailString.WriteString(strings.Join(currentMeal.IngrediantsJArray, ", "))
+		emailString.WriteString("Ingredients: ")
+		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
 		emailString.WriteString("\n \n")
 	}
 
