@@ -20,5 +20,5 @@
 # Go workspace file
 go.work
 
-# Don't commit resources folder
-resources/*
+# Don't commit properties file
+resources/app.properties

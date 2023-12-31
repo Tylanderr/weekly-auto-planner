@@ -15,4 +15,5 @@ type Meal struct {
 	Name              string   `json:"name"`
 	IngredientsJArray []string `json:"ingredients"`
     SharedIngredients []string `json:"sharedIngredients"`
+    Notes string `json:"notes"`
 }
