@@ -8,17 +8,17 @@ import (
 
 	"github.com/magiconair/properties"
 
-	// "net/smtp"
+	"net/smtp"
 	"os"
 	"slices"
 	"strings"
 
 	"github.com/tylander732/autoEmailShoppingList/internal/model"
-	"github.com/tylander732/autoEmailShoppingList/internal/projectpath"
+	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
 )
 
 
-var propertiesFile = projectpath.Root + "/resources/app.properties"
+var propertiesFile = "./resources/app.properties"
 var username string
 var password string
 var distributionList string
@@ -42,10 +42,16 @@ func main() {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 		emailString := makeMealEmailString(meals)
+        //This is a bug. We don't want to append to the list of receivers and then resend another email
+        //They will already have received an email the first time around
 		emailReceivers = append(emailReceivers, userArray[i].Email)
+        fmt.Println(emailReceivers)
 
 		sendEmail(emailString, emailReceivers)
 	}
+
+    fmt.Println("after")
+
 }
 
 func readJsonFile() (model.JsonFile, error) {
@@ -109,7 +115,7 @@ func makeMealEmailString(meal []model.Meal) string {
 	for i := 0; i < len(meal); i++ {
 		currentMeal := meal[i]
 		emailString.WriteString(currentMeal.Name + "\n")
-		emailString.WriteString("Ingredients: ")
+		emailString.WriteString("Ingrediants: ")
 		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
 		emailString.WriteString("\n \n")
 	}
@@ -118,18 +124,18 @@ func makeMealEmailString(meal []model.Meal) string {
 }
 
 func sendEmail(emailString string, receivers []string) {
-	// // smtp server configuration
-	// smtpHost := "smtp.gmail.com"
-	// smtpPort := "587"
-	//
-	// auth := smtp.PlainAuth("", username, password, smtpHost)
-	//
-	// err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	// fmt.Println("Email sent successfully")
+	// smtp server configuration
+	smtpHost := "smtp.gmail.com"
+	smtpPort := "587"
+
+	auth := smtp.PlainAuth("", username, password, smtpHost)
+
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Email sent successfully")
 }
 
 func readProperties() {
