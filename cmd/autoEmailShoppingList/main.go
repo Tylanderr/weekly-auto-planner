@@ -40,13 +40,20 @@ func main() {
 	userArray := userJsonFile.UserJArray
     var emailReceivers []string
 
-	for i := 0; i < len(userArray); i++ {
-		meals, err := selectMeals(userArray[i])
+
+    for i := 0; i < len(userArray); i++ {
+        meals, err := selectMeals(userArray[i])
+
+        //TODO: figure out what I'm passing as a parameter here
+        for j := 0; j < len(meals)
+        sortedVegetables, sortedFruits, sortedProteins := seperateIngredients()
 
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 		emailString := makeMealEmailString(meals)
+
+        //TODO: FIX THIS BUG
         //This is a bug. We don't want to append to the list of receivers and then resend another email
         //They will already have received an email the first time around
         //Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
@@ -55,9 +62,6 @@ func main() {
 
 		sendEmail(emailString, emailReceivers)
 	}
-
-    fmt.Println("after")
-
 }
 
 func readJsonFile() (model.JsonFile, error) {
@@ -116,6 +120,7 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
+//TODO: Rip out this function once I break things up into ingredient sections
 func makeMealEmailString(meal []model.Meal) string {
 	var emailString strings.Builder
 	for i := 0; i < len(meal); i++ {
@@ -153,24 +158,24 @@ func readProperties() {
 
 func seperateIngredients(ingredients []string) ([]string, []string, []string) {
 
-    vegetables := []string{}
-    fruits := []string{}
-    proteins := []string{}
+    localVegetables := []string{}
+    localFruits := []string{}
+    localProteins := []string{}
 
     for i := 0; i < len(ingredients); i++ {
         currentIngredient := ingredients[i]
         if(isVegetable(currentIngredient)) {
-            vegetables = append(vegetables, currentIngredient)
+            localVegetables = append(localVegetables, currentIngredient)
         }
         if(isFruit(currentIngredient)) {
-            fruits = append(fruits, currentIngredient)
+            localFruits = append(localFruits, currentIngredient)
         }
         if(isProtein(currentIngredient)) {
-            proteins = append(proteins, currentIngredient)
+            localProteins = append(localProteins, currentIngredient)
         }
     }
 
-    return vegetables, fruits, proteins
+    return localVegetables, localFruits, localProteins
 }
 
 func isVegetable(ingredient string) bool {
