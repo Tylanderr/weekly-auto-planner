@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"github.com/tylander732/autoEmailShoppingList/internal/model"
+    // "github.com/tylander732/autoEmailShoppingList/internal/consts"
 	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
 )
 
@@ -23,6 +24,10 @@ var username string
 var password string
 var distributionList string
 
+
+var vegetables = []string {"potatoes"}
+var fruits = []string {"apples"}
+var proteins = []string {"apples"}
 
 func main() {
     readProperties()
@@ -44,6 +49,7 @@ func main() {
 		emailString := makeMealEmailString(meals)
         //This is a bug. We don't want to append to the list of receivers and then resend another email
         //They will already have received an email the first time around
+        //Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
 		emailReceivers = append(emailReceivers, userArray[i].Email)
         fmt.Println(emailReceivers)
 
@@ -115,7 +121,7 @@ func makeMealEmailString(meal []model.Meal) string {
 	for i := 0; i < len(meal); i++ {
 		currentMeal := meal[i]
 		emailString.WriteString(currentMeal.Name + "\n")
-		emailString.WriteString("Ingrediants: ")
+		emailString.WriteString("Ingredients: ")
 		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
 		emailString.WriteString("\n \n")
 	}
@@ -143,4 +149,50 @@ func readProperties() {
 	username, _ = p.Get("username")
 	password, _ = p.Get("password")
 	distributionList, _ = p.Get("distributionList")
+}
+
+func seperateIngredients(ingredients []string) ([]string, []string, []string) {
+
+    vegetables := []string{}
+    fruits := []string{}
+    proteins := []string{}
+
+    for i := 0; i < len(ingredients); i++ {
+        currentIngredient := ingredients[i]
+        if(isVegetable(currentIngredient)) {
+            vegetables = append(vegetables, currentIngredient)
+        }
+        if(isFruit(currentIngredient)) {
+            fruits = append(fruits, currentIngredient)
+        }
+        if(isProtein(currentIngredient)) {
+            proteins = append(proteins, currentIngredient)
+        }
+    }
+
+    return vegetables, fruits, proteins
+}
+
+func isVegetable(ingredient string) bool {
+    if(!slices.Contains(vegetables, ingredient)){
+        return false
+    }
+
+    return true
+}
+
+func isFruit(ingredient string) bool {
+    if(!slices.Contains(fruits, ingredient)){
+        return false
+    }
+
+    return true
+}
+
+func isProtein(ingredient string) bool {
+    if(!slices.Contains(proteins, ingredient)){
+        return false
+    }
+
+    return true
 }
