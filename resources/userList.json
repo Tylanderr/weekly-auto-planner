@@ -1,226 +1,454 @@
 {
-    "users":
-    [
+  "users": [
+    {
+      "email": "tharding732@gmail.com",
+      "numOfMealsToSelect": 6,
+      "meals": [
         {
-            "email": "tharding732@gmail.com",
-            "numOfMealsToSelect": 6,
-            "meals":
-            [
-                {
-                    "name": "Spaghetti",
-                    "ingredients":
-                    [
-                        "Spaghetti Noodles", "Red Sauce", "Ground Beef or Turkey", "Onion", "Zucchini", "Peppers"
-                    ],
-                    "notes": ""
-                },
-                {
-                    "name": "Steak and Potatoes",
-                    "ingredients":
-                    ["Filet Mignon", "Bob evans potatoes (or raw rustic potatoes if more fancy)", "Salad"],
-                    "notes": "Season stakes about 45 minutes before getting started and let them rest on the counter to warm up slightly. Medium to high heat on cast iron, butter pan and allow enough to be in pan for basting. Sear edges of steaks to begin and render down fat. Cook 3-4 minutes each side depending on thickness of steaks. Let rest 5 minutes."
-                },
-                {
-                    "name": "Steak and Frites with mushroom sauce",
-                    "ingredients":
-                    ["Filet mignon", "mushroom sauce (A packet or full ingredients?)", "Fries"],
-                    "notes": "if deciding full ingredients: https://natashaskitchen.com/filet-mignon-in-mushroom-wine-sauce/"
-                },
-                {
-                    "name": "Grilled chicken",
-                    "ingredients":
-                    ["Raw chicken breast", "side of choice", "fruit or veggie option"],
-                    "notes": ""
-                },
-                {
-                    "name": "Chicken Fettuccini alfredo",
-                    "ingredients":
-                    ["Fettuccini noodles", "Alfredo sauce", "raw chicken breast", "side salad"],
-                    "notes": ""
-                },
-                {
-                    "name": "Chicken Parm",
-                    "ingredients":
-                    ["4 skinless boneless chicken breast halves", "salt and pepper", "Eggs", "panko bread crumbs", "Parmesan cheese", "flour", "prepared tomato sauce", "fresh mozzarella", "fresh basil", "grated provolone cheese", "olive oil"],
-                    "notes": "https://www.allrecipes.com/recipe/223042/chicken-parmesan/"
-                },
-                {
-                    "name": "Pulled Pork",
-                    "ingredients":
-                    ["Pork shoulder boneless (pork butt or boston butt)", "barbecue sauce (determine brand that we like later)", "Hoagie buns or Hawaiian buns", "cole slaw", "baked beans(?)", "salad", "tater tots"],
-                    "notes": "https://tastesbetterfromscratch.com/pulled-pork/"
-                },
-                {
-                    "name": "Pork chops or loin",
-                    "ingredients":
-                    ["4 pork chops", "flour", "chili powder", "garlic powder", "onion powder", "smoked paprika", "black pepper", "vegetable oil", "low-sodium chicken stock", "apple cider vinegar", "brown sugar", "butter", "zucchini"],
-                    "notes": "https://www.inspiredtaste.net/37062/juicy-skillet-pork-chops/"
-                },
-                {
-                    "name": "Orange chicken and fried rice",
-                    "ingredients":
-                    ["Chicken: 4 boneless skinless chicken breasts", "3 eggs", "cornstarch", "flour", "salt", "oil", "Orange sauce: orange juice", "sugar", "rice vinegar", "soy sauce", "gigner", "garlic powder", "red chili flakes", "orange zest", "cornstarch"],
-                    "notes": "https://www.modernhoney.com/chinese-orange-chicken/"
-                },
-                {
-                    "name": "Tacos - Carne Asada",
-                    "ingredients":
-                    ["Skirt steak", "mini corn tortillas", "low sodium soy sauce", "lime juice", "canola oil", "3 cloves garlic", "chili powder", "ground cumin", "dried oregano", "diced red onion", "fresh cilantro", "1 lime"],
-                    "notes": "https://damndelicious.net/2019/04/18/mexican-street-tacos/"
-                },
-                {
-                    "name": "Burritos",
-                    "ingredients":
-                    ["Tortillas", "ground beef", "taco seasoning packet", "sour cream", "mexican rice box mix", "refried beans", "shredded cheese"],
-                    "notes": ""
-                },
-                {
-                    "name": "Fajitas",
-                    "ingredients":
-                    ["Tortillas", "chicken breast", "2 types of peppers", "onion", "fajita packet", "mexican rice box mix", "refried beans"],
-                    "notes": ""
-                },
-                {
-                    "name": "Enchiladas",
-                    "ingredients":
-                    ["Enchilada sauce: garlic and onion minced", "Chipotle chilis in adobo sauce", "tomato sauce", "chipotle chili powder", "ground cumin", "salt", "pepper", "reduced sodium chicken broth", "Chicken filling: From a store bought rotisserie chicken", "garlic and onion minced", "cilantro", "Kosher salt", "cumin", "dried oregano", "and chipotle chili powder", "to taste", "chicken broth and tomato sauce", "Enchiladas: Whole wheat flour or gluten free tortillas", "shredded part skim mexican cheese blend", "cheddar cheese or monterey jack"],
-                    "notes": "https://www.skinnytaste.com/chicken-enchiladas/"
-                },
-                {
-                    "name": "California Chicken Sandwiches",
-                    "ingredients":
-                    ["Skinless boneless chicken breast", "garlic powder", "onion powder", "oregano", "cooked bacon", "monterrey jack cheese", "guacamole", "Guac ingredients", "6 avocados", "1 onion", "1 or 2 tomato", "jalapeno pepper", "cilantro", "4 lime", "salt and pepper"],
-                    "notes": "https://cookingwithcurls.com/2014/04/01/california-chicken-club-sandwich/"
-                },
-                {
-                    "name": "Homemade Mac and Cheese",
-                    "ingredients":
-                    ["Macaroni", "butter and flour", "milk", "cheddar and parmesan", "salt pepper and paprika", "store bought dried bread crumbs"],
-                    "notes": "https://www.allrecipes.com/recipe/11679/homemade-mac-and-cheese/"
-                },
-                {
-                    "name": "Lasagna",
-                    "ingredients":
-                    ["Sweet italian sausage", "lean ground beef", "onion", "two cloves of garlic", "can of crushed tomtatoes", "two cans of tomato sauce", "two cans of tomato paste", "white sugar", "fresh parsley", "dried basil leaves", "salt", "italian seasoning", "fennel seeds", "black pepper", "store bought lasagna noodles", "parmesan", "mozzarella", "ricotta cheese", "eggs"],
-                    "notes": "https://www.allrecipes.com/recipe/23600/worlds-best-lasagna/"
-                },
-                {
-                    "name": "Chicken Cacciatore",
-                    "ingredients":
-                    [
-                        "Sam has the recipe for this. Get it added at another time"
-                    ],
-                    "notes": ""
-                },
-                {
-                    "name": "Beef Stew",
-                    "ingredients":
-                    [
-                        "Sam has the recipe for this. Get it added at another time"
-                    ],
-                    "notes": ""
-                },
-                {
-                    "name": "Homemade Chicken Noodle Soup",
-                    "ingredients":
-                    ["Butter", "celery", "large carrots", "clove of garlic", "chicken stock or broth", "salt", "black pepper", "dried rosemary", "dried sage", "crushed red pepper flakes", "bite size pasta", "rotisserie chicken (bought from store and shred)", "better than bouillon chicken flavor"],
-                    "notes": "https://tastesbetterfromscratch.com/chicken-noodle-soup/"
-                },
-                {
-                    "name": "Meatloaf",
-                    "ingredients":
-                    [
-                        "Recipe from Laura"
-                    ],
-                    "notes": ""
-                },
-                {
-                    "name": "Yellow Curry with Rice",
-                    "ingredients":
-                    ["Boneless skinless chicken breast", "Sweet Vidalia onion", "Garlic", "Ground turmeric (essential to impart a bold yellow color)", "Ground ginger", "Coriander", "Yellow curry paste", "Coconut milk", "Shredded carrots", "Fresh spinach", "Pepper", "Cilantro", "Brown sugar", "Lime juice"],
-                    "notes": "https://www.averiecooks.com/yellow-thai-chicken-coconut-curry/"
-                },
-                {
-                    "name": "Chicken Teriyaki",
-                    "ingredients":
-                    ["boneless skinless chicken breast", "olive oil", "low sodium soy sauce", "honey", "brown sugar", "rice vinegar", "sesame oil", "ginger", "garlic", "cornstarch", "sesame seeds and green onions"],
-                    "notes": "https://www.cookingclassy.com/teriyaki-chicken/"
-                },
-                {
-                    "name": "Hamburger Sliders",
-                    "ingredients":
-                    ["lean ground beef", "olive oil", "salt and pepper", "garlic powder", "yellow onion", "mayonnaise", "sliced cheddar cheese", "dinner rolls of choice", "unsalted butter", "sesame seeds"],
-                    "notes": "https://natashaskitchen.com/cheeseburger-sliders/"
-                },
-                {
-                    "name": "Breakfast For Dinner",
-                    "ingredients":
-                    ["Pancake mix", "bacon", "eggs", "maple syrup / mrs buttersworth"],
-                    "notes": ""
-                },
-                {
-                    "name": "Sheet-pan chicken and veggies",
-                    "ingredients":
-                    ["Chicken breast", "onion", "zucchini", "carrots", "small potatoes (yukon gold, purple, or mixed)"],
-                    "notes": ""
-                },
-                {
-                    "name": "Homemade Pizza",
-                    "ingredients":
-                    ["Store bought pizza dough", "red sauce", "peperoni", "green pepper", "onion(?)", "chicken (figure out what is needed to do with the chicken before putting on a pizza)"],
-                    "notes": ""
-                },
-                {
-                    "name": "Stuffed Peppers",
-                    "ingredients":
-                    [
-                        "Purchased from Costco"
-                    ],
-                    "notes": ""
-                },
-                {
-                    "name": "Stir Fry",
-                    "ingredients":
-                    ["Sauce - honey", "toasted sesame oil", "soy sauce", "chicken broth", "corn starch and water", "crushed red pepper flakes", "Boneless skinless chicken", "salt and pepper", "olive oil", "broccoli florets", "yellow pepper", "red pepper", "baby carrots", "minced ginger", "2 garlic cloves"],
-                    "notes": "https://www.momontimeout.com/easy-chicken-stir-fry-recipe/"
-                },
-                {
-                    "name": "Shrimp Pasta",
-                    "ingredients":
-                    ["Pasta noodles of choice (fettuccini)", "white sauce of choice (alfredo)", "shrimp"],
-                    "notes": ""
-                },
-                {
-                    "name": "Baked Potatoes",
-                    "ingredients":
-                    ["Bag of rustic potatoes", "shredded cheese", "sour cream", "butter", "salt and pepper", "milk(?)", "Baked chicken to go along with baked potatoes"],
-                    "notes": ""
-                },
-                {
-                    "name": "Buffalo Chicken",
-                    "ingredients":
-                    [
-                        "Sam has recipe for buffalo chicken dinner saved somewhere. Add at a later date."
-                    ],
-                    "notes": ""
-                }
-            ]
+          "name": "Spaghetti",
+          "ingredients": [
+            "Spaghetti Noodles",
+            "Red Sauce",
+            "Ground Beef or Turkey",
+            "Onion",
+            "Zucchini",
+            "Peppers"
+          ],
+          "notes": ""
         },
         {
-            "email": "",
-            "numOfMealsToSelect": 1,
-            "meals":
-            [
-                {
-                    "name": "Spaghetti",
-                    "ingredients":
-                    [
-                        "Noodles",
-                        "ground beef or turkey"
-                    ],
-                    "notes": ""
-                }
-            ]
+          "name": "Steak and Potatoes",
+          "ingredients": [
+            "Filet Mignon",
+            "Bob evans potatoes (or raw rustic potatoes if more fancy)",
+            "Salad"
+          ],
+          "notes": "Season stakes about 45 minutes before getting started and let them rest on the counter to warm up slightly. Medium to high heat on cast iron, butter pan and allow enough to be in pan for basting. Sear edges of steaks to begin and render down fat. Cook 3-4 minutes each side depending on thickness of steaks. Let rest 5 minutes."
+        },
+        {
+          "name": "Steak and Frites with mushroom sauce",
+          "ingredients": [
+            "Filet mignon",
+            "mushroom sauce (A packet or full ingredients?)",
+            "Fries"
+          ],
+          "notes": "if deciding full ingredients: https://natashaskitchen.com/filet-mignon-in-mushroom-wine-sauce/"
+        },
+        {
+          "name": "Grilled chicken",
+          "ingredients": [
+            "Raw chicken breast",
+            "side of choice",
+            "fruit or veggie option"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Chicken Fettuccini alfredo",
+          "ingredients": [
+            "Fettuccini noodles",
+            "Alfredo sauce",
+            "raw chicken breast",
+            "side salad"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Chicken Parm",
+          "ingredients": [
+            "4 skinless boneless chicken breast halves",
+            "salt and pepper",
+            "Eggs",
+            "panko bread crumbs",
+            "Parmesan cheese",
+            "flour",
+            "prepared tomato sauce",
+            "fresh mozzarella",
+            "fresh basil",
+            "grated provolone cheese",
+            "olive oil"
+          ],
+          "notes": "https://www.allrecipes.com/recipe/223042/chicken-parmesan/"
+        },
+        {
+          "name": "Pulled Pork",
+          "ingredients": [
+            "Pork shoulder boneless (pork butt or boston butt)",
+            "barbecue sauce (determine brand that we like later)",
+            "Hoagie buns or Hawaiian buns",
+            "cole slaw",
+            "baked beans(?)",
+            "salad",
+            "tater tots"
+          ],
+          "notes": "https://tastesbetterfromscratch.com/pulled-pork/"
+        },
+        {
+          "name": "Pork chops or loin",
+          "ingredients": [
+            "4 pork chops",
+            "flour",
+            "chili powder",
+            "garlic powder",
+            "onion powder",
+            "smoked paprika",
+            "black pepper",
+            "vegetable oil",
+            "low-sodium chicken stock",
+            "apple cider vinegar",
+            "brown sugar",
+            "butter",
+            "zucchini"
+          ],
+          "notes": "https://www.inspiredtaste.net/37062/juicy-skillet-pork-chops/"
+        },
+        {
+          "name": "Orange chicken and fried rice",
+          "ingredients": [
+            "Chicken: 4 boneless skinless chicken breasts",
+            "3 eggs",
+            "cornstarch",
+            "flour",
+            "salt",
+            "oil",
+            "Orange sauce: orange juice",
+            "sugar",
+            "rice vinegar",
+            "soy sauce",
+            "gigner",
+            "garlic powder",
+            "red chili flakes",
+            "orange zest",
+            "cornstarch"
+          ],
+          "notes": "https://www.modernhoney.com/chinese-orange-chicken/"
+        },
+        {
+          "name": "Tacos - Carne Asada",
+          "ingredients": [
+            "Skirt steak",
+            "mini corn tortillas",
+            "low sodium soy sauce",
+            "lime juice",
+            "canola oil",
+            "3 cloves garlic",
+            "chili powder",
+            "ground cumin",
+            "dried oregano",
+            "diced red onion",
+            "fresh cilantro",
+            "1 lime"
+          ],
+          "notes": "https://damndelicious.net/2019/04/18/mexican-street-tacos/"
+        },
+        {
+          "name": "Burritos",
+          "ingredients": [
+            "Tortillas",
+            "ground beef",
+            "taco seasoning packet",
+            "sour cream",
+            "mexican rice box mix",
+            "refried beans",
+            "shredded cheese"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Fajitas",
+          "ingredients": [
+            "Tortillas",
+            "chicken breast",
+            "2 types of peppers",
+            "onion",
+            "fajita packet",
+            "mexican rice box mix",
+            "refried beans"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Enchiladas",
+          "ingredients": [
+            "Enchilada sauce: garlic and onion minced",
+            "Chipotle chilis in adobo sauce",
+            "tomato sauce",
+            "chipotle chili powder",
+            "ground cumin",
+            "salt",
+            "pepper",
+            "reduced sodium chicken broth",
+            "Chicken filling: From a store bought rotisserie chicken",
+            "garlic and onion minced",
+            "cilantro",
+            "Kosher salt",
+            "cumin",
+            "dried oregano",
+            "and chipotle chili powder",
+            "to taste",
+            "chicken broth and tomato sauce",
+            "Enchiladas: Whole wheat flour or gluten free tortillas",
+            "shredded part skim mexican cheese blend",
+            "cheddar cheese or monterey jack"
+          ],
+          "notes": "https://www.skinnytaste.com/chicken-enchiladas/"
+        },
+        {
+          "name": "California Chicken Sandwiches",
+          "ingredients": [
+            "Skinless boneless chicken breast",
+            "garlic powder",
+            "onion powder",
+            "oregano",
+            "cooked bacon",
+            "monterrey jack cheese",
+            "guacamole",
+            "Guac ingredients",
+            "6 avocados",
+            "1 onion",
+            "1 or 2 tomato",
+            "jalapeno pepper",
+            "cilantro",
+            "4 lime",
+            "salt and pepper"
+          ],
+          "notes": "https://cookingwithcurls.com/2014/04/01/california-chicken-club-sandwich/"
+        },
+        {
+          "name": "Homemade Mac and Cheese",
+          "ingredients": [
+            "Macaroni",
+            "butter and flour",
+            "milk",
+            "cheddar and parmesan",
+            "salt pepper and paprika",
+            "store bought dried bread crumbs"
+          ],
+          "notes": "https://www.allrecipes.com/recipe/11679/homemade-mac-and-cheese/"
+        },
+        {
+          "name": "Lasagna",
+          "ingredients": [
+            "Sweet italian sausage",
+            "lean ground beef",
+            "onion",
+            "two cloves of garlic",
+            "can of crushed tomtatoes",
+            "two cans of tomato sauce",
+            "two cans of tomato paste",
+            "white sugar",
+            "fresh parsley",
+            "dried basil leaves",
+            "salt",
+            "italian seasoning",
+            "fennel seeds",
+            "black pepper",
+            "store bought lasagna noodles",
+            "parmesan",
+            "mozzarella",
+            "ricotta cheese",
+            "eggs"
+          ],
+          "notes": "https://www.allrecipes.com/recipe/23600/worlds-best-lasagna/"
+        },
+        {
+          "name": "Chicken Cacciatore",
+          "ingredients": [
+            "Sam has the recipe for this. Get it added at another time"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Beef Stew",
+          "ingredients": [
+            "Sam has the recipe for this. Get it added at another time"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Homemade Chicken Noodle Soup",
+          "ingredients": [
+            "Butter",
+            "celery",
+            "large carrots",
+            "clove of garlic",
+            "chicken stock or broth",
+            "salt",
+            "black pepper",
+            "dried rosemary",
+            "dried sage",
+            "crushed red pepper flakes",
+            "bite size pasta",
+            "rotisserie chicken (bought from store and shred)",
+            "better than bouillon chicken flavor"
+          ],
+          "notes": "https://tastesbetterfromscratch.com/chicken-noodle-soup/"
+        },
+        {
+          "name": "Meatloaf",
+          "ingredients": [
+            "Recipe from Laura"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Yellow Curry with Rice",
+          "ingredients": [
+            "Boneless skinless chicken breast",
+            "Sweet Vidalia onion",
+            "Garlic",
+            "Ground turmeric (essential to impart a bold yellow color)",
+            "Ground ginger",
+            "Coriander",
+            "Yellow curry paste",
+            "Coconut milk",
+            "Shredded carrots",
+            "Fresh spinach",
+            "Pepper",
+            "Cilantro",
+            "Brown sugar",
+            "Lime juice"
+          ],
+          "notes": "https://www.averiecooks.com/yellow-thai-chicken-coconut-curry/"
+        },
+        {
+          "name": "Chicken Teriyaki",
+          "ingredients": [
+            "boneless skinless chicken breast",
+            "olive oil",
+            "low sodium soy sauce",
+            "honey",
+            "brown sugar",
+            "rice vinegar",
+            "sesame oil",
+            "ginger",
+            "garlic",
+            "cornstarch",
+            "sesame seeds and green onions"
+          ],
+          "notes": "https://www.cookingclassy.com/teriyaki-chicken/"
+        },
+        {
+          "name": "Hamburger Sliders",
+          "ingredients": [
+            "lean ground beef",
+            "olive oil",
+            "salt and pepper",
+            "garlic powder",
+            "yellow onion",
+            "mayonnaise",
+            "sliced cheddar cheese",
+            "dinner rolls of choice",
+            "unsalted butter",
+            "sesame seeds"
+          ],
+          "notes": "https://natashaskitchen.com/cheeseburger-sliders/"
+        },
+        {
+          "name": "Breakfast For Dinner",
+          "ingredients": [
+            "Pancake mix",
+            "bacon",
+            "eggs",
+            "maple syrup / mrs buttersworth"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Sheet-pan chicken and veggies",
+          "ingredients": [
+            "Chicken breast",
+            "onion",
+            "zucchini",
+            "carrots",
+            "small potatoes (yukon gold, purple, or mixed)"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Homemade Pizza",
+          "ingredients": [
+            "Store bought pizza dough",
+            "red sauce",
+            "peperoni",
+            "green pepper",
+            "onion(?)",
+            "chicken (figure out what is needed to do with the chicken before putting on a pizza)"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Stuffed Peppers",
+          "ingredients": [
+            "Purchased from Costco"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Stir Fry",
+          "ingredients": [
+            "Sauce - honey",
+            "toasted sesame oil",
+            "soy sauce",
+            "chicken broth",
+            "corn starch and water",
+            "crushed red pepper flakes",
+            "Boneless skinless chicken",
+            "salt and pepper",
+            "olive oil",
+            "broccoli florets",
+            "yellow pepper",
+            "red pepper",
+            "baby carrots",
+            "minced ginger",
+            "2 garlic cloves"
+          ],
+          "notes": "https://www.momontimeout.com/easy-chicken-stir-fry-recipe/"
+        },
+        {
+          "name": "Shrimp Pasta",
+          "ingredients": [
+            "Pasta noodles of choice (fettuccini)",
+            "white sauce of choice (alfredo)",
+            "shrimp"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Baked Potatoes",
+          "ingredients": [
+            "Bag of rustic potatoes",
+            "shredded cheese",
+            "sour cream",
+            "butter",
+            "salt and pepper",
+            "milk(?)",
+            "Baked chicken to go along with baked potatoes"
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Buffalo Chicken",
+          "ingredients": [
+            "Sam has recipe for buffalo chicken dinner saved somewhere. Add at a later date."
+          ],
+          "notes": ""
         }
-    ]
+      ]
+    },
+    {
+      "email": "",
+      "numOfMealsToSelect": 1,
+      "meals": [
+        {
+          "name": "Spaghetti",
+          "ingredients": [
+            "Noodles",
+            "ground beef or turkey"
+          ],
+          "notes": ""
+        }
+      ]
+    }
+  ]
 }
