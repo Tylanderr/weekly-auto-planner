@@ -22,7 +22,7 @@ import (
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
-var distributionList string
+// var distributionList string
 
 
 var vegetables = []string {"potatoes"}
@@ -45,8 +45,11 @@ func main() {
         meals, err := selectMeals(userArray[i])
 
         //TODO: figure out what I'm passing as a parameter here
-        for j := 0; j < len(meals)
-        sortedVegetables, sortedFruits, sortedProteins := seperateIngredients()
+        for j := 0; j < len(meals); j++ {
+            //for each meal, sort out the veggies, fruits and proteins
+            sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
+            fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
+        }
 
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
@@ -153,53 +156,40 @@ func readProperties() {
 	p := properties.MustLoadFile(propertiesFile, properties.UTF8)
 	username, _ = p.Get("username")
 	password, _ = p.Get("password")
-	distributionList, _ = p.Get("distributionList")
+	// distributionList, _ = p.Get("distributionList")
 }
 
-func seperateIngredients(ingredients []string) ([]string, []string, []string) {
+func seperateIngredients(ingredients []string) ([]string, []string, []string, []string) {
 
     localVegetables := []string{}
     localFruits := []string{}
     localProteins := []string{}
+    localUnsorted := []string{}
 
     for i := 0; i < len(ingredients); i++ {
         currentIngredient := ingredients[i]
         if(isVegetable(currentIngredient)) {
             localVegetables = append(localVegetables, currentIngredient)
-        }
-        if(isFruit(currentIngredient)) {
+        } else if(isFruit(currentIngredient)) {
             localFruits = append(localFruits, currentIngredient)
-        }
-        if(isProtein(currentIngredient)) {
+        } else if(isProtein(currentIngredient)) {
             localProteins = append(localProteins, currentIngredient)
+        } else {
+            localUnsorted = append(localUnsorted, currentIngredient)
         }
     }
 
-    return localVegetables, localFruits, localProteins
+    return localVegetables, localFruits, localProteins, localUnsorted
 }
 
 func isVegetable(ingredient string) bool {
-    if(!slices.Contains(vegetables, ingredient)){
-        return false
-    }
-
-    return true
+    return slices.Contains(vegetables, ingredient)
 }
 
 func isFruit(ingredient string) bool {
-    if(!slices.Contains(fruits, ingredient)){
-        return false
-    }
-
-    return true
+    return slices.Contains(fruits, ingredient)
 }
 
 func isProtein(ingredient string) bool {
-    if(!slices.Contains(proteins, ingredient)){
-        return false
-    }
-
-    return true
+    return slices.Contains(proteins, ingredient)
 }
-
-//Comment
