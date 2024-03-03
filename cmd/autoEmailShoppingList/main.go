@@ -14,7 +14,7 @@ import (
 	"strings"
 
 	"github.com/tylander732/autoEmailShoppingList/internal/model"
-    // "github.com/tylander732/autoEmailShoppingList/internal/consts"
+    "github.com/tylander732/autoEmailShoppingList/internal/consts"
 	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
 )
 
@@ -22,12 +22,7 @@ import (
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
-// var distributionList string
 
-
-var vegetables = []string {"potatoes"}
-var fruits = []string {"apples"}
-var proteins = []string {"apples"}
 
 func main() {
     readProperties()
@@ -156,7 +151,6 @@ func readProperties() {
 	p := properties.MustLoadFile(propertiesFile, properties.UTF8)
 	username, _ = p.Get("username")
 	password, _ = p.Get("password")
-	// distributionList, _ = p.Get("distributionList")
 }
 
 func seperateIngredients(ingredients []string) ([]string, []string, []string, []string) {
@@ -167,12 +161,13 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
     localUnsorted := []string{}
 
     for i := 0; i < len(ingredients); i++ {
-        currentIngredient := ingredients[i]
-        if(isVegetable(currentIngredient)) {
+        currentIngredient := strings.ToLower(ingredients[i])
+
+        if(slices.Contains(consts.Vegetables, currentIngredient)) {
             localVegetables = append(localVegetables, currentIngredient)
-        } else if(isFruit(currentIngredient)) {
+        } else if(slices.Contains(consts.Fruits, currentIngredient)) {
             localFruits = append(localFruits, currentIngredient)
-        } else if(isProtein(currentIngredient)) {
+        } else if(slices.Contains(consts.Proteins, currentIngredient)) {
             localProteins = append(localProteins, currentIngredient)
         } else {
             localUnsorted = append(localUnsorted, currentIngredient)
@@ -182,14 +177,6 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
     return localVegetables, localFruits, localProteins, localUnsorted
 }
 
-func isVegetable(ingredient string) bool {
-    return slices.Contains(vegetables, ingredient)
-}
 
-func isFruit(ingredient string) bool {
-    return slices.Contains(fruits, ingredient)
-}
-
-func isProtein(ingredient string) bool {
-    return slices.Contains(proteins, ingredient)
-}
+//TODO: Make a function that will strip away the count of items needed when checking what category it will go into
+// Example: 5x eggs - will simplify down to just "eggs" when checking categories
