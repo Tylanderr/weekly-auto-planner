@@ -13,50 +13,47 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/tylander732/autoEmailShoppingList/internal/consts"
 	"github.com/tylander732/autoEmailShoppingList/internal/model"
-    "github.com/tylander732/autoEmailShoppingList/internal/consts"
 	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
 )
-
 
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
 
-
 func main() {
-    readProperties()
-    userJsonFile, errReadingJson := readJsonFile()
-    if errReadingJson != nil {
-        fmt.Println("Error gathering file from disk: ", errReadingJson)
-        return
-    }
+	readProperties()
+	userJsonFile, errReadingJson := readJsonFile()
+	if errReadingJson != nil {
+		fmt.Println("Error gathering file from disk: ", errReadingJson)
+		return
+	}
 
 	userArray := userJsonFile.UserJArray
-    var emailReceivers []string
+	var emailReceivers []string
 
+	for i := 0; i < len(userArray); i++ {
+		meals, err := selectMeals(userArray[i])
 
-    for i := 0; i < len(userArray); i++ {
-        meals, err := selectMeals(userArray[i])
-
-        //TODO: figure out what I'm passing as a parameter here
-        for j := 0; j < len(meals); j++ {
-            //for each meal, sort out the veggies, fruits and proteins
-            sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
-            fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
-        }
+		//TODO: figure out what I'm passing as a parameter here
+		for j := 0; j < len(meals); j++ {
+			//for each meal, sort out the veggies, fruits and proteins
+			sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
+			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
+		}
 
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 		emailString := makeMealEmailString(meals)
 
-        //TODO: FIX THIS BUG
-        //This is a bug. We don't want to append to the list of receivers and then resend another email
-        //They will already have received an email the first time around
-        //Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
+		//TODO: FIX THIS BUG
+		//This is a bug. We don't want to append to the list of receivers and then resend another email
+		//They will already have received an email the first time around
+		//Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
 		emailReceivers = append(emailReceivers, userArray[i].Email)
-        fmt.Println(emailReceivers)
+		fmt.Println(emailReceivers)
 
 		sendEmail(emailString, emailReceivers)
 	}
@@ -118,7 +115,7 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-//TODO: Rip out this function once I break things up into ingredient sections
+// TODO: Rip out this function once I break things up into ingredient sections
 func makeMealEmailString(meal []model.Meal) string {
 	var emailString strings.Builder
 	for i := 0; i < len(meal); i++ {
@@ -155,28 +152,27 @@ func readProperties() {
 
 func seperateIngredients(ingredients []string) ([]string, []string, []string, []string) {
 
-    localVegetables := []string{}
-    localFruits := []string{}
-    localProteins := []string{}
-    localUnsorted := []string{}
+	localVegetables := []string{}
+	localFruits := []string{}
+	localProteins := []string{}
+	localUnsorted := []string{}
 
-    for i := 0; i < len(ingredients); i++ {
-        currentIngredient := strings.ToLower(ingredients[i])
+	for i := 0; i < len(ingredients); i++ {
+		currentIngredient := strings.ToLower(ingredients[i])
 
-        if(slices.Contains(consts.Vegetables, currentIngredient)) {
-            localVegetables = append(localVegetables, currentIngredient)
-        } else if(slices.Contains(consts.Fruits, currentIngredient)) {
-            localFruits = append(localFruits, currentIngredient)
-        } else if(slices.Contains(consts.Proteins, currentIngredient)) {
-            localProteins = append(localProteins, currentIngredient)
-        } else {
-            localUnsorted = append(localUnsorted, currentIngredient)
-        }
-    }
+		if slices.Contains(consts.Vegetables, currentIngredient) {
+			localVegetables = append(localVegetables, currentIngredient)
+		} else if slices.Contains(consts.Fruits, currentIngredient) {
+			localFruits = append(localFruits, currentIngredient)
+		} else if slices.Contains(consts.Proteins, currentIngredient) {
+			localProteins = append(localProteins, currentIngredient)
+		} else {
+			localUnsorted = append(localUnsorted, currentIngredient)
+		}
+	}
 
-    return localVegetables, localFruits, localProteins, localUnsorted
+	return localVegetables, localFruits, localProteins, localUnsorted
 }
-
 
 //TODO: Make a function that will strip away the count of items needed when checking what category it will go into
 // Example: 5x eggs - will simplify down to just "eggs" when checking categories
