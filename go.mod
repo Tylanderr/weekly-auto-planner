@@ -1,4 +1,4 @@
-module autoemail.com
+module github.com/tylander732/autoEmailShoppingList
 
 go 1.21
 

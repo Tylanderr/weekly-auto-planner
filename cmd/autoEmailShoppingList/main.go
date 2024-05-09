@@ -4,33 +4,23 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/magiconair/properties"
 	"math/rand"
+
+	"github.com/magiconair/properties"
+
 	"net/smtp"
 	"os"
 	"slices"
 	"strings"
+
+	"github.com/tylander732/autoEmailShoppingList/internal/consts"
+	"github.com/tylander732/autoEmailShoppingList/internal/model"
+	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
 )
 
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
-var distributionList string
-
-type JsonFile struct {
-	UserJArray []User `json:"users"`
-}
-
-type User struct {
-	Email              string `json:"email"`
-	NumOfMealsToSelect int    `json:"numOfmealsToSelect"`
-	MealJArray         []Meal `json:"meals"`
-}
-
-type Meal struct {
-	Name              string   `json:"name"`
-	IngrediantsJArray []string `json:"ingrediants"`
-}
 
 func main() {
 	readProperties()
@@ -41,31 +31,41 @@ func main() {
 	}
 
 	userArray := userJsonFile.UserJArray
-    var emailReceivers []string
+	var emailReceivers []string
 
 	for i := 0; i < len(userArray); i++ {
 		meals, err := selectMeals(userArray[i])
+
+		//TODO: figure out what I'm passing as a parameter here
+		for j := 0; j < len(meals); j++ {
+			//for each meal, sort out the veggies, fruits and proteins
+			sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
+			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
+		}
 
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 		emailString := makeMealEmailString(meals)
+
+		//TODO: FIX THIS BUG
+		//This is a bug. We don't want to append to the list of receivers and then resend another email
+		//They will already have received an email the first time around
+		//Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
 		emailReceivers = append(emailReceivers, userArray[i].Email)
-        // __AUTO_GENERATED_PRINT_VAR_START__
-        fmt.Println(fmt.Sprintf("main emailString: %v", emailString)) // __AUTO_GENERATED_PRINT_VAR_END__
+		fmt.Println(emailReceivers)
 
 		sendEmail(emailString, emailReceivers)
 	}
-
 }
 
-func readJsonFile() (JsonFile, error) {
+func readJsonFile() (model.JsonFile, error) {
 	contents, err := os.ReadFile("./resources/userList.json")
 	if err != nil {
-		return JsonFile{}, err
+		return model.JsonFile{}, err
 	}
 
-	data := JsonFile{}
+	data := model.JsonFile{}
 
 	err = json.Unmarshal(contents, &data)
 
@@ -77,15 +77,15 @@ func readJsonFile() (JsonFile, error) {
 
 }
 
-func selectMeals(usersData User) ([]Meal, error) {
+func selectMeals(usersData model.User) ([]model.Meal, error) {
 	numOfUsersMeal := len(usersData.MealJArray)
 	numOfmealsToSelect := usersData.NumOfMealsToSelect
 
-	mealsToSend := []Meal{}
+	mealsToSend := []model.Meal{}
 
 	randomMealsToBeSelected, err := generateUniqueRandomIntegers(numOfUsersMeal, numOfmealsToSelect)
 	if err != nil {
-		return []Meal{}, err
+		return []model.Meal{}, err
 	}
 
 	for i := 0; i < len(randomMealsToBeSelected); i++ {
@@ -115,13 +115,14 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-func makeMealEmailString(meal []Meal) string {
+// TODO: Rip out this function once I break things up into ingredient sections
+func makeMealEmailString(meal []model.Meal) string {
 	var emailString strings.Builder
 	for i := 0; i < len(meal); i++ {
 		currentMeal := meal[i]
 		emailString.WriteString(currentMeal.Name + "\n")
-		emailString.WriteString("Ingrediants: ")
-		emailString.WriteString(strings.Join(currentMeal.IngrediantsJArray, ", "))
+		emailString.WriteString("Ingredients: ")
+		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
 		emailString.WriteString("\n \n")
 	}
 
@@ -147,5 +148,31 @@ func readProperties() {
 	p := properties.MustLoadFile(propertiesFile, properties.UTF8)
 	username, _ = p.Get("username")
 	password, _ = p.Get("password")
-	distributionList, _ = p.Get("distributionList")
 }
+
+func seperateIngredients(ingredients []string) ([]string, []string, []string, []string) {
+
+	localVegetables := []string{}
+	localFruits := []string{}
+	localProteins := []string{}
+	localUnsorted := []string{}
+
+	for i := 0; i < len(ingredients); i++ {
+		currentIngredient := strings.ToLower(ingredients[i])
+
+		if slices.Contains(consts.Vegetables, currentIngredient) {
+			localVegetables = append(localVegetables, currentIngredient)
+		} else if slices.Contains(consts.Fruits, currentIngredient) {
+			localFruits = append(localFruits, currentIngredient)
+		} else if slices.Contains(consts.Proteins, currentIngredient) {
+			localProteins = append(localProteins, currentIngredient)
+		} else {
+			localUnsorted = append(localUnsorted, currentIngredient)
+		}
+	}
+
+	return localVegetables, localFruits, localProteins, localUnsorted
+}
+
+//TODO: Make a function that will strip away the count of items needed when checking what category it will go into
+// Example: 5x eggs - will simplify down to just "eggs" when checking categories
