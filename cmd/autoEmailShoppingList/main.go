@@ -45,11 +45,12 @@ func main() {
 			unsorted         = []string{}
 		)
 
-		//TODO: figure out what I'm passing as a parameter here
 		for j := 0; j < len(meals); j++ {
 			//for each meal, sort out the veggies, fruits and proteins
 			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
 			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
+
+			// Also create a list of meal names that will be sent at the top of the html template
 			mealNames = append(mealNames, meals[j].Name)
 			fmt.Println(mealNames)
 		}
@@ -57,9 +58,6 @@ func main() {
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
-
-		// TODO: Now that I have the sorted lists of ingrediants, pass them into an
-		// html template for better formatting
 
 		data := model.EmailData{
 			Receiver:   userArray[i].Email,
@@ -70,11 +68,16 @@ func main() {
 			Unsorted:   unsorted,
 		}
 
-		executeTemplate("./resources/email_template.html", data)
+		// TODO: emailBody is returning as empty from executeTemplate
+		emailBody, err := executeTemplate("./resources/email_template.html", data)
+		// __AUTO_GENERATED_PRINT_VAR_START__
+		fmt.Println(fmt.Sprintf("main emailBody: %v", emailBody)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 		// emailString := makeMealEmailString(meals)
 
-		// sendEmail(emailString, emailReceivers)
+		fmt.Println(userArray[i].Email)
+
+		sendEmail(emailBody, userArray[i].Email)
 	}
 }
 
@@ -135,27 +138,28 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 }
 
 // TODO: Rip out this function once I break things up into ingredient sections
-func makeMealEmailString(meal []model.Meal) string {
-	var emailString strings.Builder
-	for i := 0; i < len(meal); i++ {
-		currentMeal := meal[i]
-		emailString.WriteString(currentMeal.Name + "\n")
-		emailString.WriteString("Ingredients: ")
-		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
-		emailString.WriteString("\n \n")
-	}
 
-	return emailString.String()
-}
+// func makeMealEmailString(meal []model.Meal) string {
+// 	var emailString strings.Builder
+// 	for i := 0; i < len(meal); i++ {
+// 		currentMeal := meal[i]
+// 		emailString.WriteString(currentMeal.Name + "\n")
+// 		emailString.WriteString("Ingredients: ")
+// 		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
+// 		emailString.WriteString("\n \n")
+// 	}
+//
+// 	return emailString.String()
+// }
 
-func sendEmail(emailString string, receivers []string) {
+func sendEmail(emailString string, receiver string) {
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
 
 	auth := smtp.PlainAuth("", username, password, smtpHost)
 
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
+	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, []string{receiver}, []byte(emailString))
 	if err != nil {
 		fmt.Println(err)
 		return
