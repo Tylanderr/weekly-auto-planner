@@ -37,14 +37,20 @@ func main() {
 	for i := 0; i < len(userArray); i++ {
 		meals, err := selectMeals(userArray[i])
 
-		mealNames := []string{}
+		var (
+			mealNames        = []string{}
+			sortedVegetables = []string{}
+			sortedFruits     = []string{}
+			sortedProteins   = []string{}
+			unsorted         = []string{}
+		)
 
 		//TODO: figure out what I'm passing as a parameter here
 		for j := 0; j < len(meals); j++ {
 			//for each meal, sort out the veggies, fruits and proteins
-			sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
+			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
 			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
-			mealNames = append(mealNames, meals[j].Name) 
+			mealNames = append(mealNames, meals[j].Name)
 			fmt.Println(mealNames)
 		}
 
@@ -52,19 +58,21 @@ func main() {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 
-		// TODO: Now that I have the sorted lists of ingrediants, pass them into an 
+		// TODO: Now that I have the sorted lists of ingrediants, pass them into an
 		// html template for better formatting
 
-
-
-		data := model.EmailData {
-			Receiver: userArray[i].Email,
-			Meals: mealNames,
+		data := model.EmailData{
+			Receiver:   userArray[i].Email,
+			Meals:      mealNames,
+			Vegetables: sortedVegetables,
+			Fruits:     sortedFruits,
+			Proteins:   sortedProteins,
+			Unsorted:   unsorted,
 		}
 
 		executeTemplate("./resources/email_template.html", data)
 
-		emailString := makeMealEmailString(meals)
+		// emailString := makeMealEmailString(meals)
 
 		// sendEmail(emailString, emailReceivers)
 	}
@@ -196,7 +204,7 @@ func executeTemplate(templateFile string, data model.EmailData) (string, error) 
 	var tpl bytes.Buffer
 	err = tmpl.Execute(&tpl, data)
 	if err != nil {
-		 return "", err
+		return "", err
 	}
 
 	return tpl.String(), nil
