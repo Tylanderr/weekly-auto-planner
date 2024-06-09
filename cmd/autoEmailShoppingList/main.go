@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html/template"
 	"math/rand"
 
 	"github.com/magiconair/properties"
@@ -31,31 +33,40 @@ func main() {
 	}
 
 	userArray := userJsonFile.UserJArray
-	var emailReceivers []string
 
 	for i := 0; i < len(userArray); i++ {
 		meals, err := selectMeals(userArray[i])
+
+		mealNames := []string{}
 
 		//TODO: figure out what I'm passing as a parameter here
 		for j := 0; j < len(meals); j++ {
 			//for each meal, sort out the veggies, fruits and proteins
 			sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
 			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
+			mealNames = append(mealNames, meals[j].Name) 
+			fmt.Println(mealNames)
 		}
 
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
+
+		// TODO: Now that I have the sorted lists of ingrediants, pass them into an 
+		// html template for better formatting
+
+
+
+		data := model.EmailData {
+			Receiver: userArray[i].Email,
+			Meals: mealNames,
+		}
+
+		executeTemplate("./resources/email_template.html", data)
+
 		emailString := makeMealEmailString(meals)
 
-		//TODO: FIX THIS BUG
-		//This is a bug. We don't want to append to the list of receivers and then resend another email
-		//They will already have received an email the first time around
-		//Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
-		emailReceivers = append(emailReceivers, userArray[i].Email)
-		fmt.Println(emailReceivers)
-
-		sendEmail(emailString, emailReceivers)
+		// sendEmail(emailString, emailReceivers)
 	}
 }
 
@@ -172,6 +183,23 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
 	}
 
 	return localVegetables, localFruits, localProteins, localUnsorted
+}
+
+func executeTemplate(templateFile string, data model.EmailData) (string, error) {
+	// Parse the template file
+	tmpl, err := template.ParseFiles(templateFile)
+	if err != nil {
+		return "", err
+	}
+
+	// Execute the template with the provided data
+	var tpl bytes.Buffer
+	err = tmpl.Execute(&tpl, data)
+	if err != nil {
+		 return "", err
+	}
+
+	return tpl.String(), nil
 }
 
 //TODO: Make a function that will strip away the count of items needed when checking what category it will go into
