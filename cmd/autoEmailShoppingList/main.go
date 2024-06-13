@@ -50,7 +50,6 @@ func main() {
 			fmt.Println(mealNames)
 
 			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
-			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
 		}
 
 		if err != nil {
@@ -130,21 +129,6 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-// TODO: Rip out this function once I break things up into ingredient sections
-
-// func makeMealEmailString(meal []model.Meal) string {
-// 	var emailString strings.Builder
-// 	for i := 0; i < len(meal); i++ {
-// 		currentMeal := meal[i]
-// 		emailString.WriteString(currentMeal.Name + "\n")
-// 		emailString.WriteString("Ingredients: ")
-// 		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
-// 		emailString.WriteString("\n \n")
-// 	}
-//
-// 	return emailString.String()
-// }
-
 func sendEmail(emailString string, receiver string) {
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
@@ -191,8 +175,6 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {
-	// __AUTO_GENERATED_PRINT_VAR_START__
-	fmt.Println(fmt.Sprintf("executeTemplate data: %v", data)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 	// Parse the template file
 	tmpl, err := template.ParseFiles(templateFile)
