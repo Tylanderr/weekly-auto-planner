@@ -46,13 +46,11 @@ func main() {
 		)
 
 		for j := 0; j < len(meals); j++ {
-			//for each meal, sort out the veggies, fruits and proteins
-			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
-			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
-
-			// Also create a list of meal names that will be sent at the top of the html template
 			mealNames = append(mealNames, meals[j].Name)
 			fmt.Println(mealNames)
+
+			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
+			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
 		}
 
 		if err != nil {
@@ -68,14 +66,9 @@ func main() {
 			Unsorted:   unsorted,
 		}
 
-		// TODO: emailBody is returning as empty from executeTemplate
 		emailBody, err := executeTemplate("./resources/email_template.html", data)
-		// __AUTO_GENERATED_PRINT_VAR_START__
-		fmt.Println(fmt.Sprintf("main emailBody: %v", emailBody)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 		// emailString := makeMealEmailString(meals)
-
-		fmt.Println(userArray[i].Email)
 
 		sendEmail(emailBody, userArray[i].Email)
 	}
@@ -198,6 +191,9 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {
+	// __AUTO_GENERATED_PRINT_VAR_START__
+	fmt.Println(fmt.Sprintf("executeTemplate data: %v", data)) // __AUTO_GENERATED_PRINT_VAR_END__
+
 	// Parse the template file
 	tmpl, err := template.ParseFiles(templateFile)
 	if err != nil {
@@ -208,6 +204,8 @@ func executeTemplate(templateFile string, data model.EmailData) (string, error) 
 	var tpl bytes.Buffer
 	err = tmpl.Execute(&tpl, data)
 	if err != nil {
+		fmt.Print("There has been an error executing the HTML Template: ")
+		fmt.Println(err)
 		return "", err
 	}
 
