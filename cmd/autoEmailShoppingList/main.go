@@ -175,6 +175,8 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {
+	// __AUTO_GENERATED_PRINT_VAR_START__
+	fmt.Println(fmt.Sprintf("executeTemplate data: %v", data)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 	// Parse the template file
 	tmpl, err := template.ParseFiles(templateFile)
