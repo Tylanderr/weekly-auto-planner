@@ -15,9 +15,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/tylander732/autoEmailShoppingList/internal/consts"
-	"github.com/tylander732/autoEmailShoppingList/internal/model"
-	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
+	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
+	"github.com/tylander732/autoEmailShoppingList/pkg/model"
+	// "github.com/tylander732/autoEmailShoppingList/pkg/projectpath"
 )
 
 var propertiesFile = "./resources/app.properties"
@@ -195,6 +195,7 @@ func executeTemplate(templateFile string, data model.EmailData) (string, error) 
 
 	return tpl.String(), nil
 }
+
 
 //TODO: Make a function that will strip away the count of items needed when checking what category it will go into
 // Example: 5x eggs - will simplify down to just "eggs" when checking categories
