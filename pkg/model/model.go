@@ -19,9 +19,9 @@ type Meal struct {
 
 type EmailData struct {
 	Receiver   string
-	Meals      []string
-	Vegetables []string
-	Fruits     []string
-	Proteins   []string
-	Unsorted   []string
+	Meals      string
+	Vegetables string
+	Fruits     string
+	Proteins   string
+	Unsorted   string
 }

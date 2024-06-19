@@ -56,18 +56,26 @@ func main() {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
 
+		mealsString := strings.Join(mealNames, "\n")
+		mealsString += "\n"
+
+		veggiesString := strings.Join(sortedVegetables, ", ")
+		fruitsString := strings.Join(sortedFruits, ", ")
+		proteinsString := strings.Join(sortedProteins, ", ")
+		unsortedString := strings.Join(unsorted, ", ")
+
 		data := model.EmailData{
 			Receiver:   userArray[i].Email,
-			Meals:      mealNames,
-			Vegetables: sortedVegetables,
-			Fruits:     sortedFruits,
-			Proteins:   sortedProteins,
-			Unsorted:   unsorted,
+			Meals:      mealsString,
+			Vegetables: veggiesString,
+			Fruits:     fruitsString,
+			Proteins:   proteinsString,
+			Unsorted:   unsortedString,
 		}
 
 		emailBody, err := executeTemplate("./resources/email_template.html", data)
-
-		// emailString := makeMealEmailString(meals)
+		// __AUTO_GENERATED_PRINT_VAR_START__
+		fmt.Println(fmt.Sprintf("main emailBody: %v", emailBody)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 		sendEmail(emailBody, userArray[i].Email)
 	}
