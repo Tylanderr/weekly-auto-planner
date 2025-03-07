@@ -438,7 +438,7 @@
     },
     {
       "email": "",
-      "numOfMealsToSelect": 1,
+      "numOfMealsToSelect": 0,
       "meals": [
         {
           "name": "Spaghetti",

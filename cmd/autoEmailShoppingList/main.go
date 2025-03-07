@@ -140,11 +140,18 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 func sendEmail(emailString string, receiver string) {
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
-	smtpPort := "587"
+	server := smtpHost + ":587"
 
+	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 	auth := smtp.PlainAuth("", username, password, smtpHost)
 
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, []string{receiver}, []byte(emailString))
+	subject := "Subject: Auto Emailer Test\n"
+
+	msg := []byte(subject + mime + emailString)
+
+	// err := smtp.SendMail(server, auth, username, []string{receiver}, []byte(emailString))
+
+	err := smtp.SendMail(server, auth, username, []string{receiver}, msg)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -183,18 +190,16 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {
-	// __AUTO_GENERATED_PRINT_VAR_START__
-	fmt.Println(fmt.Sprintf("executeTemplate data: %v", data)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 	// Parse the template file
-	tmpl, err := template.ParseFiles(templateFile)
+	template, err := template.ParseFiles(templateFile)
 	if err != nil {
 		return "", err
 	}
 
 	// Execute the template with the provided data
 	var tpl bytes.Buffer
-	err = tmpl.Execute(&tpl, data)
+	err = template.Execute(&tpl, data)
 	if err != nil {
 		fmt.Print("There has been an error executing the HTML Template: ")
 		fmt.Println(err)
