@@ -149,8 +149,6 @@ func sendEmail(emailString string, receiver string) {
 
 	msg := []byte(subject + mime + emailString)
 
-	// err := smtp.SendMail(server, auth, username, []string{receiver}, []byte(emailString))
-
 	err := smtp.SendMail(server, auth, username, []string{receiver}, msg)
 	if err != nil {
 		fmt.Println(err)
@@ -210,5 +208,13 @@ func executeTemplate(templateFile string, data model.EmailData) (string, error) 
 }
 
 
-//TODO: Make a function that will strip away the count of items needed when checking what category it will go into
-// Example: 5x eggs - will simplify down to just "eggs" when checking categories
+//TODO: Finish this
+func parseIngredientString(ingredient string) (string, int) {
+	itemCount := ingredient[0]
+
+	// __AUTO_GENERATED_PRINT_VAR_START__
+	fmt.Println(fmt.Sprintf("parseIngredientString itemCount: %v", itemCount)) // __AUTO_GENERATED_PRINT_VAR_END__
+
+	return "", 0
+}
+
