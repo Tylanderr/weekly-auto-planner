@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"math/rand"
+	"strconv"
 
 	"github.com/magiconair/properties"
 
@@ -207,14 +208,25 @@ func executeTemplate(templateFile string, data model.EmailData) (string, error) 
 	return tpl.String(), nil
 }
 
+func parseIngredientString(ingredient string) (string, int, error) {
+	//TODO: if a string does not contain a numeric, return count of 1
+	// If string contains numeric but not comma, return error
+	if !strings.Contains(ingredient, ",") {
+		return ingredient, 1, nil
+	}
 
-//TODO: Finish this
-func parseIngredientString(ingredient string) (string, int) {
-	itemCount := ingredient[0]
+	seperatorIndex := strings.Index(ingredient, ",")
+
+	itemCount, err := strconv.Atoi(ingredient[0:seperatorIndex])
+
+	if err != nil {
+		return "", 0, err
+	}
+
+	parsedIngredient := ingredient[seperatorIndex+1:]
 
 	// __AUTO_GENERATED_PRINT_VAR_START__
 	fmt.Println(fmt.Sprintf("parseIngredientString itemCount: %v", itemCount)) // __AUTO_GENERATED_PRINT_VAR_END__
 
-	return "", 0
+	return parsedIngredient, 0, nil
 }
-
