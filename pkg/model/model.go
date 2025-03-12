@@ -17,6 +17,11 @@ type Meal struct {
 	Notes             string   `json:"notes"`
 }
 
+type Ingredients struct {
+	Ingredient string `json:"ingredient"`
+	Count      int    `json:"count"`
+}
+
 type EmailData struct {
 	Receiver   string
 	Meals      string
