@@ -1,0 +1,454 @@
+{
+  "users": [
+    {
+      "email": "tharding732@gmail.com",
+      "numOfMealsToSelect": 6,
+      "meals": [
+        {
+          "name": "Spaghetti",
+          "ingredients": [
+            { "ingredient": "Spaghetti Noodles", "count": 1 },
+            { "ingredient": "Red Sauce", "count": 1 },
+            { "ingredient": "Ground Beef or Turkey", "count": 1 },
+            { "ingredient": "Onion", "count": 1 },
+            { "ingredient": "Zucchini", "count": 1 },
+            { "ingredient": "Peppers", "count": 1 }
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Steak and Potatoes",
+          "ingredients": [
+            { "ingredient": "Filet Mignon", "count": 1 },
+            { "ingredient": "Bob evans potatoes (or raw rustic potatoes if more fancy)", "count": 1 },
+            { "ingredient": "Salad", "count": 1 }
+          ],
+          "notes": "Season stakes about 45 minutes before getting started and let them rest on the counter to warm up slightly. Medium to high heat on cast iron, butter pan and allow enough to be in pan for basting. Sear edges of steaks to begin and render down fat. Cook 3-4 minutes each side depending on thickness of steaks. Let rest 5 minutes."
+        },
+        {
+          "name": "Steak and Frites with mushroom sauce",
+          "ingredients": [
+            { "ingredient": "Filet mignon", "count": 1 },
+            { "ingredient": "mushroom sauce (A packet or full ingredients?)", "count": 1 },
+            { "ingredient": "Fries", "count": 1 }
+          ],
+          "notes": "if deciding full ingredients: https://natashaskitchen.com/filet-mignon-in-mushroom-wine-sauce/"
+        },
+        {
+          "name": "Grilled chicken",
+          "ingredients": [
+            { "ingredient": "Raw chicken breast", "count": 1 },
+            { "ingredient": "Side of choice", "count": 1 },
+            { "ingredient": "fruit or veggie option", "count": 1 }
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Chicken Fettuccini alfredo",
+          "ingredients": [
+            { "ingredient": "Fettuccini noodles", "count": 1 },
+            { "ingredient": "Alfredo sauce", "count": 1 },
+            { "ingredient": "raw chicken breast", "count": 1 },
+            { "ingredient": "side salad", "count": 1 }
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Chicken Parm",
+          "ingredients": [
+            { "ingredient": "4x chicken breast", "count": 1 },
+            { "ingredient": "salt and pepper", "count": 1 },
+            { "ingredient": "Eggs", "count": 1 },
+            { "ingredient": "panko bread crumbs", "count": 1 },
+            { "ingredient": "Parmesan cheese", "count": 1 },
+            { "ingredient": "flour", "count": 1 },
+            { "ingredient": "prepared tomato sauce", "count": 1 },
+            { "ingredient": "fresh mozzarella", "count": 1 },
+            { "ingredient": "fresh basil", "count": 1 },
+            { "ingredient": "grated provolone cheese", "count": 1 },
+            { "ingredient": "olive oil", "count": 1 }
+
+          ],
+          "notes": "https://www.allrecipes.com/recipe/223042/chicken-parmesan/"
+        },
+        {
+          "name": "Pulled Pork",
+          "ingredients": [
+            { "ingredient": "Pork shoulder boneless (pork butt or boston butt)", "count": 1 },
+            { "ingredient": "barbecue sauce (determine brand that we like later)", "count": 1 },
+            { "ingredient": "Hoagie buns or Hawaiian buns", "count": 1 },
+            { "ingredient": "cole slaw", "count": 1 },
+            { "ingredient": "baked beans(?)", "count": 1 },
+            { "ingredient": "salad", "count": 1 },
+            { "ingredient": "tater tots", "count": 1 }
+          ],
+          "notes": "https://tastesbetterfromscratch.com/pulled-pork/"
+        },
+        {
+          "name": "Pork chops or loin",
+          "ingredients": [
+            { "ingredient": "4 pork chops", "count": 1 },
+            { "ingredient": "flour", "count": 1 },
+            { "ingredient": "chili powder", "count": 1 },
+            { "ingredient": "garlic powder", "count": 1 },
+            { "ingredient": "onion powder", "count": 1 },
+            { "ingredient": "smoked paprika", "count": 1 },
+            { "ingredient": "black pepper", "count": 1 },
+            { "ingredient": "vegetable oil", "count": 1 },
+            { "ingredient": "low-sodium chicken stock", "count": 1 },
+            { "ingredient": "apple cider vinegar", "count": 1 },
+            { "ingredient": "brown sugar", "count": 1 },
+            { "ingredient": "butter", "count": 1 },
+            { "ingredient": "zucchini", "count": 1 }
+          ],
+          "notes": "https://www.inspiredtaste.net/37062/juicy-skillet-pork-chops/"
+        },
+        {
+          "name": "Orange chicken and fried rice",
+          "ingredients": [
+            { "ingredient": "Chicken: 4 boneless skinless chicken breasts", "count": 1 },
+            { "ingredient": "3 eggs", "count": 1 },
+            { "ingredient": "cornstarch", "count": 1 },
+            { "ingredient": "flour", "count": 1 },
+            { "ingredient": "salt", "count": 1 },
+            { "ingredient": "oil", "count": 1 },
+            { "ingredient": "Orange sauce: orange juice", "count": 1 },
+            { "ingredient": "sugar", "count": 1 },
+            { "ingredient": "rice vinegar", "count": 1 },
+            { "ingredient": "soy sauce", "count": 1 },
+            { "ingredient": "gigner", "count": 1 },
+            { "ingredient": "garlic powder", "count": 1 },
+            { "ingredient": "red chili flakes", "count": 1 },
+            { "ingredient": "orange zest", "count": 1 },
+            { "ingredient": "cornstarch", "count": 1 }
+          ],
+          "notes": "https://www.modernhoney.com/chinese-orange-chicken/"
+
+        },
+        {
+          "name": "Tacos - Carne Asada",
+          "ingredients": [
+            { "ingredient": "Skirt steak", "count": 1 },
+            { "ingredient": "mini corn tortillas", "count": 1 },
+            { "ingredient": "low sodium soy sauce", "count": 1 },
+            { "ingredient": "lime juice", "count": 1 },
+            { "ingredient": "canola oil", "count": 1 },
+            { "ingredient": "3 cloves garlic", "count": 1 },
+            { "ingredient": "chili powder", "count": 1 },
+            { "ingredient": "ground cumin", "count": 1 },
+            { "ingredient": "dried oregano", "count": 1 },
+            { "ingredient": "diced red onion", "count": 1 },
+            { "ingredient": "fresh cilantro", "count": 1 },
+            { "ingredient": "1 lime", "count": 1 }
+          ],
+          "notes": "https://damndelicious.net/2019/04/18/mexican-street-tacos/"
+        },
+        {
+          "name": "Burritos",
+          "ingredients": [
+            { "ingredient": "Tortillas", "count": 1 },
+            { "ingredient": "ground beef", "count": 1 },
+            { "ingredient": "taco seasoning packet", "count": 1 },
+            { "ingredient": "sour cream", "count": 1 },
+            { "ingredient": "mexican rice box mix", "count": 1 },
+            { "ingredient": "refried beans", "count": 1 },
+            { "ingredient": "shredded cheese", "count": 1 }
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Fajitas",
+          "ingredients": [
+            { "ingredient": "Tortillas", "count": 1 },
+            { "ingredient": "chicken breast", "count": 1 },
+            { "ingredient": "2 types of peppers", "count": 1 },
+            { "ingredient": "onion", "count": 1 },
+            { "ingredient": "fajita packet", "count": 1 },
+            { "ingredient": "mexican rice box mix", "count": 1 },
+            { "ingredient": "refried beans", "count": 1 }
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Enchiladas",
+          "ingredients": [
+            { "ingredient": "Enchilada sauce: garlic and onion minced", "count": 1 },
+            { "ingredient": "Chipotle chilis in adobo sauce", "count": 1 },
+            { "ingredient": "tomato sauce", "count": 1 },
+            { "ingredient": "chipotle chili powder", "count": 1 },
+            { "ingredient": "ground cumin", "count": 1 },
+            { "ingredient": "salt", "count": 1 },
+            { "ingredient": "pepper", "count": 1 },
+            { "ingredient": "reduced sodium chicken broth", "count": 1 },
+            { "ingredient": "Chicken filling: From a store bought rotisserie chicken", "count": 1 },
+            { "ingredient": "garlic and onion minced", "count": 1 },
+            { "ingredient": "cilantro", "count": 1 },
+            { "ingredient": "Kosher salt", "count": 1 },
+            { "ingredient": "cumin", "count": 1 },
+            { "ingredient": "dried oregano", "count": 1 },
+            { "ingredient": "and chipotle chili powder", "count": 1 },
+            { "ingredient": "to taste", "count": 1 },
+            { "ingredient": "chicken broth and tomato sauce", "count": 1 },
+            { "ingredient": "corn tortillas", "count": 1 }
+          ],
+          "notes": ""
+        },
+        {
+          "name": "California Chicken Sandwiches",
+          "ingredients": [
+            {"ingredient": "Skinless boneless chicken breast", "count": 1},
+            {"ingredient": "garlic powder", "count": 1},
+            {"ingredient": "onion powder", "count": 1},
+            {"ingredient": "oregano", "count": 1},
+            {"ingredient": "cooked bacon", "count": 1},
+            {"ingredient": "monterrey jack cheese", "count": 1},
+            {"ingredient": "guacamole", "count": 1},
+            {"ingredient": "Guac ingredients", "count": 1},
+            {"ingredient": "6 avocados", "count": 1},
+            {"ingredient": "1 onion", "count": 1},
+            {"ingredient": "1 or 2 tomato", "count": 1},
+            {"ingredient": "jalapeno pepper", "count": 1},
+            {"ingredient": "cilantro", "count": 1},
+            {"ingredient": "4 lime", "count": 1},
+            {"ingredient": "salt and pepper", "count": 1}
+          ],
+          "notes": "https://cookingwithcurls.com/2014/04/01/california-chicken-club-sandwich/"
+        },
+        {
+          "name": "Homemade Mac and Cheese",
+          "ingredients": [
+            {"ingredient": "Macaroni", "count": 1},
+            {"ingredient": "butter and flour", "count": 1},
+            {"ingredient": "milk", "count": 1},
+            {"ingredient": "cheddar and parmesan", "count": 1},
+            {"ingredient": "salt pepper and paprika", "count": 1},
+            {"ingredient": "store bought dried bread crumbs", "count": 1}
+          ],
+          "notes": "https://www.allrecipes.com/recipe/11679/homemade-mac-and-cheese/"
+        },
+        {
+          "name": "Lasagna",
+          "ingredients": [
+            {"ingredient": "Sweet italian sausage", "count": 1},
+            {"ingredient": "lean ground beef", "count": 1},
+            {"ingredient": "onion", "count": 1},
+            {"ingredient": "two cloves of garlic", "count": 1},
+            {"ingredient": "can of crushed tomtatoes", "count": 1},
+            {"ingredient": "two cans of tomato sauce", "count": 1},
+            {"ingredient": "two cans of tomato paste", "count": 1},
+            {"ingredient": "white sugar", "count": 1},
+            {"ingredient": "fresh parsley", "count": 1},
+            {"ingredient": "dried basil leaves", "count": 1},
+            {"ingredient": "salt", "count": 1},
+            {"ingredient": "italian seasoning", "count": 1},
+            {"ingredient": "fennel seeds", "count": 1},
+            {"ingredient": "black pepper", "count": 1},
+            {"ingredient": "store bought lasagna noodles", "count": 1},
+            {"ingredient": "parmesan", "count": 1},
+            {"ingredient": "mozzarella", "count": 1},
+            {"ingredient": "ricotta cheese", "count": 1},
+            {"ingredient": "eggs", "count": 1}
+          ],
+          "notes": "https://www.allrecipes.com/recipe/23600/worlds-best-lasagna/"
+        },
+        {
+          "name": "Chicken Cacciatore",
+          "ingredients": [
+            {"ingredient": "Sam has the recipe for this. Get it added at another time", "count": 1}
+          ],
+
+          "notes": ""
+        },
+        {
+          "name": "Beef Stew",
+
+          "ingredients": [
+            {"ingredient": "Sam has the recipe for this. Get it added at another time", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Homemade Chicken Noodle Soup",
+          "ingredients": [
+            {"ingredient": "Butter", "count": 1},
+            {"ingredient": "celery", "count": 1},
+            {"ingredient": "large carrots", "count": 1},
+            {"ingredient": "clove of garlic", "count": 1},
+            {"ingredient": "chicken stock or broth", "count": 1},
+            {"ingredient": "salt", "count": 1},
+            {"ingredient": "black pepper", "count": 1},
+            {"ingredient": "dried rosemary", "count": 1},
+            {"ingredient": "dried sage", "count": 1},
+            {"ingredient": "crushed red pepper flakes", "count": 1},
+            {"ingredient": "bite size pasta", "count": 1},
+            {"ingredient": "rotisserie chicken (bought from store and shred)", "count": 1},
+            {"ingredient": "better than bouillon chicken flavor", "count": 1}
+          ],
+          "notes": "https://tastesbetterfromscratch.com/chicken-noodle-soup/"
+        },
+        {
+          "name": "Meatloaf",
+          "ingredients": [
+            {"ingredient": "Recipe from Laura", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Yellow Curry with Rice",
+          "ingredients": [
+            {"ingredient": "Boneless skinless chicken breast", "count": 1},
+            {"ingredient": "Sweet Vidalia onion", "count": 1},
+            {"ingredient": "Garlic", "count": 1},
+            {"ingredient": "Ground turmeric (essential to impart a bold yellow color)", "count": 1},
+            {"ingredient": "Ground ginger", "count": 1},
+            {"ingredient": "Coriander", "count": 1},
+            {"ingredient": "Yellow curry paste", "count": 1},
+            {"ingredient": "Coconut milk", "count": 1},
+            {"ingredient": "Shredded carrots", "count": 1},
+            {"ingredient": "Fresh spinach", "count": 1},
+            {"ingredient": "Pepper", "count": 1},
+            {"ingredient": "Cilantro", "count": 1},
+            {"ingredient": "Brown sugar", "count": 1},
+            {"ingredient": "Lime juice", "count": 1}
+          ],
+          "notes": "https://www.averiecooks.com/yellow-thai-chicken-coconut-curry/"
+        },
+        {
+          "name": "Chicken Teriyaki",
+          "ingredients": [
+            {"ingredient": "boneless skinless chicken breast", "count": 1},
+            {"ingredient": "olive oil", "count": 1},
+            {"ingredient": "low sodium soy sauce", "count": 1},
+            {"ingredient": "honey", "count": 1},
+            {"ingredient": "brown sugar", "count": 1},
+            {"ingredient": "rice vinegar", "count": 1},
+            {"ingredient": "sesame oil", "count": 1},
+            {"ingredient": "ginger", "count": 1},
+            {"ingredient": "garlic", "count": 1},
+            {"ingredient": "cornstarch", "count": 1},
+            {"ingredient": "sesame seeds and green onions", "count": 1}
+          ],
+          "notes": "https://www.cookingclassy.com/teriyaki-chicken/"
+        },
+        {
+          "name": "Hamburger Sliders",
+          "ingredients": [
+            {"ingredient": "lean ground beef", "count": 1},
+            {"ingredient": "olive oil", "count": 1},
+            {"ingredient": "salt and pepper", "count": 1},
+            {"ingredient": "garlic powder", "count": 1},
+            {"ingredient": "yellow onion", "count": 1},
+            {"ingredient": "mayonnaise", "count": 1},
+            {"ingredient": "sliced cheddar cheese", "count": 1},
+            {"ingredient": "dinner rolls of choice", "count": 1},
+            {"ingredient": "unsalted butter", "count": 1},
+            {"ingredient": "sesame seeds", "count": 1}
+          ],
+          "notes": "https://natashaskitchen.com/cheeseburger-sliders/"
+        },
+        {
+          "name": "Breakfast For Dinner",
+            {"ingredient": "bacon", "count": 1},
+            {"ingredient": "eggs", "count": 1},
+            {"ingredient": "maple syrup / mrs buttersworth", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Sheet-pan chicken and veggies",
+          "ingredients": [
+            {"ingredient": "Chicken breast", "count": 1},
+            {"ingredient": "onion", "count": 1},
+            {"ingredient": "zucchini", "count": 1},
+            {"ingredient": "carrots", "count": 1},
+            {"ingredient": "small potatoes (yukon gold, purple, or mixed)", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Homemade Pizza",
+          "ingredients": [
+            {"ingredient": "Store bought pizza dough", "count": 1},
+            {"ingredient": "red sauce", "count": 1},
+            {"ingredient": "peperoni", "count": 1},
+            {"ingredient": "green pepper", "count": 1},
+            {"ingredient": "onion(?)", "count": 1},
+            {"ingredient": "chicken (figure out what is needed to do with the chicken before putting on a pizza)", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Stuffed Peppers",
+          "ingredients": [
+            {"ingredient": "Purchased from Costco", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Stir Fry",
+          "ingredients": [
+            {"ingredient": "Sauce - honey", "count": 1},
+            {"ingredient": "toasted sesame oil", "count": 1},
+            {"ingredient": "soy sauce", "count": 1},
+            {"ingredient": "chicken broth", "count": 1},
+            {"ingredient": "corn starch and water", "count": 1},
+            {"ingredient": "crushed red pepper flakes", "count": 1},
+            {"ingredient": "Boneless skinless chicken", "count": 1},
+            {"ingredient": "salt and pepper", "count": 1},
+            {"ingredient": "olive oil", "count": 1},
+            {"ingredient": "broccoli florets", "count": 1},
+            {"ingredient": "yellow pepper", "count": 1},
+            {"ingredient": "red pepper", "count": 1},
+            {"ingredient": "baby carrots", "count": 1},
+            {"ingredient": "minced ginger", "count": 1},
+            {"ingredient": "2 garlic cloves", "count": 1}
+          ],
+          "notes": "https://www.momontimeout.com/easy-chicken-stir-fry-recipe/"
+        },
+        {
+          "name": "Shrimp Pasta",
+          "ingredients": [
+            {"ingredient": "Pasta noodles of choice (fettuccini)", "count": 1},
+            {"ingredient": "white sauce of choice (alfredo)", "count": 1},
+            {"ingredient": "shrimp", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Baked Potatoes",
+          "ingredients": [
+            {"ingredient": "Bag of rustic potatoes", "count": 1},
+            {"ingredient": "shredded cheese", "count": 1},
+            {"ingredient": "sour cream", "count": 1},
+            {"ingredient": "butter", "count": 1},
+            {"ingredient": "salt and pepper", "count": 1},
+            {"ingredient": "milk(?)", "count": 1},
+            {"ingredient": "Baked chicken to go along with baked potatoes", "count": 1}
+          ],
+          "notes": ""
+        },
+        {
+          "name": "Buffalo Chicken",
+          "ingredients": [
+            {"ingredient": "Sam has recipe for buffalo chicken dinner saved somewhere. Add at a later date.", "count": 1}
+          ],
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "email": "",
+      "numOfMealsToSelect": 0,
+      "meals": [
+        {
+          "name": "Spaghetti",
+          "ingredients": [
+            "Noodles",
+            "ground beef or turkey"
+          ],
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weekly Meals</title>
+</head>
+
+<body>
+    <h1>Hello, {{.Receiver}}!</h1>
+    <h2>Meals for this week:</h2>
+    <p>{{.Meals}}</p>
+    <table>
+        <tr>
+            <th>Grocery Type</th>
+            <th>Items</th>
+        </tr>
+        <tr>
+            <td>Vegetables</td>
+            <td>{{.Vegetables}}</td>
+        </tr>
+        <tr>
+            <td>Fruits</td>
+            <td>{{.Fruits}}</td>
+        </tr>
+        <tr>
+            <td>Proteins</td>
+            <td>{{.Proteins}}</td>
+        </tr>
+        <tr>
+            <td>Unsorted</td>
+            <td>{{.Unsorted}}</td>
+        </tr>
+        <tr>
+            <td>Row 5, Column 1</td>
+            <td>Row 5, Column 2</td>
+        </tr>
+    </table>
+</body>
+
+</html>

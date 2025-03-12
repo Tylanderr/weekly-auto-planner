@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html/template"
 	"math/rand"
+	"strconv"
 
 	"github.com/magiconair/properties"
 
@@ -13,9 +16,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/tylander732/autoEmailShoppingList/internal/consts"
-	"github.com/tylander732/autoEmailShoppingList/internal/model"
-	// "github.com/tylander732/autoEmailShoppingList/internal/projectpath"
+	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
+	"github.com/tylander732/autoEmailShoppingList/pkg/model"
+	// "github.com/tylander732/autoEmailShoppingList/pkg/projectpath"
 )
 
 var propertiesFile = "./resources/app.properties"
@@ -31,36 +34,56 @@ func main() {
 	}
 
 	userArray := userJsonFile.UserJArray
-	var emailReceivers []string
 
 	for i := 0; i < len(userArray); i++ {
 		meals, err := selectMeals(userArray[i])
 
-		//TODO: figure out what I'm passing as a parameter here
+		var (
+			mealNames        = []string{}
+			sortedVegetables = []string{}
+			sortedFruits     = []string{}
+			sortedProteins   = []string{}
+			unsorted         = []string{}
+		)
+
 		for j := 0; j < len(meals); j++ {
-			//for each meal, sort out the veggies, fruits and proteins
-			sortedVegetables, sortedFruits, sortedProteins, unsorted := seperateIngredients(meals[j].IngredientsJArray)
-			fmt.Println(sortedVegetables, sortedFruits, sortedProteins, unsorted)
+			mealNames = append(mealNames, meals[j].Name)
+			fmt.Println(mealNames)
+
+			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
 		}
 
 		if err != nil {
 			fmt.Println("Was unable to succesfully select meal for users", err)
 		}
-		emailString := makeMealEmailString(meals)
 
-		//TODO: FIX THIS BUG
-		//This is a bug. We don't want to append to the list of receivers and then resend another email
-		//They will already have received an email the first time around
-		//Send 1 email per loop for each receiver, or batch all the emails to be sent at once?
-		emailReceivers = append(emailReceivers, userArray[i].Email)
-		fmt.Println(emailReceivers)
+		mealsString := strings.Join(mealNames, "\n")
+		mealsString += "\n"
 
-		sendEmail(emailString, emailReceivers)
+		veggiesString := strings.Join(sortedVegetables, ", ")
+		fruitsString := strings.Join(sortedFruits, ", ")
+		proteinsString := strings.Join(sortedProteins, ", ")
+		unsortedString := strings.Join(unsorted, ", ")
+
+		data := model.EmailData{
+			Receiver:   userArray[i].Email,
+			Meals:      mealsString,
+			Vegetables: veggiesString,
+			Fruits:     fruitsString,
+			Proteins:   proteinsString,
+			Unsorted:   unsortedString,
+		}
+
+		emailBody, err := executeTemplate("./resources/email_template.html", data)
+		// __AUTO_GENERATED_PRINT_VAR_START__
+		fmt.Println(fmt.Sprintf("main emailBody: %v", emailBody)) // __AUTO_GENERATED_PRINT_VAR_END__
+
+		sendEmail(emailBody, userArray[i].Email)
 	}
 }
 
 func readJsonFile() (model.JsonFile, error) {
-	contents, err := os.ReadFile("./resources/userList.json")
+	contents, err := os.ReadFile("./resources/userListUpdated.json")
 	if err != nil {
 		return model.JsonFile{}, err
 	}
@@ -115,28 +138,19 @@ func generateUniqueRandomIntegers(numberRange int, amountToGenerate int) ([]int,
 	return uniqueInts, nil
 }
 
-// TODO: Rip out this function once I break things up into ingredient sections
-func makeMealEmailString(meal []model.Meal) string {
-	var emailString strings.Builder
-	for i := 0; i < len(meal); i++ {
-		currentMeal := meal[i]
-		emailString.WriteString(currentMeal.Name + "\n")
-		emailString.WriteString("Ingredients: ")
-		emailString.WriteString(strings.Join(currentMeal.IngredientsJArray, ", "))
-		emailString.WriteString("\n \n")
-	}
-
-	return emailString.String()
-}
-
-func sendEmail(emailString string, receivers []string) {
+func sendEmail(emailString string, receiver string) {
 	// smtp server configuration
 	smtpHost := "smtp.gmail.com"
-	smtpPort := "587"
+	server := smtpHost + ":587"
 
+	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 	auth := smtp.PlainAuth("", username, password, smtpHost)
 
-	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, username, receivers, []byte(emailString))
+	subject := "Subject: Auto Emailer Test\n"
+
+	msg := []byte(subject + mime + emailString)
+
+	err := smtp.SendMail(server, auth, username, []string{receiver}, msg)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -150,6 +164,7 @@ func readProperties() {
 	password, _ = p.Get("password")
 }
 
+//TODO: Fix. This is going to be broken after ingredient object introduction
 func seperateIngredients(ingredients []string) ([]string, []string, []string, []string) {
 
 	localVegetables := []string{}
@@ -174,5 +189,22 @@ func seperateIngredients(ingredients []string) ([]string, []string, []string, []
 	return localVegetables, localFruits, localProteins, localUnsorted
 }
 
-//TODO: Make a function that will strip away the count of items needed when checking what category it will go into
-// Example: 5x eggs - will simplify down to just "eggs" when checking categories
+func executeTemplate(templateFile string, data model.EmailData) (string, error) {
+
+	// Parse the template file
+	template, err := template.ParseFiles(templateFile)
+	if err != nil {
+		return "", err
+	}
+
+	// Execute the template with the provided data
+	var tpl bytes.Buffer
+	err = template.Execute(&tpl, data)
+	if err != nil {
+		fmt.Print("There has been an error executing the HTML Template: ")
+		fmt.Println(err)
+		return "", err
+	}
+
+	return tpl.String(), nil
+}
