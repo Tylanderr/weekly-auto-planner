@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"html/template"
 	"math/rand"
-	"strconv"
 
 	"github.com/magiconair/properties"
 
@@ -16,6 +15,7 @@ import (
 	"slices"
 	"strings"
 
+	// "github.com/tylander732/autoEmailShoppingList/pkg/consts"
 	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
 	"github.com/tylander732/autoEmailShoppingList/pkg/model"
 	// "github.com/tylander732/autoEmailShoppingList/pkg/projectpath"
@@ -48,9 +48,8 @@ func main() {
 
 		for j := 0; j < len(meals); j++ {
 			mealNames = append(mealNames, meals[j].Name)
-			fmt.Println(mealNames)
 
-			sortedVegetables, sortedFruits, sortedProteins, unsorted = seperateIngredients(meals[j].IngredientsJArray)
+			sortedVegetables, sortedFruits, sortedProteins, unsorted = sortIngredients(meals[j].Ingredients)
 		}
 
 		if err != nil {
@@ -164,29 +163,18 @@ func readProperties() {
 	password, _ = p.Get("password")
 }
 
-//TODO: Fix. This is going to be broken after ingredient object introduction
-func seperateIngredients(ingredients []string) ([]string, []string, []string, []string) {
-
-	localVegetables := []string{}
-	localFruits := []string{}
-	localProteins := []string{}
-	localUnsorted := []string{}
+// TODO: Fix. This is going to be broken after ingredient object introduction
+// TODO: What parameters?
+func sortIngredients(ingredients []model.Ingredient) {
+	vegetablesMap := map[string]int{}
 
 	for i := 0; i < len(ingredients); i++ {
-		currentIngredient := strings.ToLower(ingredients[i])
+		ci := ingredients[i]
 
-		if slices.Contains(consts.Vegetables, currentIngredient) {
-			localVegetables = append(localVegetables, currentIngredient)
-		} else if slices.Contains(consts.Fruits, currentIngredient) {
-			localFruits = append(localFruits, currentIngredient)
-		} else if slices.Contains(consts.Proteins, currentIngredient) {
-			localProteins = append(localProteins, currentIngredient)
-		} else {
-			localUnsorted = append(localUnsorted, currentIngredient)
+		if val, ok := vegetablesMap[ci.Name]; ok {
+			fmt.Println(val)
 		}
 	}
-
-	return localVegetables, localFruits, localProteins, localUnsorted
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {

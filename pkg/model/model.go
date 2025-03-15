@@ -11,15 +11,15 @@ type User struct {
 }
 
 type Meal struct {
-	Name              string   `json:"name"`
-	IngredientsJArray []string `json:"ingredients"`
-	SharedIngredients []string `json:"sharedIngredients"`
-	Notes             string   `json:"notes"`
+	Name              string       `json:"name"`
+	Ingredients       []Ingredient `json:"ingredients"`
+	SharedIngredients []string     `json:"sharedIngredients"`
+	Notes             string       `json:"notes"`
 }
 
-type Ingredients struct {
-	Ingredient string `json:"ingredient"`
-	Count      int    `json:"count"`
+type Ingredient struct {
+	Name  string `json:"name"`
+	Count int    `json:"count"`
 }
 
 type EmailData struct {
