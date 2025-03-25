@@ -16,7 +16,6 @@ import (
 	"strings"
 
 	// "github.com/tylander732/autoEmailShoppingList/pkg/consts"
-	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
 	"github.com/tylander732/autoEmailShoppingList/pkg/model"
 	// "github.com/tylander732/autoEmailShoppingList/pkg/projectpath"
 )
@@ -49,7 +48,7 @@ func main() {
 		for j := 0; j < len(meals); j++ {
 			mealNames = append(mealNames, meals[j].Name)
 
-			sortedVegetables, sortedFruits, sortedProteins, unsorted = sortIngredients(meals[j].Ingredients)
+			// sortedVegetables, sortedFruits, sortedProteins, unsorted = sortIngredients(meals[j].Ingredients)
 		}
 
 		if err != nil {
