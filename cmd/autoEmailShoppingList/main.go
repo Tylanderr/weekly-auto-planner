@@ -15,14 +15,30 @@ import (
 	"slices"
 	"strings"
 
-	// "github.com/tylander732/autoEmailShoppingList/pkg/consts"
+	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
 	"github.com/tylander732/autoEmailShoppingList/pkg/model"
-	// "github.com/tylander732/autoEmailShoppingList/pkg/projectpath"
 )
 
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
+
+var groceryCategories = []consts.GroceryCategory{
+	consts.Produce,
+	consts.MeatAndPoultry,
+	consts.Seafood,
+	consts.Dairy,
+	consts.Bakery,
+	consts.FrozenFoods,
+	consts.PantryStaples,
+	consts.Beverages,
+	consts.Snacks,
+	consts.HouseholdGoods,
+	consts.PersonalCare,
+	consts.InternationalFoods,
+	consts.Deli,
+	consts.Floral,
+}
 
 func main() {
 	readProperties()
@@ -37,18 +53,34 @@ func main() {
 	for i := 0; i < len(userArray); i++ {
 		meals, err := selectMeals(userArray[i])
 
-		var (
-			mealNames        = []string{}
-			sortedVegetables = []string{}
-			sortedFruits     = []string{}
-			sortedProteins   = []string{}
-			unsorted         = []string{}
-		)
+		mealNames := []string{}
+
+		// For each user, initialize a sortedIngredientsStruct
+		sortedIngredientsStruct := model.SortedIngredients{
+			Produce:            make(map[string]int),
+			MeatAndPoultry:     make(map[string]int),
+			Seafood:            make(map[string]int),
+			Dairy:              make(map[string]int),
+			Bakery:             make(map[string]int),
+			FrozenFoods:        make(map[string]int),
+			PantryStaples:      make(map[string]int),
+			Beverages:          make(map[string]int),
+			Snacks:             make(map[string]int),
+			HouseholdGoods:     make(map[string]int),
+			PersonalCare:       make(map[string]int),
+			InternationalFoods: make(map[string]int),
+			Deli:               make(map[string]int),
+			Floral:             make(map[string]int),
+			Unsorted:           make(map[string]int),
+		}
 
 		for j := 0; j < len(meals); j++ {
 			mealNames = append(mealNames, meals[j].Name)
 
-			// sortedVegetables, sortedFruits, sortedProteins, unsorted = sortIngredients(meals[j].Ingredients)
+			sortIngredients(meals[j].Ingredients, &sortedIngredientsStruct)
+
+			// __AUTO_GENERATED_PRINT_VAR_START__
+			fmt.Println(fmt.Sprintf("main sortedIngredientsStruct: %v", sortedIngredientsStruct)) // __AUTO_GENERATED_PRINT_VAR_END__
 		}
 
 		if err != nil {
@@ -58,18 +90,9 @@ func main() {
 		mealsString := strings.Join(mealNames, "\n")
 		mealsString += "\n"
 
-		veggiesString := strings.Join(sortedVegetables, ", ")
-		fruitsString := strings.Join(sortedFruits, ", ")
-		proteinsString := strings.Join(sortedProteins, ", ")
-		unsortedString := strings.Join(unsorted, ", ")
-
 		data := model.EmailData{
-			Receiver:   userArray[i].Email,
-			Meals:      mealsString,
-			Vegetables: veggiesString,
-			Fruits:     fruitsString,
-			Proteins:   proteinsString,
-			Unsorted:   unsortedString,
+			Receiver: userArray[i].Email,
+			Meals:    mealsString,
 		}
 
 		emailBody, err := executeTemplate("./resources/email_template.html", data)
@@ -162,18 +185,33 @@ func readProperties() {
 	password, _ = p.Get("password")
 }
 
-// TODO: Fix. This is going to be broken after ingredient object introduction
-// TODO: What parameters?
-func sortIngredients(ingredients []model.Ingredient) {
-	vegetablesMap := map[string]int{}
+// Receives a list of ingredients from a model.Meal
+// Checks current ingredient against grocery types defined in pkg/consts/consts.go
+// Returns struct containing sortedIngredients and running count for each item
+func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.SortedIngredients) {
 
+	// For each ingredient, check if it is contained within one of the slices
 	for i := 0; i < len(ingredients); i++ {
 		ci := ingredients[i]
 
-		if val, ok := vegetablesMap[ci.Name]; ok {
-			fmt.Println(val)
+		for _, slice := range groceryCategories {
+			// If found within current grocery category
+			if stringInSlice(ci.Name, slice.ItemsSlice) {
+				sortedIngredients.IncrementIngredientCount(slice.Name, ci)
+				break
+			}
 		}
 	}
+}
+
+// Check if a given string is within a slice
+func stringInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {
