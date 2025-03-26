@@ -23,27 +23,27 @@ type Ingredient struct {
 }
 
 type EmailData struct {
-	Receiver   string
-	Meals      string
+	Receiver       string
+	Meals          string
 	AllIngredients SortedIngredients
 }
 
 type SortedIngredients struct {
-	Produce map[string]int
-	MeatAndPoultry map[string]int
-	Seafood map[string]int
-	Dairy map[string]int
-	Bakery map[string]int
-	FrozenFoods map[string]int
-	PantryStaples map[string]int
-	Beverages map[string]int
-	Snacks map[string]int
-	HouseholdGoods map[string]int
-	PersonalCare map[string]int
+	Produce            map[string]int
+	MeatAndPoultry     map[string]int
+	Seafood            map[string]int
+	Dairy              map[string]int
+	Bakery             map[string]int
+	FrozenFoods        map[string]int
+	PantryStaples      map[string]int
+	Beverages          map[string]int
+	Snacks             map[string]int
+	HouseholdGoods     map[string]int
+	PersonalCare       map[string]int
 	InternationalFoods map[string]int
-	Deli map[string]int
-	Floral map[string]int
-	Unsorted map[string]int
+	Deli               map[string]int
+	Floral             map[string]int
+	Unsorted           map[string]int
 }
 
 func (s *SortedIngredients) IncrementIngredientCount(category string, ingredient Ingredient) {
