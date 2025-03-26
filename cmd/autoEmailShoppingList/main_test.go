@@ -1,23 +1,64 @@
 package main
 
-// import (
-// 	"fmt"
-// 	"testing"
-// )
-//
-// func TestParseIngredientString(t *testing.T) {
-//
-// 	parsedItem, count, err := parseIngredientJson("2 apples")
-// 	// __AUTO_GENERATED_PRINT_VAR_START__
-// 	fmt.Println(fmt.Sprintf("TestParseIngredientString count: %v", count)) // __AUTO_GENERATED_PRINT_VAR_END__
-// 	if err != nil {
-// 		fmt.Println("Error returned from parseIngredientString")
-// 	}
-// 	if count != 2 {
-// 		t.Errorf("Expected 2, but got %d", count)
-// 	}
-// 	
-// 	if parsedItem != "apple" {
-// 		t.Errorf("Expected apple, but got %s", parsedItem)
-// 	}
-// }
+import (
+	"reflect"
+	"testing"
+
+	"github.com/tylander732/autoEmailShoppingList/pkg/model"
+)
+
+func TestSortIngredients(t *testing.T) {
+	var ingredients = []model.Ingredient{
+		{Name: "Chicken Breast", Count: 1},
+		{Name: "Bread", Count: 1},
+		{Name: "Chips", Count: 1},
+		{Name: "Milk", Count: 1},
+	}
+
+	expectedIngredients := model.SortedIngredients{
+		Produce:            make(map[string]int),
+		MeatAndPoultry:     make(map[string]int),
+		Seafood:            make(map[string]int),
+		Dairy:              make(map[string]int),
+		Bakery:             make(map[string]int),
+		FrozenFoods:        make(map[string]int),
+		PantryStaples:      make(map[string]int),
+		Beverages:          make(map[string]int),
+		Snacks:             make(map[string]int),
+		HouseholdGoods:     make(map[string]int),
+		PersonalCare:       make(map[string]int),
+		InternationalFoods: make(map[string]int),
+		Deli:               make(map[string]int),
+		Floral:             make(map[string]int),
+		Unsorted:           make(map[string]int),
+	}
+
+	expectedIngredients.MeatAndPoultry["Chicken Breast"] = 1
+	expectedIngredients.Bakery["Bread"] = 1
+	expectedIngredients.Snacks["Chips"] = 1
+	expectedIngredients.Dairy["Milk"] = 1
+
+	actualIngredients := model.SortedIngredients{
+		Produce:            make(map[string]int),
+		MeatAndPoultry:     make(map[string]int),
+		Seafood:            make(map[string]int),
+		Dairy:              make(map[string]int),
+		Bakery:             make(map[string]int),
+		FrozenFoods:        make(map[string]int),
+		PantryStaples:      make(map[string]int),
+		Beverages:          make(map[string]int),
+		Snacks:             make(map[string]int),
+		HouseholdGoods:     make(map[string]int),
+		PersonalCare:       make(map[string]int),
+		InternationalFoods: make(map[string]int),
+		Deli:               make(map[string]int),
+		Floral:             make(map[string]int),
+		Unsorted:           make(map[string]int),
+	}
+
+	sortIngredients(ingredients, &actualIngredients)
+
+	if !reflect.DeepEqual(actualIngredients, expectedIngredients) {
+		t.Errorf("Structs did not match")
+	}
+}

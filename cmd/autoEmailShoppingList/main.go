@@ -78,9 +78,6 @@ func main() {
 			mealNames = append(mealNames, meals[j].Name)
 
 			sortIngredients(meals[j].Ingredients, &sortedIngredientsStruct)
-
-			// __AUTO_GENERATED_PRINT_VAR_START__
-			fmt.Println(fmt.Sprintf("main sortedIngredientsStruct: %v", sortedIngredientsStruct)) // __AUTO_GENERATED_PRINT_VAR_END__
 		}
 
 		if err != nil {
@@ -96,8 +93,6 @@ func main() {
 		}
 
 		emailBody, err := executeTemplate("./resources/email_template.html", data)
-		// __AUTO_GENERATED_PRINT_VAR_START__
-		fmt.Println(fmt.Sprintf("main emailBody: %v", emailBody)) // __AUTO_GENERATED_PRINT_VAR_END__
 
 		sendEmail(emailBody, userArray[i].Email)
 	}
