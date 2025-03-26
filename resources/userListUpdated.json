@@ -348,6 +348,7 @@
         },
         {
           "name": "Breakfast For Dinner",
+          "ingredients": [
             {"name": "bacon", "count": 1},
             {"name": "eggs", "count": 1},
             {"name": "maple syrup / mrs buttersworth", "count": 1}
