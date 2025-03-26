@@ -182,31 +182,19 @@ func readProperties() {
 
 // Receives a list of ingredients from a model.Meal
 // Checks current ingredient against grocery types defined in pkg/consts/consts.go
-// Returns struct containing sortedIngredients and running count for each item
+// Updates struct containing sortedIngredients with a running count for each item
 func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.SortedIngredients) {
-
 	// For each ingredient, check if it is contained within one of the slices
 	for i := 0; i < len(ingredients); i++ {
 		ci := ingredients[i]
 
-		for _, slice := range groceryCategories {
-			// If found within current grocery category
-			if stringInSlice(ci.Name, slice.ItemsSlice) {
-				sortedIngredients.IncrementIngredientCount(slice.Name, ci)
+		for _, categorySlice := range groceryCategories {
+			if slices.Contains(categorySlice.ItemsSlice, ci.Name) {
+				sortedIngredients.IncrementIngredientCount(categorySlice.Name, ci)
 				break
 			}
 		}
 	}
-}
-
-// Check if a given string is within a slice
-func stringInSlice(a string, list []string) bool {
-	for _, b := range list {
-		if b == a {
-			return true
-		}
-	}
-	return false
 }
 
 func executeTemplate(templateFile string, data model.EmailData) (string, error) {
