@@ -7,431 +7,1150 @@
         {
           "name": "Spaghetti",
           "ingredients": [
-            { "name": "Spaghetti Noodles", "count": 1 },
-            { "name": "Red Sauce", "count": 1 },
-            { "name": "Ground Beef or Turkey", "count": 1 },
-            { "name": "Onion", "count": 1 },
-            { "name": "Zucchini", "count": 1 },
-            { "name": "Peppers", "count": 1 }
+            {
+              "name": "Spaghetti Noodles",
+              "count": 1
+            },
+            {
+              "name": "Red Sauce",
+              "count": 1
+            },
+            {
+              "name": "Ground Beef or Turkey",
+              "count": 1
+            },
+            {
+              "name": "Onion",
+              "count": 1
+            },
+            {
+              "name": "Zucchini",
+              "count": 1
+            },
+            {
+              "name": "Peppers",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Steak and Potatoes",
           "ingredients": [
-            { "name": "Filet Mignon", "count": 1 },
-            { "name": "Bob evans potatoes (or raw rustic potatoes if more fancy)", "count": 1 },
-            { "name": "Salad", "count": 1 }
+            {
+              "name": "Filet Mignon",
+              "count": 1
+            },
+            {
+              "name": "Bob evans potatoes (or raw rustic potatoes if more fancy)",
+              "count": 1
+            },
+            {
+              "name": "Salad",
+              "count": 1
+            }
           ],
           "notes": "Season stakes about 45 minutes before getting started and let them rest on the counter to warm up slightly. Medium to high heat on cast iron, butter pan and allow enough to be in pan for basting. Sear edges of steaks to begin and render down fat. Cook 3-4 minutes each side depending on thickness of steaks. Let rest 5 minutes."
         },
         {
           "name": "Steak and Frites with mushroom sauce",
           "ingredients": [
-            { "name": "Filet mignon", "count": 1 },
-            { "name": "mushroom sauce (A packet or full ingredients?)", "count": 1 },
-            { "name": "Fries", "count": 1 }
+            {
+              "name": "Filet mignon",
+              "count": 1
+            },
+            {
+              "name": "mushroom sauce (A packet or full ingredients?)",
+              "count": 1
+            },
+            {
+              "name": "Fries",
+              "count": 1
+            }
           ],
           "notes": "if deciding full ingredients: https://natashaskitchen.com/filet-mignon-in-mushroom-wine-sauce/"
         },
         {
           "name": "Grilled chicken",
           "ingredients": [
-            { "name": "Raw chicken breast", "count": 1 },
-            { "name": "Side of choice", "count": 1 },
-            { "name": "fruit or veggie option", "count": 1 }
+            {
+              "name": "Raw chicken breast",
+              "count": 1
+            },
+            {
+              "name": "Side of choice",
+              "count": 1
+            },
+            {
+              "name": "fruit or veggie option",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Chicken Fettuccini alfredo",
           "ingredients": [
-            { "name": "Fettuccini noodles", "count": 1 },
-            { "name": "Alfredo sauce", "count": 1 },
-            { "name": "raw chicken breast", "count": 1 },
-            { "name": "side salad", "count": 1 }
+            {
+              "name": "Fettuccini noodles",
+              "count": 1
+            },
+            {
+              "name": "Alfredo sauce",
+              "count": 1
+            },
+            {
+              "name": "raw chicken breast",
+              "count": 1
+            },
+            {
+              "name": "side salad",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Chicken Parm",
           "ingredients": [
-            { "name": "4x chicken breast", "count": 1 },
-            { "name": "salt and pepper", "count": 1 },
-            { "name": "Eggs", "count": 1 },
-            { "name": "panko bread crumbs", "count": 1 },
-            { "name": "Parmesan cheese", "count": 1 },
-            { "name": "flour", "count": 1 },
-            { "name": "prepared tomato sauce", "count": 1 },
-            { "name": "fresh mozzarella", "count": 1 },
-            { "name": "fresh basil", "count": 1 },
-            { "name": "grated provolone cheese", "count": 1 },
-            { "name": "olive oil", "count": 1 }
-
+            {
+              "name": "4x chicken breast",
+              "count": 1
+            },
+            {
+              "name": "salt and pepper",
+              "count": 1
+            },
+            {
+              "name": "Eggs",
+              "count": 1
+            },
+            {
+              "name": "panko bread crumbs",
+              "count": 1
+            },
+            {
+              "name": "Parmesan cheese",
+              "count": 1
+            },
+            {
+              "name": "flour",
+              "count": 1
+            },
+            {
+              "name": "prepared tomato sauce",
+              "count": 1
+            },
+            {
+              "name": "fresh mozzarella",
+              "count": 1
+            },
+            {
+              "name": "fresh basil",
+              "count": 1
+            },
+            {
+              "name": "grated provolone cheese",
+              "count": 1
+            },
+            {
+              "name": "olive oil",
+              "count": 1
+            }
           ],
           "notes": "https://www.allrecipes.com/recipe/223042/chicken-parmesan/"
         },
         {
           "name": "Pulled Pork",
           "ingredients": [
-            { "name": "Pork shoulder boneless (pork butt or boston butt)", "count": 1 },
-            { "name": "barbecue sauce (determine brand that we like later)", "count": 1 },
-            { "name": "Hoagie buns or Hawaiian buns", "count": 1 },
-            { "name": "cole slaw", "count": 1 },
-            { "name": "baked beans(?)", "count": 1 },
-            { "name": "salad", "count": 1 },
-            { "name": "tater tots", "count": 1 }
+            {
+              "name": "Pork shoulder boneless (pork butt or boston butt)",
+              "count": 1
+            },
+            {
+              "name": "barbecue sauce (determine brand that we like later)",
+              "count": 1
+            },
+            {
+              "name": "Hoagie buns or Hawaiian buns",
+              "count": 1
+            },
+            {
+              "name": "cole slaw",
+              "count": 1
+            },
+            {
+              "name": "baked beans(?)",
+              "count": 1
+            },
+            {
+              "name": "salad",
+              "count": 1
+            },
+            {
+              "name": "tater tots",
+              "count": 1
+            }
           ],
           "notes": "https://tastesbetterfromscratch.com/pulled-pork/"
         },
         {
           "name": "Pork chops or loin",
           "ingredients": [
-            { "name": "4 pork chops", "count": 1 },
-            { "name": "flour", "count": 1 },
-            { "name": "chili powder", "count": 1 },
-            { "name": "garlic powder", "count": 1 },
-            { "name": "onion powder", "count": 1 },
-            { "name": "smoked paprika", "count": 1 },
-            { "name": "black pepper", "count": 1 },
-            { "name": "vegetable oil", "count": 1 },
-            { "name": "low-sodium chicken stock", "count": 1 },
-            { "name": "apple cider vinegar", "count": 1 },
-            { "name": "brown sugar", "count": 1 },
-            { "name": "butter", "count": 1 },
-            { "name": "zucchini", "count": 1 }
+            {
+              "name": "4 pork chops",
+              "count": 1
+            },
+            {
+              "name": "flour",
+              "count": 1
+            },
+            {
+              "name": "chili powder",
+              "count": 1
+            },
+            {
+              "name": "garlic powder",
+              "count": 1
+            },
+            {
+              "name": "onion powder",
+              "count": 1
+            },
+            {
+              "name": "smoked paprika",
+              "count": 1
+            },
+            {
+              "name": "black pepper",
+              "count": 1
+            },
+            {
+              "name": "vegetable oil",
+              "count": 1
+            },
+            {
+              "name": "low-sodium chicken stock",
+              "count": 1
+            },
+            {
+              "name": "apple cider vinegar",
+              "count": 1
+            },
+            {
+              "name": "brown sugar",
+              "count": 1
+            },
+            {
+              "name": "butter",
+              "count": 1
+            },
+            {
+              "name": "zucchini",
+              "count": 1
+            }
           ],
           "notes": "https://www.inspiredtaste.net/37062/juicy-skillet-pork-chops/"
         },
         {
           "name": "Orange chicken and fried rice",
           "ingredients": [
-            { "name": "Chicken: 4 boneless skinless chicken breasts", "count": 1 },
-            { "name": "3 eggs", "count": 1 },
-            { "name": "cornstarch", "count": 1 },
-            { "name": "flour", "count": 1 },
-            { "name": "salt", "count": 1 },
-            { "name": "oil", "count": 1 },
-            { "name": "Orange sauce: orange juice", "count": 1 },
-            { "name": "sugar", "count": 1 },
-            { "name": "rice vinegar", "count": 1 },
-            { "name": "soy sauce", "count": 1 },
-            { "name": "gigner", "count": 1 },
-            { "name": "garlic powder", "count": 1 },
-            { "name": "red chili flakes", "count": 1 },
-            { "name": "orange zest", "count": 1 },
-            { "name": "cornstarch", "count": 1 }
+            {
+              "name": "Chicken: 4 boneless skinless chicken breasts",
+              "count": 1
+            },
+            {
+              "name": "3 eggs",
+              "count": 1
+            },
+            {
+              "name": "cornstarch",
+              "count": 1
+            },
+            {
+              "name": "flour",
+              "count": 1
+            },
+            {
+              "name": "salt",
+              "count": 1
+            },
+            {
+              "name": "oil",
+              "count": 1
+            },
+            {
+              "name": "Orange sauce: orange juice",
+              "count": 1
+            },
+            {
+              "name": "sugar",
+              "count": 1
+            },
+            {
+              "name": "rice vinegar",
+              "count": 1
+            },
+            {
+              "name": "soy sauce",
+              "count": 1
+            },
+            {
+              "name": "gigner",
+              "count": 1
+            },
+            {
+              "name": "garlic powder",
+              "count": 1
+            },
+            {
+              "name": "red chili flakes",
+              "count": 1
+            },
+            {
+              "name": "orange zest",
+              "count": 1
+            },
+            {
+              "name": "cornstarch",
+              "count": 1
+            }
           ],
           "notes": "https://www.modernhoney.com/chinese-orange-chicken/"
-
         },
         {
           "name": "Tacos - Carne Asada",
           "ingredients": [
-            { "name": "Skirt steak", "count": 1 },
-            { "name": "mini corn tortillas", "count": 1 },
-            { "name": "low sodium soy sauce", "count": 1 },
-            { "name": "lime juice", "count": 1 },
-            { "name": "canola oil", "count": 1 },
-            { "name": "3 cloves garlic", "count": 1 },
-            { "name": "chili powder", "count": 1 },
-            { "name": "ground cumin", "count": 1 },
-            { "name": "dried oregano", "count": 1 },
-            { "name": "diced red onion", "count": 1 },
-            { "name": "fresh cilantro", "count": 1 },
-            { "name": "1 lime", "count": 1 }
+            {
+              "name": "Skirt steak",
+              "count": 1
+            },
+            {
+              "name": "mini corn tortillas",
+              "count": 1
+            },
+            {
+              "name": "low sodium soy sauce",
+              "count": 1
+            },
+            {
+              "name": "lime juice",
+              "count": 1
+            },
+            {
+              "name": "canola oil",
+              "count": 1
+            },
+            {
+              "name": "3 cloves garlic",
+              "count": 1
+            },
+            {
+              "name": "chili powder",
+              "count": 1
+            },
+            {
+              "name": "ground cumin",
+              "count": 1
+            },
+            {
+              "name": "dried oregano",
+              "count": 1
+            },
+            {
+              "name": "diced red onion",
+              "count": 1
+            },
+            {
+              "name": "fresh cilantro",
+              "count": 1
+            },
+            {
+              "name": "1 lime",
+              "count": 1
+            }
           ],
           "notes": "https://damndelicious.net/2019/04/18/mexican-street-tacos/"
         },
         {
           "name": "Burritos",
           "ingredients": [
-            { "name": "Tortillas", "count": 1 },
-            { "name": "ground beef", "count": 1 },
-            { "name": "taco seasoning packet", "count": 1 },
-            { "name": "sour cream", "count": 1 },
-            { "name": "mexican rice box mix", "count": 1 },
-            { "name": "refried beans", "count": 1 },
-            { "name": "shredded cheese", "count": 1 }
+            {
+              "name": "Tortillas",
+              "count": 1
+            },
+            {
+              "name": "ground beef",
+              "count": 1
+            },
+            {
+              "name": "taco seasoning packet",
+              "count": 1
+            },
+            {
+              "name": "sour cream",
+              "count": 1
+            },
+            {
+              "name": "mexican rice box mix",
+              "count": 1
+            },
+            {
+              "name": "refried beans",
+              "count": 1
+            },
+            {
+              "name": "shredded cheese",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Fajitas",
           "ingredients": [
-            { "name": "Tortillas", "count": 1 },
-            { "name": "chicken breast", "count": 1 },
-            { "name": "2 types of peppers", "count": 1 },
-            { "name": "onion", "count": 1 },
-            { "name": "fajita packet", "count": 1 },
-            { "name": "mexican rice box mix", "count": 1 },
-            { "name": "refried beans", "count": 1 }
+            {
+              "name": "Tortillas",
+              "count": 1
+            },
+            {
+              "name": "chicken breast",
+              "count": 1
+            },
+            {
+              "name": "2 types of peppers",
+              "count": 1
+            },
+            {
+              "name": "onion",
+              "count": 1
+            },
+            {
+              "name": "fajita packet",
+              "count": 1
+            },
+            {
+              "name": "mexican rice box mix",
+              "count": 1
+            },
+            {
+              "name": "refried beans",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Enchiladas",
           "ingredients": [
-            { "name": "Enchilada sauce: garlic and onion minced", "count": 1 },
-            { "name": "Chipotle chilis in adobo sauce", "count": 1 },
-            { "name": "tomato sauce", "count": 1 },
-            { "name": "chipotle chili powder", "count": 1 },
-            { "name": "ground cumin", "count": 1 },
-            { "name": "salt", "count": 1 },
-            { "name": "pepper", "count": 1 },
-            { "name": "reduced sodium chicken broth", "count": 1 },
-            { "name": "Chicken filling: From a store bought rotisserie chicken", "count": 1 },
-            { "name": "garlic and onion minced", "count": 1 },
-            { "name": "cilantro", "count": 1 },
-            { "name": "Kosher salt", "count": 1 },
-            { "name": "cumin", "count": 1 },
-            { "name": "dried oregano", "count": 1 },
-            { "name": "and chipotle chili powder", "count": 1 },
-            { "name": "to taste", "count": 1 },
-            { "name": "chicken broth and tomato sauce", "count": 1 },
-            { "name": "corn tortillas", "count": 1 }
+            {
+              "name": "Enchilada sauce: garlic and onion minced",
+              "count": 1
+            },
+            {
+              "name": "Chipotle chilis in adobo sauce",
+              "count": 1
+            },
+            {
+              "name": "tomato sauce",
+              "count": 1
+            },
+            {
+              "name": "chipotle chili powder",
+              "count": 1
+            },
+            {
+              "name": "ground cumin",
+              "count": 1
+            },
+            {
+              "name": "salt",
+              "count": 1
+            },
+            {
+              "name": "pepper",
+              "count": 1
+            },
+            {
+              "name": "reduced sodium chicken broth",
+              "count": 1
+            },
+            {
+              "name": "Chicken filling: From a store bought rotisserie chicken",
+              "count": 1
+            },
+            {
+              "name": "garlic and onion minced",
+              "count": 1
+            },
+            {
+              "name": "cilantro",
+              "count": 1
+            },
+            {
+              "name": "Kosher salt",
+              "count": 1
+            },
+            {
+              "name": "cumin",
+              "count": 1
+            },
+            {
+              "name": "dried oregano",
+              "count": 1
+            },
+            {
+              "name": "and chipotle chili powder",
+              "count": 1
+            },
+            {
+              "name": "to taste",
+              "count": 1
+            },
+            {
+              "name": "chicken broth and tomato sauce",
+              "count": 1
+            },
+            {
+              "name": "corn tortillas",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "California Chicken Sandwiches",
           "ingredients": [
-            {"name": "Skinless boneless chicken breast", "count": 1},
-            {"name": "garlic powder", "count": 1},
-            {"name": "onion powder", "count": 1},
-            {"name": "oregano", "count": 1},
-            {"name": "cooked bacon", "count": 1},
-            {"name": "monterrey jack cheese", "count": 1},
-            {"name": "guacamole", "count": 1},
-            {"name": "Guac ingredients", "count": 1},
-            {"name": "6 avocados", "count": 1},
-            {"name": "1 onion", "count": 1},
-            {"name": "1 or 2 tomato", "count": 1},
-            {"name": "jalapeno pepper", "count": 1},
-            {"name": "cilantro", "count": 1},
-            {"name": "4 lime", "count": 1},
-            {"name": "salt and pepper", "count": 1}
+            {
+              "name": "Skinless boneless chicken breast",
+              "count": 1
+            },
+            {
+              "name": "garlic powder",
+              "count": 1
+            },
+            {
+              "name": "onion powder",
+              "count": 1
+            },
+            {
+              "name": "oregano",
+              "count": 1
+            },
+            {
+              "name": "cooked bacon",
+              "count": 1
+            },
+            {
+              "name": "monterrey jack cheese",
+              "count": 1
+            },
+            {
+              "name": "guacamole",
+              "count": 1
+            },
+            {
+              "name": "Guac ingredients",
+              "count": 1
+            },
+            {
+              "name": "6 avocados",
+              "count": 1
+            },
+            {
+              "name": "1 onion",
+              "count": 1
+            },
+            {
+              "name": "1 or 2 tomato",
+              "count": 1
+            },
+            {
+              "name": "jalapeno pepper",
+              "count": 1
+            },
+            {
+              "name": "cilantro",
+              "count": 1
+            },
+            {
+              "name": "4 lime",
+              "count": 1
+            },
+            {
+              "name": "salt and pepper",
+              "count": 1
+            }
           ],
           "notes": "https://cookingwithcurls.com/2014/04/01/california-chicken-club-sandwich/"
         },
         {
           "name": "Homemade Mac and Cheese",
           "ingredients": [
-            {"name": "Macaroni", "count": 1},
-            {"name": "butter and flour", "count": 1},
-            {"name": "milk", "count": 1},
-            {"name": "cheddar and parmesan", "count": 1},
-            {"name": "salt pepper and paprika", "count": 1},
-            {"name": "store bought dried bread crumbs", "count": 1}
+            {
+              "name": "Macaroni",
+              "count": 1
+            },
+            {
+              "name": "butter and flour",
+              "count": 1
+            },
+            {
+              "name": "milk",
+              "count": 1
+            },
+            {
+              "name": "cheddar and parmesan",
+              "count": 1
+            },
+            {
+              "name": "salt pepper and paprika",
+              "count": 1
+            },
+            {
+              "name": "store bought dried bread crumbs",
+              "count": 1
+            }
           ],
           "notes": "https://www.allrecipes.com/recipe/11679/homemade-mac-and-cheese/"
         },
         {
           "name": "Lasagna",
           "ingredients": [
-            {"name": "Sweet italian sausage", "count": 1},
-            {"name": "lean ground beef", "count": 1},
-            {"name": "onion", "count": 1},
-            {"name": "two cloves of garlic", "count": 1},
-            {"name": "can of crushed tomtatoes", "count": 1},
-            {"name": "two cans of tomato sauce", "count": 1},
-            {"name": "two cans of tomato paste", "count": 1},
-            {"name": "white sugar", "count": 1},
-            {"name": "fresh parsley", "count": 1},
-            {"name": "dried basil leaves", "count": 1},
-            {"name": "salt", "count": 1},
-            {"name": "italian seasoning", "count": 1},
-            {"name": "fennel seeds", "count": 1},
-            {"name": "black pepper", "count": 1},
-            {"name": "store bought lasagna noodles", "count": 1},
-            {"name": "parmesan", "count": 1},
-            {"name": "mozzarella", "count": 1},
-            {"name": "ricotta cheese", "count": 1},
-            {"name": "eggs", "count": 1}
+            {
+              "name": "Sweet italian sausage",
+              "count": 1
+            },
+            {
+              "name": "lean ground beef",
+              "count": 1
+            },
+            {
+              "name": "onion",
+              "count": 1
+            },
+            {
+              "name": "two cloves of garlic",
+              "count": 1
+            },
+            {
+              "name": "can of crushed tomtatoes",
+              "count": 1
+            },
+            {
+              "name": "two cans of tomato sauce",
+              "count": 1
+            },
+            {
+              "name": "two cans of tomato paste",
+              "count": 1
+            },
+            {
+              "name": "white sugar",
+              "count": 1
+            },
+            {
+              "name": "fresh parsley",
+              "count": 1
+            },
+            {
+              "name": "dried basil leaves",
+              "count": 1
+            },
+            {
+              "name": "salt",
+              "count": 1
+            },
+            {
+              "name": "italian seasoning",
+              "count": 1
+            },
+            {
+              "name": "fennel seeds",
+              "count": 1
+            },
+            {
+              "name": "black pepper",
+              "count": 1
+            },
+            {
+              "name": "store bought lasagna noodles",
+              "count": 1
+            },
+            {
+              "name": "parmesan",
+              "count": 1
+            },
+            {
+              "name": "mozzarella",
+              "count": 1
+            },
+            {
+              "name": "ricotta cheese",
+              "count": 1
+            },
+            {
+              "name": "eggs",
+              "count": 1
+            }
           ],
           "notes": "https://www.allrecipes.com/recipe/23600/worlds-best-lasagna/"
         },
         {
           "name": "Chicken Cacciatore",
           "ingredients": [
-            {"name": "Sam has the recipe for this. Get it added at another time", "count": 1}
+            {
+              "name": "Sam has the recipe for this. Get it added at another time",
+              "count": 1
+            }
           ],
-
           "notes": ""
         },
         {
           "name": "Beef Stew",
-
           "ingredients": [
-            {"name": "Sam has the recipe for this. Get it added at another time", "count": 1}
+            {
+              "name": "Sam has the recipe for this. Get it added at another time",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Homemade Chicken Noodle Soup",
           "ingredients": [
-            {"name": "Butter", "count": 1},
-            {"name": "celery", "count": 1},
-            {"name": "large carrots", "count": 1},
-            {"name": "clove of garlic", "count": 1},
-            {"name": "chicken stock or broth", "count": 1},
-            {"name": "salt", "count": 1},
-            {"name": "black pepper", "count": 1},
-            {"name": "dried rosemary", "count": 1},
-            {"name": "dried sage", "count": 1},
-            {"name": "crushed red pepper flakes", "count": 1},
-            {"name": "bite size pasta", "count": 1},
-            {"name": "rotisserie chicken (bought from store and shred)", "count": 1},
-            {"name": "better than bouillon chicken flavor", "count": 1}
+            {
+              "name": "Butter",
+              "count": 1
+            },
+            {
+              "name": "celery",
+              "count": 1
+            },
+            {
+              "name": "large carrots",
+              "count": 1
+            },
+            {
+              "name": "clove of garlic",
+              "count": 1
+            },
+            {
+              "name": "chicken stock or broth",
+              "count": 1
+            },
+            {
+              "name": "salt",
+              "count": 1
+            },
+            {
+              "name": "black pepper",
+              "count": 1
+            },
+            {
+              "name": "dried rosemary",
+              "count": 1
+            },
+            {
+              "name": "dried sage",
+              "count": 1
+            },
+            {
+              "name": "crushed red pepper flakes",
+              "count": 1
+            },
+            {
+              "name": "bite size pasta",
+              "count": 1
+            },
+            {
+              "name": "rotisserie chicken (bought from store and shred)",
+              "count": 1
+            },
+            {
+              "name": "better than bouillon chicken flavor",
+              "count": 1
+            }
           ],
           "notes": "https://tastesbetterfromscratch.com/chicken-noodle-soup/"
         },
         {
           "name": "Meatloaf",
           "ingredients": [
-            {"name": "Recipe from Laura", "count": 1}
+            {
+              "name": "Recipe from Laura",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Yellow Curry with Rice",
           "ingredients": [
-            {"name": "Boneless skinless chicken breast", "count": 1},
-            {"name": "Sweet Vidalia onion", "count": 1},
-            {"name": "Garlic", "count": 1},
-            {"name": "Ground turmeric (essential to impart a bold yellow color)", "count": 1},
-            {"name": "Ground ginger", "count": 1},
-            {"name": "Coriander", "count": 1},
-            {"name": "Yellow curry paste", "count": 1},
-            {"name": "Coconut milk", "count": 1},
-            {"name": "Shredded carrots", "count": 1},
-            {"name": "Fresh spinach", "count": 1},
-            {"name": "Pepper", "count": 1},
-            {"name": "Cilantro", "count": 1},
-            {"name": "Brown sugar", "count": 1},
-            {"name": "Lime juice", "count": 1}
+            {
+              "name": "Boneless skinless chicken breast",
+              "count": 1
+            },
+            {
+              "name": "Sweet Vidalia onion",
+              "count": 1
+            },
+            {
+              "name": "Garlic",
+              "count": 1
+            },
+            {
+              "name": "Ground turmeric (essential to impart a bold yellow color)",
+              "count": 1
+            },
+            {
+              "name": "Ground ginger",
+              "count": 1
+            },
+            {
+              "name": "Coriander",
+              "count": 1
+            },
+            {
+              "name": "Yellow curry paste",
+              "count": 1
+            },
+            {
+              "name": "Coconut milk",
+              "count": 1
+            },
+            {
+              "name": "Shredded carrots",
+              "count": 1
+            },
+            {
+              "name": "Fresh spinach",
+              "count": 1
+            },
+            {
+              "name": "Pepper",
+              "count": 1
+            },
+            {
+              "name": "Cilantro",
+              "count": 1
+            },
+            {
+              "name": "Brown sugar",
+              "count": 1
+            },
+            {
+              "name": "Lime juice",
+              "count": 1
+            }
           ],
           "notes": "https://www.averiecooks.com/yellow-thai-chicken-coconut-curry/"
         },
         {
           "name": "Chicken Teriyaki",
           "ingredients": [
-            {"name": "boneless skinless chicken breast", "count": 1},
-            {"name": "olive oil", "count": 1},
-            {"name": "low sodium soy sauce", "count": 1},
-            {"name": "honey", "count": 1},
-            {"name": "brown sugar", "count": 1},
-            {"name": "rice vinegar", "count": 1},
-            {"name": "sesame oil", "count": 1},
-            {"name": "ginger", "count": 1},
-            {"name": "garlic", "count": 1},
-            {"name": "cornstarch", "count": 1},
-            {"name": "sesame seeds and green onions", "count": 1}
+            {
+              "name": "boneless skinless chicken breast",
+              "count": 1
+            },
+            {
+              "name": "olive oil",
+              "count": 1
+            },
+            {
+              "name": "low sodium soy sauce",
+              "count": 1
+            },
+            {
+              "name": "honey",
+              "count": 1
+            },
+            {
+              "name": "brown sugar",
+              "count": 1
+            },
+            {
+              "name": "rice vinegar",
+              "count": 1
+            },
+            {
+              "name": "sesame oil",
+              "count": 1
+            },
+            {
+              "name": "ginger",
+              "count": 1
+            },
+            {
+              "name": "garlic",
+              "count": 1
+            },
+            {
+              "name": "cornstarch",
+              "count": 1
+            },
+            {
+              "name": "sesame seeds and green onions",
+              "count": 1
+            }
           ],
           "notes": "https://www.cookingclassy.com/teriyaki-chicken/"
         },
         {
           "name": "Hamburger Sliders",
           "ingredients": [
-            {"name": "lean ground beef", "count": 1},
-            {"name": "olive oil", "count": 1},
-            {"name": "salt and pepper", "count": 1},
-            {"name": "garlic powder", "count": 1},
-            {"name": "yellow onion", "count": 1},
-            {"name": "mayonnaise", "count": 1},
-            {"name": "sliced cheddar cheese", "count": 1},
-            {"name": "dinner rolls of choice", "count": 1},
-            {"name": "unsalted butter", "count": 1},
-            {"name": "sesame seeds", "count": 1}
+            {
+              "name": "lean ground beef",
+              "count": 1
+            },
+            {
+              "name": "olive oil",
+              "count": 1
+            },
+            {
+              "name": "salt and pepper",
+              "count": 1
+            },
+            {
+              "name": "garlic powder",
+              "count": 1
+            },
+            {
+              "name": "yellow onion",
+              "count": 1
+            },
+            {
+              "name": "mayonnaise",
+              "count": 1
+            },
+            {
+              "name": "sliced cheddar cheese",
+              "count": 1
+            },
+            {
+              "name": "dinner rolls of choice",
+              "count": 1
+            },
+            {
+              "name": "unsalted butter",
+              "count": 1
+            },
+            {
+              "name": "sesame seeds",
+              "count": 1
+            }
           ],
           "notes": "https://natashaskitchen.com/cheeseburger-sliders/"
         },
         {
           "name": "Breakfast For Dinner",
           "ingredients": [
-            {"name": "bacon", "count": 1},
-            {"name": "eggs", "count": 1},
-            {"name": "maple syrup / mrs buttersworth", "count": 1}
+            {
+              "name": "bacon",
+              "count": 1
+            },
+            {
+              "name": "eggs",
+              "count": 1
+            },
+            {
+              "name": "maple syrup / mrs buttersworth",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Sheet-pan chicken and veggies",
           "ingredients": [
-            {"name": "Chicken breast", "count": 1},
-            {"name": "onion", "count": 1},
-            {"name": "zucchini", "count": 1},
-            {"name": "carrots", "count": 1},
-            {"name": "small potatoes (yukon gold, purple, or mixed)", "count": 1}
+            {
+              "name": "Chicken breast",
+              "count": 1
+            },
+            {
+              "name": "onion",
+              "count": 1
+            },
+            {
+              "name": "zucchini",
+              "count": 1
+            },
+            {
+              "name": "carrots",
+              "count": 1
+            },
+            {
+              "name": "small potatoes (yukon gold, purple, or mixed)",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Homemade Pizza",
           "ingredients": [
-            {"name": "Store bought pizza dough", "count": 1},
-            {"name": "red sauce", "count": 1},
-            {"name": "peperoni", "count": 1},
-            {"name": "green pepper", "count": 1},
-            {"name": "onion(?)", "count": 1},
-            {"name": "chicken (figure out what is needed to do with the chicken before putting on a pizza)", "count": 1}
+            {
+              "name": "Store bought pizza dough",
+              "count": 1
+            },
+            {
+              "name": "red sauce",
+              "count": 1
+            },
+            {
+              "name": "peperoni",
+              "count": 1
+            },
+            {
+              "name": "green pepper",
+              "count": 1
+            },
+            {
+              "name": "onion(?)",
+              "count": 1
+            },
+            {
+              "name": "chicken (figure out what is needed to do with the chicken before putting on a pizza)",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Stuffed Peppers",
           "ingredients": [
-            {"name": "Purchased from Costco", "count": 1}
+            {
+              "name": "Purchased from Costco",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Stir Fry",
           "ingredients": [
-            {"name": "Sauce - honey", "count": 1},
-            {"name": "toasted sesame oil", "count": 1},
-            {"name": "soy sauce", "count": 1},
-            {"name": "chicken broth", "count": 1},
-            {"name": "corn starch and water", "count": 1},
-            {"name": "crushed red pepper flakes", "count": 1},
-            {"name": "Boneless skinless chicken", "count": 1},
-            {"name": "salt and pepper", "count": 1},
-            {"name": "olive oil", "count": 1},
-            {"name": "broccoli florets", "count": 1},
-            {"name": "yellow pepper", "count": 1},
-            {"name": "red pepper", "count": 1},
-            {"name": "baby carrots", "count": 1},
-            {"name": "minced ginger", "count": 1},
-            {"name": "2 garlic cloves", "count": 1}
+            {
+              "name": "Sauce - honey",
+              "count": 1
+            },
+            {
+              "name": "toasted sesame oil",
+              "count": 1
+            },
+            {
+              "name": "soy sauce",
+              "count": 1
+            },
+            {
+              "name": "chicken broth",
+              "count": 1
+            },
+            {
+              "name": "corn starch and water",
+              "count": 1
+            },
+            {
+              "name": "crushed red pepper flakes",
+              "count": 1
+            },
+            {
+              "name": "Boneless skinless chicken",
+              "count": 1
+            },
+            {
+              "name": "salt and pepper",
+              "count": 1
+            },
+            {
+              "name": "olive oil",
+              "count": 1
+            },
+            {
+              "name": "broccoli florets",
+              "count": 1
+            },
+            {
+              "name": "yellow pepper",
+              "count": 1
+            },
+            {
+              "name": "red pepper",
+              "count": 1
+            },
+            {
+              "name": "baby carrots",
+              "count": 1
+            },
+            {
+              "name": "minced ginger",
+              "count": 1
+            },
+            {
+              "name": "2 garlic cloves",
+              "count": 1
+            }
           ],
           "notes": "https://www.momontimeout.com/easy-chicken-stir-fry-recipe/"
         },
         {
           "name": "Shrimp Pasta",
           "ingredients": [
-            {"name": "Pasta noodles of choice (fettuccini)", "count": 1},
-            {"name": "white sauce of choice (alfredo)", "count": 1},
-            {"name": "shrimp", "count": 1}
+            {
+              "name": "Pasta noodles of choice (fettuccini)",
+              "count": 1
+            },
+            {
+              "name": "white sauce of choice (alfredo)",
+              "count": 1
+            },
+            {
+              "name": "shrimp",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Baked Potatoes",
           "ingredients": [
-            {"name": "Bag of rustic potatoes", "count": 1},
-            {"name": "shredded cheese", "count": 1},
-            {"name": "sour cream", "count": 1},
-            {"name": "butter", "count": 1},
-            {"name": "salt and pepper", "count": 1},
-            {"name": "milk(?)", "count": 1},
-            {"name": "Baked chicken to go along with baked potatoes", "count": 1}
+            {
+              "name": "Bag of rustic potatoes",
+              "count": 1
+            },
+            {
+              "name": "shredded cheese",
+              "count": 1
+            },
+            {
+              "name": "sour cream",
+              "count": 1
+            },
+            {
+              "name": "butter",
+              "count": 1
+            },
+            {
+              "name": "salt and pepper",
+              "count": 1
+            },
+            {
+              "name": "milk(?)",
+              "count": 1
+            },
+            {
+              "name": "Baked chicken to go along with baked potatoes",
+              "count": 1
+            }
           ],
           "notes": ""
         },
         {
           "name": "Buffalo Chicken",
           "ingredients": [
-            {"name": "Sam has recipe for buffalo chicken dinner saved somewhere. Add at a later date.", "count": 1}
+            {
+              "name": "Sam has recipe for buffalo chicken dinner saved somewhere. Add at a later date.",
+              "count": 1
+            }
           ],
           "notes": ""
         }

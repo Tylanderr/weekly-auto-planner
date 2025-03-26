@@ -99,7 +99,7 @@ func main() {
 }
 
 func readJsonFile() (model.JsonFile, error) {
-	contents, err := os.ReadFile("./resources/userListUpdated.json")
+	contents, err := os.ReadFile("./resources/userList.json")
 	if err != nil {
 		return model.JsonFile{}, err
 	}
@@ -113,7 +113,6 @@ func readJsonFile() (model.JsonFile, error) {
 	}
 
 	return data, nil
-
 }
 
 func selectMeals(usersData model.User) ([]model.Meal, error) {
