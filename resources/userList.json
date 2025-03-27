@@ -12,11 +12,11 @@
               "count": 1
             },
             {
-              "name": "Red Sauce",
+              "name": "Spaghetti Sauce",
               "count": 1
             },
             {
-              "name": "Ground Beef or Turkey",
+              "name": "Ground Beef",
               "count": 1
             },
             {
@@ -42,7 +42,7 @@
               "count": 1
             },
             {
-              "name": "Bob evans potatoes (or raw rustic potatoes if more fancy)",
+              "name": "Mashed Potatoes",
               "count": 1
             },
             {
@@ -56,11 +56,11 @@
           "name": "Steak and Frites with mushroom sauce",
           "ingredients": [
             {
-              "name": "Filet mignon",
+              "name": "Filet Mignon",
               "count": 1
             },
             {
-              "name": "mushroom sauce (A packet or full ingredients?)",
+              "name": "Mushroom Sauce Packet",
               "count": 1
             },
             {
@@ -68,21 +68,21 @@
               "count": 1
             }
           ],
-          "notes": "if deciding full ingredients: https://natashaskitchen.com/filet-mignon-in-mushroom-wine-sauce/"
+          "notes": "If deciding full ingredients: https://natashaskitchen.com/filet-mignon-in-mushroom-wine-sauce/"
         },
         {
           "name": "Grilled chicken",
           "ingredients": [
             {
-              "name": "Raw chicken breast",
+              "name": "Chicken Breast",
               "count": 1
             },
             {
-              "name": "Side of choice",
+              "name": "<SIDE>",
               "count": 1
             },
             {
-              "name": "fruit or veggie option",
+              "name": "<VEGGIE>",
               "count": 1
             }
           ],
@@ -96,15 +96,15 @@
               "count": 1
             },
             {
-              "name": "Alfredo sauce",
+              "name": "Alfredo Sauce",
               "count": 1
             },
             {
-              "name": "raw chicken breast",
+              "name": "Chicken Breast",
               "count": 1
             },
             {
-              "name": "side salad",
+              "name": "Salad",
               "count": 1
             }
           ],
@@ -114,31 +114,27 @@
           "name": "Chicken Parm",
           "ingredients": [
             {
-              "name": "4x chicken breast",
-              "count": 1
-            },
-            {
-              "name": "salt and pepper",
-              "count": 1
+              "name": "Chicken Breast",
+              "count": 4
             },
             {
               "name": "Eggs",
               "count": 1
             },
             {
-              "name": "panko bread crumbs",
+              "name": "Panko Bread Crumbs",
               "count": 1
             },
             {
-              "name": "Parmesan cheese",
+              "name": "Parmesan Cheese",
               "count": 1
             },
             {
-              "name": "flour",
+              "name": "Flour",
               "count": 1
             },
             {
-              "name": "prepared tomato sauce",
+              "name": "Prepared tomato sauce",
               "count": 1
             },
             {
@@ -168,7 +164,7 @@
               "count": 1
             },
             {
-              "name": "barbecue sauce (determine brand that we like later)",
+              "name": "barbecue sauce",
               "count": 1
             },
             {
@@ -180,7 +176,7 @@
               "count": 1
             },
             {
-              "name": "baked beans(?)",
+              "name": "baked beans",
               "count": 1
             },
             {
@@ -198,8 +194,8 @@
           "name": "Pork chops or loin",
           "ingredients": [
             {
-              "name": "4 pork chops",
-              "count": 1
+              "name": "pork chops",
+              "count": 4
             },
             {
               "name": "flour",
