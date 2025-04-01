@@ -62,3 +62,7 @@ func TestSortIngredients(t *testing.T) {
 		t.Errorf("Structs did not match")
 	}
 }
+
+func TestExecuteTemplate(t *testing.T) {
+
+}

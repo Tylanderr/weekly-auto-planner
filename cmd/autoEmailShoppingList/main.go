@@ -92,7 +92,7 @@ func main() {
 			Meals:    mealsString,
 		}
 
-		emailBody, err := executeTemplate("./resources/email_template.html", data)
+		emailBody, err := executeTemplate(data)
 
 		sendEmail(emailBody, userArray[i].Email)
 	}
@@ -196,10 +196,11 @@ func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.So
 	}
 }
 
-func executeTemplate(templateFile string, data model.EmailData) (string, error) {
+// TODO: Update HTML template to accept new sortedIngredients struct for outputting information
+func executeTemplate(data model.EmailData) (string, error) {
 
 	// Parse the template file
-	template, err := template.ParseFiles(templateFile)
+	template, err := template.ParseFiles("./resources/email_template.html")
 	if err != nil {
 		return "", err
 	}
