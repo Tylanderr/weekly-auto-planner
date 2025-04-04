@@ -50,7 +50,7 @@ func main() {
 
 	userArray := userJsonFile.UserJArray
 
-	for i := 0; i < len(userArray); i++ {
+	for i := range userArray {
 		meals, err := selectMeals(userArray[i])
 
 		mealNames := []string{}
@@ -74,7 +74,7 @@ func main() {
 			Unsorted:           make(map[string]int),
 		}
 
-		for j := 0; j < len(meals); j++ {
+		for j := range meals {
 			mealNames = append(mealNames, meals[j].Name)
 
 			sortIngredients(meals[j].Ingredients, &sortedIngredientsStruct)
@@ -126,7 +126,7 @@ func selectMeals(usersData model.User) ([]model.Meal, error) {
 		return []model.Meal{}, err
 	}
 
-	for i := 0; i < len(randomMealsToBeSelected); i++ {
+	for i := range randomMealsToBeSelected {
 		mealsToSend = append(mealsToSend, usersData.MealJArray[randomMealsToBeSelected[i]])
 	}
 
@@ -184,7 +184,7 @@ func readProperties() {
 // Updates struct containing sortedIngredients with a running count for each item
 func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.SortedIngredients) {
 	// For each ingredient, check if it is contained within one of the slices
-	for i := 0; i < len(ingredients); i++ {
+	for i := range ingredients {
 		ci := ingredients[i]
 
 		for _, categorySlice := range groceryCategories {
@@ -196,7 +196,6 @@ func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.So
 	}
 }
 
-// TODO: Update HTML template to accept new sortedIngredients struct for outputting information
 func executeTemplate(data model.EmailData) (string, error) {
 
 	// Parse the template file

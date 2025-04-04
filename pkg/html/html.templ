@@ -1,0 +1,28 @@
+package html
+
+import "github.com/tylander732/autoEmailShoppingList/pkg/model"
+
+templ email(data model.EmailData) {
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weekly Meals</title>
+</head>
+
+<body>
+    <h1>Hello, {data.Receiver}!</h1>
+    <h2>Meals for this week:</h2>
+    <p>{data.Meals}</p>
+    <table>
+        <tr>
+            <th>Grocery Type</th>
+            <th>Items</th>
+        </tr>
+    </table>
+</body>
+
+</html>
+}
