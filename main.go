@@ -16,6 +16,7 @@ import (
 	"strings"
 
 	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
+	"github.com/tylander732/autoEmailShoppingList/pkg/html"
 	"github.com/tylander732/autoEmailShoppingList/pkg/model"
 )
 
@@ -92,7 +93,8 @@ func main() {
 			Meals:    mealsString,
 		}
 
-		emailBody, err := executeTemplate(data)
+		// emailBody, err := executeTemplate(data)
+		emailBody := html.Email(data)
 
 		sendEmail(emailBody, userArray[i].Email)
 	}
