@@ -2,12 +2,14 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"html/template"
 	"math/rand"
 
+	"github.com/a-h/templ"
 	"github.com/magiconair/properties"
 
 	"net/smtp"
@@ -95,6 +97,11 @@ func main() {
 
 		// emailBody, err := executeTemplate(data)
 		emailBody := html.Email(data)
+
+		//TODO: Need to allow for passing of templ.component to send email
+		// OR need to figure out a way to convert templ.component to a string
+
+		
 
 		sendEmail(emailBody, userArray[i].Email)
 	}
@@ -216,4 +223,14 @@ func executeTemplate(data model.EmailData) (string, error) {
 	}
 
 	return tpl.String(), nil
+}
+
+func convertTemplToString(data model.EmailData) (string, error) {
+	var b bytes.Buffer
+	err := html.Email(data).Render(context.Background(), &b)
+	if err != nil {
+		return "", err
+	}
+
+	return b.String(), nil
 }
