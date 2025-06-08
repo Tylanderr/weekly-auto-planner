@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/tylander732/autoEmailShoppingList/pkg/model"
+	"github.com/tylander732/weeklyAutoPlanner/pkg/model"
 )
 
 func TestSortIngredients(t *testing.T) {

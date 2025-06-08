@@ -17,9 +17,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/tylander732/autoEmailShoppingList/pkg/consts"
-	"github.com/tylander732/autoEmailShoppingList/pkg/html"
-	"github.com/tylander732/autoEmailShoppingList/pkg/model"
+	"github.com/tylander732/weeklyAutoPlanner/pkg/consts"
+	"github.com/tylander732/weeklyAutoPlanner/pkg/html"
+	"github.com/tylander732/weeklyAutoPlanner/pkg/model"
 )
 
 var propertiesFile = "./resources/app.properties"

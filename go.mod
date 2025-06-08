@@ -1,4 +1,4 @@
-module github.com/tylander732/autoEmailShoppingList
+module github.com/tylander732/weeklyAutoPlanner
 
 go 1.23.0
 
