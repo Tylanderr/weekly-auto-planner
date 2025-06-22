@@ -13,7 +13,7 @@ type User struct {
 type Meal struct {
 	Name              string       `json:"name"`
 	Ingredients       []Ingredient `json:"ingredients"`
-	SharedIngredients []string     `json:"sharedIngredients"`
+	// SharedIngredients []string     `json:"sharedIngredients"`
 	Notes             string       `json:"notes"`
 }
 

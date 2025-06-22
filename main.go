@@ -9,7 +9,7 @@ import (
 	"html/template"
 	"math/rand"
 
-	"github.com/a-h/templ"
+	// "github.com/a-h/templ"
 	"github.com/magiconair/properties"
 
 	"net/smtp"
@@ -25,6 +25,8 @@ import (
 var propertiesFile = "./resources/app.properties"
 var username string
 var password string
+
+var sendEmailFlag bool = true
 
 var groceryCategories = []consts.GroceryCategory{
 	consts.Produce,
@@ -79,7 +81,6 @@ func main() {
 
 		for j := range meals {
 			mealNames = append(mealNames, meals[j].Name)
-
 			sortIngredients(meals[j].Ingredients, &sortedIngredientsStruct)
 		}
 
@@ -95,15 +96,16 @@ func main() {
 			Meals:    mealsString,
 		}
 
-		// emailBody, err := executeTemplate(data)
 		emailBody := html.Email(data)
 
-		//TODO: Need to allow for passing of templ.component to send email
-		// OR need to figure out a way to convert templ.component to a string
+		emailString, err := html.TemplString(emailBody)
+		if err != nil {
+			fmt.Println(err)
+		}
 
-		
-
-		sendEmail(emailBody, userArray[i].Email)
+		if sendEmailFlag == true {
+			sendEmail(emailString, userArray[i].Email)
+		}
 	}
 }
 

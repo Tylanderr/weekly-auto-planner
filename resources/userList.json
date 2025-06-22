@@ -1151,20 +1151,6 @@
           "notes": ""
         }
       ]
-    },
-    {
-      "email": "",
-      "numOfMealsToSelect": 0,
-      "meals": [
-        {
-          "name": "Spaghetti",
-          "ingredients": [
-            "Noodles",
-            "ground beef or turkey"
-          ],
-          "notes": ""
-        }
-      ]
     }
   ]
 }
