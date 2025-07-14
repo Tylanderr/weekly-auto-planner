@@ -1,12 +1,9 @@
 package main
 
 import (
-	"bytes"
-	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"html/template"
 	"math/rand"
 
 	// "github.com/a-h/templ"
@@ -26,7 +23,7 @@ var propertiesFile = "./resources/app.properties"
 var username string
 var password string
 
-var sendEmailFlag bool = true
+var sendEmailFlag bool = false
 
 var groceryCategories = []consts.GroceryCategory{
 	consts.Produce,
@@ -99,6 +96,8 @@ func main() {
 		emailBody := html.Email(data)
 
 		emailString, err := html.TemplString(emailBody)
+		// __AUTO_GENERATED_PRINT_VAR_START__
+		fmt.Println(fmt.Sprintf("main emailString: %v", emailString)) // __AUTO_GENERATED_PRINT_VAR_END__
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -205,34 +204,4 @@ func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.So
 			}
 		}
 	}
-}
-
-func executeTemplate(data model.EmailData) (string, error) {
-
-	// Parse the template file
-	template, err := template.ParseFiles("./resources/email_template.html")
-	if err != nil {
-		return "", err
-	}
-
-	// Execute the template with the provided data
-	var tpl bytes.Buffer
-	err = template.Execute(&tpl, data)
-	if err != nil {
-		fmt.Print("There has been an error executing the HTML Template: ")
-		fmt.Println(err)
-		return "", err
-	}
-
-	return tpl.String(), nil
-}
-
-func convertTemplToString(data model.EmailData) (string, error) {
-	var b bytes.Buffer
-	err := html.Email(data).Render(context.Background(), &b)
-	if err != nil {
-		return "", err
-	}
-
-	return b.String(), nil
 }

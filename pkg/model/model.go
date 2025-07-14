@@ -46,6 +46,10 @@ type SortedIngredients struct {
 	Unsorted           map[string]int
 }
 
+func (s *SortedIngredients) getProduce() {
+	return len(s.Produce)
+}
+
 func (s *SortedIngredients) IncrementIngredientCount(category string, ingredient Ingredient) {
 	var targetMap map[string]int
 

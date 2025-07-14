@@ -1,8 +1,10 @@
 # MVP
 - Manually runnable, read JSON file, send formatted email to defined users
 
-# TODO
+# Doing
 - HTML Template for emails
+
+# TODO
 - HTMX Frontend
 - Setup Authentication
 - PostgresDB over simple JSON file

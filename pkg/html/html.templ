@@ -2,6 +2,7 @@ package html
 
 import "github.com/tylander732/weeklyAutoPlanner/pkg/model"
 
+//TODO: Dynamically create html for meal details
 templ Email(data model.EmailData) {
 
 <!DOCTYPE html>
@@ -21,6 +22,11 @@ templ Email(data model.EmailData) {
             <th>Grocery Type</th>
             <th>Items</th>
         </tr>
+        if len(data.AllIngredients.Produce) > 0{ 
+            <tr>
+
+            </tr>
+        }
     </table>
 </body>
 
