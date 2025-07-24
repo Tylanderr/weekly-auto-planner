@@ -104,6 +104,8 @@ func main() {
 
 		if sendEmailFlag == true {
 			sendEmail(emailString, userArray[i].Email)
+		} else {
+			// TODO: output to console
 		}
 	}
 }
