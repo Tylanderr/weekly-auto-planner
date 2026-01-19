@@ -14,10 +14,6 @@ templ ingredients(categoryName string, ingredients map[string]int) {
 	</tr>
 }
 
-templ hello(receiver string) {
-	<h1>Hello, { receiver }!</h1>
-}
-
 //TODO: Dynamically create html for meal details
 templ Email(data model.EmailData) {
 	<!DOCTYPE html>
@@ -26,33 +22,32 @@ templ Email(data model.EmailData) {
 			<meta charset="UTF-8"/>
 			<title>Weekly Meals</title>
 			<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			font-family: Arial, sans-serif;
-		}
+				table {
+					border-collapse: collapse;
+					width: 100%;
+					font-family: Arial, sans-serif;
+				}
 
-		table-small {
-			border-collapse: collapse;
-			width: 100%;
-			font-family: Arial, sans-serif;
-		}
+				table-small {
+					border-collapse: collapse;
+					width: 100%;
+					font-family: Arial, sans-serif;
+				}
 
-		table th,
-		table td {
-			border: 1px solid #ccc;
-			padding: 8px 12px;
-			text-align: left;
-		}
+				table th,
+				table td {
+					border: 1px solid #ccc;
+					padding: 8px 12px;
+					text-align: left;
+				}
 
-		table th {
-			background-color: #f4f4f4;
-			font-weight: bold;
-		}
-	</style>
+				table th {
+					background-color: #f4f4f4;
+					font-weight: bold;
+				}
+			</style>
 		</head>
 		<body>
-			@hello(data.Receiver)
 			<h1>Meals for this week:</h1>
 			for _, meal := range data.Meals {
 				<div>
@@ -77,7 +72,6 @@ templ Email(data model.EmailData) {
 				@ingredients("Personal Care", data.AllIngredients.PersonalCare)
 				@ingredients("International Foods", data.AllIngredients.InternationalFoods)
 				@ingredients("Deli", data.AllIngredients.Deli)
-				@ingredients("Floral", data.AllIngredients.Floral)
 				@ingredients("Unsorted", data.AllIngredients.Unsorted)
 			</table>
 		</body>

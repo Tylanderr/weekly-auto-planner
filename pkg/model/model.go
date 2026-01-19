@@ -1,5 +1,7 @@
 package model
 
+import "fmt"
+
 type JsonFile struct {
 	UserJArray []User `json:"users"`
 }
@@ -11,10 +13,10 @@ type User struct {
 }
 
 type Meal struct {
-	Name              string       `json:"name"`
-	Ingredients       []Ingredient `json:"ingredients"`
+	Name        string       `json:"name"`
+	Ingredients []Ingredient `json:"ingredients"`
 	// SharedIngredients []string     `json:"sharedIngredients"`
-	Notes             string       `json:"notes"`
+	Notes string `json:"notes"`
 }
 
 type Ingredient struct {
@@ -42,7 +44,6 @@ type SortedIngredients struct {
 	PersonalCare       map[string]int
 	InternationalFoods map[string]int
 	Deli               map[string]int
-	Floral             map[string]int
 	Unsorted           map[string]int
 }
 
@@ -76,9 +77,8 @@ func (s *SortedIngredients) IncrementIngredientCount(category string, ingredient
 		targetMap = s.InternationalFoods
 	case "Deli":
 		targetMap = s.Deli
-	case "Floral":
-		targetMap = s.Floral
 	default:
+		fmt.Printf("This item should be going into unsorted: %s", ingredient.Name)
 		targetMap = s.Unsorted
 	}
 

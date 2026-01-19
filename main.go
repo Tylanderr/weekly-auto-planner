@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"strings"
 
 	"github.com/magiconair/properties"
 	"github.com/yosssi/gohtml"
@@ -38,7 +39,6 @@ var groceryCategories = []consts.GroceryCategory{
 	consts.PersonalCare,
 	consts.InternationalFoods,
 	consts.Deli,
-	consts.Floral,
 }
 
 func main() {
@@ -71,7 +71,6 @@ func main() {
 			PersonalCare:       make(map[string]int),
 			InternationalFoods: make(map[string]int),
 			Deli:               make(map[string]int),
-			Floral:             make(map[string]int),
 			Unsorted:           make(map[string]int),
 		}
 
@@ -103,7 +102,6 @@ func main() {
 		if sendEmailFlag == true {
 			sendEmail(emailString, userArray[i].Email)
 		} else {
-			// TODO: output to console
 			fmt.Println(gohtml.Format(emailString))
 		}
 	}
@@ -199,7 +197,7 @@ func sortIngredients(ingredients []model.Ingredient, sortedIngredients *model.So
 		currentIngredient := ingredients[i]
 
 		for _, categorySlice := range groceryCategories {
-			if slices.Contains(categorySlice.ItemsSlice, currentIngredient.Name) {
+			if slices.Contains(categorySlice.ItemsSlice, strings.ToLower(currentIngredient.Name)) {
 				sortedIngredients.IncrementIngredientCount(categorySlice.Name, currentIngredient)
 				break
 			}

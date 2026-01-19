@@ -7,7 +7,7 @@ type GroceryCategory struct {
 
 var Produce = GroceryCategory{
 	Name:       "Produce",
-	ItemsSlice: []string{"apples", "bananas", "oranges", "grapes", "strawberries", "blueberries", "raspberries", "broccoli", "carrots", "spinach", "lettuce", "tomatoes", "potatoes", "onions", "garlic", "bell peppers", "cucumbers", "zucchini", "avocados", "mushrooms", "salad"},
+	ItemsSlice: []string{"apples", "bananas", "oranges", "grapes", "strawberries", "blueberries", "raspberries", "broccoli", "carrots", "spinach", "lettuce", "tomatoes", "potatoes", "onions", "sweet vidalia onion", "yellow onion", "green onion", "garlic", "bell peppers", "cucumbers", "zucchini", "avocados", "mushrooms", "salad"},
 }
 
 var MeatAndPoultry = GroceryCategory{
@@ -22,7 +22,7 @@ var Seafood = GroceryCategory{
 
 var Dairy = GroceryCategory{
 	Name:       "Dairy",
-	ItemsSlice: []string{"milk", "cheese", "yogurt", "butter", "eggs", "cream", "sour cream", "cottage cheese", "ice cream", "whipped cream", "cream cheese", "half-and-half", "mozzarella", "cheddar", "parmesan", "provolone"},
+	ItemsSlice: []string{"milk", "cheese", "yogurt", "butter", "eggs", "cream", "sour cream", "cottage cheese", "ice cream", "whipped cream", "cream cheese", "half-and-half", "mozzarella", "cheddar", "parmesan", "provolone", "sliced cheddar cheese"},
 }
 
 var Bakery = GroceryCategory{
@@ -37,7 +37,7 @@ var FrozenFoods = GroceryCategory{
 
 var PantryStaples = GroceryCategory{
 	Name:       "PantryStaples",
-	ItemsSlice: []string{"rice", "pasta", "fettuccini noodles", "spaghetti noodles", "spaghetti sauce", "canned vegetables", "canned fruits", "beans", "lentils", "oats", "flour", "sugar", "salt", "pepper", "cooking oil", "vinegar", "canned soups", "broth", "spices", "herbs", "cereals", "peanut butter", "jelly"},
+	ItemsSlice: []string{"alfredo sauce", "rice", "pasta", "fettuccini noodles", "spaghetti noodles", "spaghetti sauce", "canned vegetables", "canned fruits", "beans", "lentils", "oats", "flour", "sugar", "salt", "pepper", "cooking oil", "vinegar", "canned soups", "broth", "spices", "herbs", "cereals", "peanut butter", "jelly"},
 }
 
 var Beverages = GroceryCategory{
@@ -67,10 +67,5 @@ var InternationalFoods = GroceryCategory{
 
 var Deli = GroceryCategory{
 	Name:       "Deli",
-	ItemsSlice: []string{"deli meat", "deli cheese", "sandwiches", "salads", "olives", "pickles", "prepared meals", "hummus", "tzatziki", "pasta salad", "potato salad", "coleslaw", "quiche", "soups", "chicken salad"},
-}
-
-var Floral = GroceryCategory{
-	Name:       "Floral",
-	ItemsSlice: []string{"roses", "lilies", "tulips", "carnations", "sunflowers", "orchids", "daisies", "chrysanthemums", "gerberas", "hydrangeas", "greenery", "potted plants", "bouquets", "arrangements", "seasonal flowers"},
+	ItemsSlice: []string{"deli meat", "deli cheese", "sandwiches", "olives", "pickles", "prepared meals", "hummus", "tzatziki", "pasta salad", "potato salad", "coleslaw", "quiche", "soups", "chicken salad"},
 }

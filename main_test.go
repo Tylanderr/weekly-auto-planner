@@ -29,7 +29,6 @@ func TestSortIngredients(t *testing.T) {
 		PersonalCare:       make(map[string]int),
 		InternationalFoods: make(map[string]int),
 		Deli:               make(map[string]int),
-		Floral:             make(map[string]int),
 		Unsorted:           make(map[string]int),
 	}
 
@@ -52,7 +51,6 @@ func TestSortIngredients(t *testing.T) {
 		PersonalCare:       make(map[string]int),
 		InternationalFoods: make(map[string]int),
 		Deli:               make(map[string]int),
-		Floral:             make(map[string]int),
 		Unsorted:           make(map[string]int),
 	}
 
