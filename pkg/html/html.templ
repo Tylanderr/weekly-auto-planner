@@ -1,6 +1,5 @@
 package html
 
-import "github.com/tylander732/weeklyAutoPlanner/pkg/model"
 import "strconv"
 
 templ ingredients(categoryName string, ingredients map[string]int) {
@@ -15,7 +14,7 @@ templ ingredients(categoryName string, ingredients map[string]int) {
 }
 
 //TODO: Dynamically create html for meal details
-templ Email(data model.EmailData) {
+templ Email() {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -49,30 +48,11 @@ templ Email(data model.EmailData) {
 		</head>
 		<body>
 			<h1>Meals for this week:</h1>
-			for _, meal := range data.Meals {
-				<div>
-					{ meal }
-				</div>
-			}
 			<table>
 				<tr>
 					<th>Grocery Type</th>
 					<th>Items</th>
 				</tr>
-				@ingredients("Produce", data.AllIngredients.Produce)
-				@ingredients("Meat and Poultry", data.AllIngredients.MeatAndPoultry)
-				@ingredients("Seafood", data.AllIngredients.Seafood)
-				@ingredients("Dairy", data.AllIngredients.Dairy)
-				@ingredients("Bakery", data.AllIngredients.Bakery)
-				@ingredients("Frozen Foods", data.AllIngredients.FrozenFoods)
-				@ingredients("Pantry Staples", data.AllIngredients.PantryStaples)
-				@ingredients("Beverages", data.AllIngredients.Beverages)
-				@ingredients("Snacks", data.AllIngredients.Snacks)
-				@ingredients("Household Goods", data.AllIngredients.HouseholdGoods)
-				@ingredients("Personal Care", data.AllIngredients.PersonalCare)
-				@ingredients("International Foods", data.AllIngredients.InternationalFoods)
-				@ingredients("Deli", data.AllIngredients.Deli)
-				@ingredients("Unsorted", data.AllIngredients.Unsorted)
 			</table>
 		</body>
 	</html>

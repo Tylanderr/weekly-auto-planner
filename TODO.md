@@ -1,5 +1,10 @@
+# Goal
+- Weekly meal selector and auto generated grocery list
+- Shared Calendar
+
 # MVP
-- Manually runnable, read JSON file, send formatted email to defined users
+- Auto generated Email of meals and ingredients pulled from DB
+- Front end
 
 # Doing
 - HTML Template for emails
