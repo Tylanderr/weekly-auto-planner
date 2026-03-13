@@ -5,6 +5,8 @@ import (
 	"os"
 
 	"net/smtp"
+
+	"github.com/tylanderr/home-operations-portal/internal/server"
 )
 
 var username = os.Getenv("HOP_EMAIL_USERNAME")
@@ -13,7 +15,11 @@ var password = os.Getenv("HOP_EMAIL_PASSWORD")
 var sendEmailFlag bool = false
 
 func main() {
-
+	server := server.NewServer()
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(fmt.Sprintf("cannot start server: %s", err))
+	}
 }
 
 func sendEmail(emailString string, receiver string) {

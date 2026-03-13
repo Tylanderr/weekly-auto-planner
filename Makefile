@@ -2,7 +2,7 @@ run:
 	@templ generate
 	@go run main.go > output.html
 	@/usr/lib/chromium/chromium output.html
-	# @go run cmd/main.go
+	# @go run main.go
 
 setup:
 	@docker compose up -d
