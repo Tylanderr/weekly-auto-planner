@@ -2,19 +2,23 @@ package html
 
 import "strconv"
 
-templ ingredients(categoryName string, ingredients map[string]int) {
+type GroceryCategory struct {
+	Name        string
+	Ingredients map[string]float64
+}
+
+templ ingredientRow(categoryName string, ingredients map[string]float64) {
 	<tr>
-		<th>{ categoryName }</th>
-		<th>
-			for name, count := range ingredients {
-				{ name } { strconv.Itoa(count) } &#10;&#13;
+		<td>{ categoryName }</td>
+		<td>
+			for name, quantity := range ingredients {
+				<div>{ name } - { strconv.FormatFloat(quantity, 'f', -1, 64) }</div>
 			}
-		</th>
+		</td>
 	</tr>
 }
 
-//TODO: Dynamically create html for meal details
-templ Email() {
+templ Email(categories []GroceryCategory) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -51,8 +55,11 @@ templ Email() {
 			<table>
 				<tr>
 					<th>Grocery Type</th>
-					<th>Items</th>
+					<th>Ingredients</th>
 				</tr>
+				for _, category := range categories {
+					@ingredientRow(category.Name, category.Ingredients)
+				}
 			</table>
 		</body>
 	</html>

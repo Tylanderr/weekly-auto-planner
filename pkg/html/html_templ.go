@@ -10,7 +10,12 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import "strconv"
 
-func ingredients(categoryName string, ingredients map[string]int) templ.Component {
+type GroceryCategory struct {
+	Name        string
+	Ingredients map[string]float64
+}
+
+func ingredientRow(categoryName string, ingredients map[string]float64) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -31,52 +36,56 @@ func ingredients(categoryName string, ingredients map[string]int) templ.Componen
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<tr><th>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<tr><td>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(categoryName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/html/html.templ`, Line: 7, Col: 20}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/html/html.templ`, Line: 12, Col: 20}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</th><th>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</td><td>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for name, count := range ingredients {
+		for name, quantity := range ingredients {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/html/html.templ`, Line: 10, Col: 10}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/html/html.templ`, Line: 15, Col: 15}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, " ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " - ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
-			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(count))
+			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.FormatFloat(quantity, 'f', -1, 64))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/html/html.templ`, Line: 10, Col: 34}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `pkg/html/html.templ`, Line: 15, Col: 64}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " &#10;&#13;")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</th></tr>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</td></tr>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -84,8 +93,7 @@ func ingredients(categoryName string, ingredients map[string]int) templ.Componen
 	})
 }
 
-// TODO: Dynamically create html for meal details
-func Email() templ.Component {
+func Email(categories []GroceryCategory) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -106,7 +114,17 @@ func Email() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Weekly Meals</title><style>\n\t\t\t\ttable {\n\t\t\t\t\tborder-collapse: collapse;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\tfont-family: Arial, sans-serif;\n\t\t\t\t}\n\n\t\t\t\ttable-small {\n\t\t\t\t\tborder-collapse: collapse;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\tfont-family: Arial, sans-serif;\n\t\t\t\t}\n\n\t\t\t\ttable th,\n\t\t\t\ttable td {\n\t\t\t\t\tborder: 1px solid #ccc;\n\t\t\t\t\tpadding: 8px 12px;\n\t\t\t\t\ttext-align: left;\n\t\t\t\t}\n\n\t\t\t\ttable th {\n\t\t\t\t\tbackground-color: #f4f4f4;\n\t\t\t\t\tfont-weight: bold;\n\t\t\t\t}\n\t\t\t</style></head><body><h1>Meals for this week:</h1><table><tr><th>Grocery Type</th><th>Items</th></tr></table></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Weekly Meals</title><style>\n\t\t\t\ttable {\n\t\t\t\t\tborder-collapse: collapse;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\tfont-family: Arial, sans-serif;\n\t\t\t\t}\n\n\t\t\t\ttable-small {\n\t\t\t\t\tborder-collapse: collapse;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\tfont-family: Arial, sans-serif;\n\t\t\t\t}\n\n\t\t\t\ttable th,\n\t\t\t\ttable td {\n\t\t\t\t\tborder: 1px solid #ccc;\n\t\t\t\t\tpadding: 8px 12px;\n\t\t\t\t\ttext-align: left;\n\t\t\t\t}\n\n\t\t\t\ttable th {\n\t\t\t\t\tbackground-color: #f4f4f4;\n\t\t\t\t\tfont-weight: bold;\n\t\t\t\t}\n\t\t\t</style></head><body><h1>Meals for this week:</h1><table><tr><th>Grocery Type</th><th>Ingredients</th></tr>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		for _, category := range categories {
+			templ_7745c5c3_Err = ingredientRow(category.Name, category.Ingredients).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</table></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

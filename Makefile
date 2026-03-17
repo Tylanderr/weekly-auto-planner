@@ -4,6 +4,11 @@ run:
 	@/usr/lib/chromium/chromium output.html
 	# @go run main.go
 
+testemail:
+	@templ generate
+	@go test -v ./pkg/html/
+	@/usr/lib/chromium/chromium output.html
+
 setup:
 	@docker compose up -d
 
