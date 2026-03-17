@@ -16,6 +16,8 @@ import (
 type Service interface {
 	Health() map[string]string
 	Close() error
+
+	AddNewUser(email string) map[string]string
 }
 
 type service struct {
@@ -103,4 +105,20 @@ func (s *service) Health() map[string]string {
 func (s *service) Close() error {
 	log.Printf("Disconnected from database: %s", database)
 	return s.db.Close()
+}
+
+func (s *service) AddNewUser(email string) map[string]string {
+	status := make(map[string]string)
+
+	query := `INSERT INTO users (email) VALUES ($1)`
+	_, err := s.db.Exec(query, email)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("Writing to database: %s", database)
+	status["write_successful"] = "true"
+
+	return status
 }
