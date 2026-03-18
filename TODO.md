@@ -7,10 +7,10 @@
 - Front end
 
 # Doing
-- HTML Template for emails
+- Queries
+- HTMX Frontend
 
 # TODO
-- HTMX Frontend
 - Setup Authentication
 - PostgresDB over simple JSON file
 - Deploy to a server
@@ -18,3 +18,6 @@
     - Create deployment details allowing for others to modify and run their own versions for friends and family
 
 # Completed
+- Basic email template for groceries
+- DB Schema initial draft
+

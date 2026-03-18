@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -29,6 +30,20 @@ type User struct {
 	Email     string
 	FirstName string
 	LastName  string
+}
+
+type Meal struct {
+	Id          int          `json:"id"`
+	Name        string       `json:"name"`
+	Description string       `json:"description"`
+	Ingredients []Ingredient `json:"ingredients"`
+}
+
+type Ingredient struct {
+	Id       int     `json:"id"`
+	Name     string  `json:"name"`
+	Quantity float64 `json:"quantity"`
+	Unit     string  `json:"unit"`
 }
 
 var (
@@ -121,4 +136,59 @@ func (s *service) AddNewUser(email string) map[string]string {
 	status["write_successful"] = "true"
 
 	return status
+}
+
+func (s *service) GetMeals(limit int) ([]Meal, error) {
+	query := `
+	SELECT 
+		m.id,
+		m.name,
+		m.description,
+		COALESCE(json_agg(json_build_object(
+			'id', i.id,
+			'name', i.name,
+			'quantity', mi.quantity,
+			'unit', mi.unit
+		) FILTER (WHERE i.id IS NOT NULL)), '[]') as ingredients
+	FROM meals m
+	LEFT JOIN meal_ingredients mi ON m.id = mi.meal_id
+	LEFT JOIN ingredients i ON mi.ingredient_id = i.id
+	GROUP BY m.id, m.name, m.description
+	ORDER BY m.id
+	LIMIT $1
+	`
+
+	rows, err := s.db.Query(query, limit)
+	if err != nil {
+		return nil, fmt.Errorf("query failed: %w", err)
+	}
+
+	defer rows.Close()
+
+	var meals []Meal
+
+	for rows.Next() {
+		var m Meal
+		var ingredientsJSON []byte
+
+		err := rows.Scan(&m.Id, &m.Name, &m.Description, &ingredientsJSON)
+		if err != nil {
+			return nil, fmt.Errorf("scan failed: %w", err)
+		}
+
+		if len(ingredientsJSON) > 0 {
+			err = json.Unmarshal(ingredientsJSON, &m.Ingredients)
+			if err != nil {
+				return nil, fmt.Errorf("unmarshal ingredients failed: %w", err)
+			}
+		}
+
+		meals = append(meals, m)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, fmt.Errorf("rows iteration error: %w", err)
+	}
+
+	return meals, nil
 }
