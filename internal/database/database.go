@@ -6,7 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"os"
+
+	// "os"
 	"strconv"
 	"time"
 
@@ -46,29 +47,36 @@ type Ingredient struct {
 	Unit     string  `json:"unit"`
 }
 
-var (
-	database   = os.Getenv("DB_DATABASE")
-	password   = os.Getenv("DB_PASSWORD")
-	username   = os.Getenv("DB_USERNAME")
-	port       = os.Getenv("DB_PORT")
-	host       = os.Getenv("DB_HOST")
-	schema     = os.Getenv("DB_SCHEMA")
-	dbInstance *service
-)
+var	dbInstance *service
 
-func New() Service {
+type Config struct {
+	Database string
+	Password string
+	Username string
+	Port string
+	Host string
+	Schema string
+}
+
+func New(cfg Config) Service {
 	// Reuse Connection
 	if dbInstance != nil {
 		return dbInstance
 	}
-	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&search_path=%s", username, password, host, port, database, schema)
+
+	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&search_path=%s",
+		cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Database, cfg.Schema)
+
 	db, err := sql.Open("pgx", connStr)
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	dbInstance = &service{
 		db: db,
 	}
+
 	return dbInstance
 }
 
@@ -118,7 +126,6 @@ func (s *service) Health() map[string]string {
 }
 
 func (s *service) Close() error {
-	log.Printf("Disconnected from database: %s", database)
 	return s.db.Close()
 }
 
@@ -132,7 +139,6 @@ func (s *service) AddNewUser(email string) map[string]string {
 		log.Fatal(err)
 	}
 
-	log.Printf("Writing to database: %s", database)
 	status["write_successful"] = "true"
 
 	return status

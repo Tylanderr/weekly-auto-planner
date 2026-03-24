@@ -21,7 +21,7 @@ build:
 	@echo "Building..."
 	@templ generate
 	
-	@go build -o main cmd/main.go
+	@go build -o main main.go
 
 # Live Reload
 watch:

@@ -1,4 +1,4 @@
-﻿# easy-meal
+﻿# home-operations-portal
 Struggling to decide what's for dinner each week? Stuck making the same set of meals on repeat? Then my hope is that auto-email-shopping list can be of use to you.
 
 # Overview
@@ -7,11 +7,3 @@ Deliver an email to list of users, where they receive an HTML formatted table de
 - Set the amount of meals you'd like to plan for. Setting this value to 5 would mean you receive ingredients for 5 of the meals chosen at random from list of meals.
 
 # Setup
-- TODO: Detail setting up sender email
-- Install GO
-- Edit userList.json, adding users, meals and ingredients.
-- Run 
-```go
-go run cmd/autoEmailShoppingList/main.go
-```
-

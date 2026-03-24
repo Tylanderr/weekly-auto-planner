@@ -20,9 +20,18 @@ type Server struct {
 func NewServer() *http.Server {
 	//Atoi is equivalent to ParseInt. PORT is defined in the .env file
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
+	cfg := database.Config{
+		Database: os.Getenv("DB_DATABASE"),
+		Username: os.Getenv("DB_USERNAME"),
+		Password: os.Getenv("DB_PASSWORD"),
+		Port: os.Getenv("DB_PORT"),
+		Host: os.Getenv("DB_HOST"),
+		Schema: os.Getenv("DB_SCHEMA"),
+	}
+
 	NewServer := &Server{
 		port: port,
-		db:   database.New(),
+		db:   database.New(cfg),
 	}
 
 	// Declare Server config
