@@ -1,13 +1,6 @@
-# Goal
-- Weekly meal selector and auto generated grocery list
-- Shared Calendar
-
-# MVP
-- Auto generated Email of meals and ingredients pulled from DB
-- Front end
-
 # Doing
 - Queries
+    - Setup a route for hitting the GetMeals query
 - HTMX Frontend
 
 # TODO

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type Request struct {
@@ -11,6 +12,9 @@ type Request struct {
 
 func (s *Server) RegisterRoutes() http.Handler {
 	mux := http.NewServeMux()
+
+	mux.HandleFunc("/health", s.healthHandler)
+	mux.HandleFunc("/meals", s.getMealsHandler)
 
 	return mux
 }
@@ -23,4 +27,36 @@ func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_, _ = w.Write(jsonResp)
+}
+
+func (s *Server) getMealsHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	limitStr := r.URL.Query().Get("limit")
+	limit := 10
+	if limitStr != "" {
+		parsedLimit, err := strconv.Atoi(limitStr)
+		if err != nil || parsedLimit < 1 {
+			http.Error(w, "Invalid limit parameter", http.StatusBadRequest)
+			return
+		}
+		limit = parsedLimit
+	}
+
+	meals, err := s.db.GetMeals(limit)
+	if err != nil {
+		log.Printf("Error getting meals: %v", err)
+		http.Error(w, "Failed to retrieve meals", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(meals); err != nil {
+		log.Printf("Error encoding response: %v", err)
+		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		return
+	}
 }

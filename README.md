@@ -7,3 +7,11 @@ Deliver an email to list of users, where they receive an HTML formatted table de
 - Set the amount of meals you'd like to plan for. Setting this value to 5 would mean you receive ingredients for 5 of the meals chosen at random from list of meals.
 
 # Setup
+
+# Goal
+- Weekly meal selector and auto generated grocery list
+- Shared Calendar
+
+# MVP
+- Auto generated Email of meals and ingredients pulled from DB
+- Front end

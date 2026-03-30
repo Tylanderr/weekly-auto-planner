@@ -20,6 +20,7 @@ type Service interface {
 	Close() error
 
 	AddNewUser(email string) map[string]string
+	GetMeals(limit int) ([]Meal, error)
 }
 
 type service struct {
@@ -150,12 +151,17 @@ func (s *service) GetMeals(limit int) ([]Meal, error) {
 		m.id,
 		m.name,
 		m.description,
-		COALESCE(json_agg(json_build_object(
-			'id', i.id,
-			'name', i.name,
-			'quantity', mi.quantity,
-			'unit', mi.unit
-		) FILTER (WHERE i.id IS NOT NULL)), '[]') as ingredients
+		COALESCE(
+			json_agg(
+				json_build_object(
+					'id', i.id,
+					'name', i.name,
+					'quantity', mi.quantity,
+					'unit', mi.unit
+				)
+			) FILTER (WHERE i.id IS NOT NULL), 
+			'[]'
+		) as ingredients
 	FROM meals m
 	LEFT JOIN meal_ingredients mi ON m.id = mi.meal_id
 	LEFT JOIN ingredients i ON mi.ingredient_id = i.id

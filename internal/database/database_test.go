@@ -2,7 +2,6 @@ package database
 
 import (
 	// "context"
-	"fmt"
 	"os"
 	"testing"
 )
@@ -19,18 +18,35 @@ func TestMain(m *testing.M) {
 		Schema:   os.Getenv("DB_SCHEMA"),
 	}
 
-	dbURL := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&search_path=%s",
-		cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Database, cfg.Schema)
+	dbService := New(cfg)
+	testDB = dbService.(*service)
 
-	// __AUTO_GENERATED_PRINT_VAR_START__
-	fmt.Println(fmt.Sprintf("TestMain dbURL: %v", dbURL)) // __AUTO_GENERATED_PRINT_VAR_END__
+	code := m.Run()
+
+	dbService.Close()
+
+	os.Exit(code)
 }
 
-func TestGetMeals_Integration(t *testing.T) {
-	if testing.Short() {
-		t.Skip("skipping integration test")
-	}
-
-	// ctx := context.Background()
-
-}
+// func TestGetMeals_Integration(t *testing.T) {
+// 	if testing.Short() {
+// 		t.Skip("skipping integration test")
+// 	}
+//
+// 	ctx := context.Background()
+//
+// 	// Setup: Insert test data
+// 	mealName := "Test Pasta"
+// 	mealDesc := "A delicious test pasta"
+//
+// 	// Insert test meal
+// 	var mealID int
+// 	err := testDB.db.QueryRowContext(ctx, `
+// 		INSERT INTO meals (name, description) 
+// 		VALUES ($1, $2) 
+// 		RETURNING id
+// 	`, mealName, mealDesc).Scan(&mealID)
+// 	if err != nil {
+// 		t.Fatalf("failed to insert test meal: %v", err)
+// 	}
+// }
