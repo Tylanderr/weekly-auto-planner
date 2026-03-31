@@ -166,7 +166,7 @@ func (s *service) GetMeals(limit int) ([]Meal, error) {
 	LEFT JOIN meal_ingredients mi ON m.id = mi.meal_id
 	LEFT JOIN ingredients i ON mi.ingredient_id = i.id
 	GROUP BY m.id, m.name, m.description
-	ORDER BY m.id
+	ORDER BY RANDOM()
 	LIMIT $1
 	`
 

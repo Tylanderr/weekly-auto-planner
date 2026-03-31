@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+
+	email "github.com/tylanderr/home-operations-portal/internal"
 )
 
 type Request struct {
@@ -15,6 +17,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 
 	mux.HandleFunc("/health", s.healthHandler)
 	mux.HandleFunc("/meals", s.getMealsHandler)
+	mux.HandleFunc("/sendEmail", s.getSendEmailHandler)
 
 	return mux
 }
@@ -36,6 +39,7 @@ func (s *Server) getMealsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	limitStr := r.URL.Query().Get("limit")
+
 	limit := 10
 	if limitStr != "" {
 		parsedLimit, err := strconv.Atoi(limitStr)
@@ -59,4 +63,15 @@ func (s *Server) getMealsHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
 		return
 	}
+}
+
+func (s *Server) getSendEmailHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+
+
+	email.SendEmail()
 }
