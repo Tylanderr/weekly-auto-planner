@@ -42,21 +42,23 @@ type Meal struct {
 }
 
 type Ingredient struct {
-	Id       int     `json:"id"`
-	Name     string  `json:"name"`
-	Quantity float64 `json:"quantity"`
-	Unit     string  `json:"unit"`
+	Id                  int     `json:"id"`
+	Name                string  `json:"name"`
+	Quantity            float64 `json:"quantity"`
+	Unit                string  `json:"unit"`
+	GroceryCategoryId   int     `json:"grocery_category_id"`
+	GroceryCategoryName string  `json:"grocery_category_name"`
 }
 
-var	dbInstance *service
+var dbInstance *service
 
 type Config struct {
 	Database string
 	Password string
 	Username string
-	Port string
-	Host string
-	Schema string
+	Port     string
+	Host     string
+	Schema   string
 }
 
 func New(cfg Config) Service {
@@ -157,7 +159,9 @@ func (s *service) GetMeals(limit int) ([]Meal, error) {
 					'id', i.id,
 					'name', i.name,
 					'quantity', mi.quantity,
-					'unit', mi.unit
+					'unit', mi.unit,
+					'grocery_category_id', i.grocery_category_id,
+					'grocery_category_name', gc.name
 				)
 			) FILTER (WHERE i.id IS NOT NULL), 
 			'[]'
@@ -165,6 +169,7 @@ func (s *service) GetMeals(limit int) ([]Meal, error) {
 	FROM meals m
 	LEFT JOIN meal_ingredients mi ON m.id = mi.meal_id
 	LEFT JOIN ingredients i ON mi.ingredient_id = i.id
+	LEFT JOIN grocery_categories gc ON i.grocery_category_id = gc.id
 	GROUP BY m.id, m.name, m.description
 	ORDER BY RANDOM()
 	LIMIT $1

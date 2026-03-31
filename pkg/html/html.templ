@@ -1,24 +1,70 @@
 package html
 
-import "strconv"
+import (
+	"strconv"
+	"sort"
+)
 
-type GroceryCategory struct {
-	Name        string
-	Ingredients map[string]float64
+type Meal struct {
+	Id          int          `json:"id"`
+	Name        string       `json:"name"`
+	Description string       `json:"description"`
+	Ingredients []Ingredient `json:"ingredients"`
 }
 
-templ ingredientRow(categoryName string, ingredients map[string]float64) {
+type Ingredient struct {
+	Id                  int     `json:"id"`
+	Name                string  `json:"name"`
+	Quantity            float64 `json:"quantity"`
+	Unit                string  `json:"unit"`
+	GroceryCategoryId   int     `json:"grocery_category_id"`
+	GroceryCategoryName string  `json:"grocery_category_name"`
+}
+
+type CategoryGroup struct {
+	CategoryName string
+	Ingredients  []Ingredient
+}
+
+func groupIngredientsByCategory(meals []Meal) []CategoryGroup {
+	categoryMap := make(map[string][]Ingredient)
+	
+	for _, meal := range meals {
+		for _, ingredient := range meal.Ingredients {
+			if ingredient.GroceryCategoryName == "" {
+				continue
+			}
+			categoryMap[ingredient.GroceryCategoryName] = append(categoryMap[ingredient.GroceryCategoryName], ingredient)
+		}
+	}
+	
+	var groups []CategoryGroup
+	for categoryName, ingredients := range categoryMap {
+		groups = append(groups, CategoryGroup{
+			CategoryName: categoryName,
+			Ingredients:  ingredients,
+		})
+	}
+	
+	sort.Slice(groups, func(i, j int) bool {
+		return groups[i].CategoryName < groups[j].CategoryName
+	})
+	
+	return groups
+}
+
+templ categoryRow(group CategoryGroup) {
 	<tr>
-		<td>{ categoryName }</td>
+		<td>{ group.CategoryName }</td>
 		<td>
-			for name, quantity := range ingredients {
-				<div>{ name } - { strconv.FormatFloat(quantity, 'f', -1, 64) }</div>
+			for _, ingredient := range group.Ingredients {
+				<div>{ ingredient.Name } - { strconv.FormatFloat(ingredient.Quantity, 'f', -1, 64) } { ingredient.Unit }</div>
 			}
 		</td>
 	</tr>
 }
 
-templ Email(categories []GroceryCategory) {
+templ Email(meals []Meal) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -57,8 +103,8 @@ templ Email(categories []GroceryCategory) {
 					<th>Grocery Type</th>
 					<th>Ingredients</th>
 				</tr>
-				for _, category := range categories {
-					@ingredientRow(category.Name, category.Ingredients)
+				for _, group := range groupIngredientsByCategory(meals) {
+					@categoryRow(group)
 				}
 			</table>
 		</body>

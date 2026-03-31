@@ -5,8 +5,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-
-	email "github.com/tylanderr/home-operations-portal/internal"
 )
 
 type Request struct {
@@ -71,7 +69,7 @@ func (s *Server) getSendEmailHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// TODO: transform json from db to format sent in email
 
-
-	email.SendEmail()
+	// email.SendEmail()
 }
